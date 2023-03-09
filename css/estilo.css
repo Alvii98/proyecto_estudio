@@ -75,3 +75,12 @@ body{
     cursor: pointer;
     border: transparent;
 }
+.table-dark{
+    background-color: rgba(31, 4, 24, 0.9);
+}
+tbody tr{
+    cursor: pointer;
+}
+tbody tr:hover{
+    background-color: rgba(78, 52, 85, 0.9);
+}
