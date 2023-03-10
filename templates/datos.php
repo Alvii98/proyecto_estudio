@@ -1,3 +1,4 @@
+<?php require_once 'datos.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +52,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Nombre">
+                    <input type="text" readonly="true"class="form-control" value="<?php $nombre ?>" placeholder="Nombre">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Edad</label>

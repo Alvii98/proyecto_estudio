@@ -1,5 +1,26 @@
 document.addEventListener('keyup', function (event) {
-    // buscar()
+    if(event.target.id == 'apellido'){
+        document.querySelector('#nombre').value = ''
+        document.querySelector('#edad').value = ''
+        document.querySelector('#actividad').value = ''
+    }
+    if(event.target.id == 'nombre'){
+        document.querySelector('#apellido').value = ''
+        document.querySelector('#edad').value = ''
+        document.querySelector('#actividad').value = ''
+    }
+    if(event.target.id == 'edad'){
+        document.querySelector('#apellido').value = ''
+        document.querySelector('#nombre').value = ''
+        document.querySelector('#actividad').value = ''
+    }
+    if(event.target.id == 'actividad'){
+        document.querySelector('#apellido').value = ''
+        document.querySelector('#nombre').value = ''
+        document.querySelector('#edad').value = ''
+    }
+    if(event.keyCode == 13) buscar()
+
 })
 document.addEventListener('click', function (event) {
     if(event.target.id != 'buscar') return
@@ -7,7 +28,7 @@ document.addEventListener('click', function (event) {
 })
 function buscar(){
 
-    var apellido, nombre, actividad, edad, table, tr, td,td1,td2, columna, td_cont, td_none
+    var apellido, nombre, actividad, edad, table, tr, td, td1, td2, td3, td_cont
 
     apellido = document.querySelector('#apellido').value.toUpperCase() //Parametro pasado a mayuscula
     nombre = document.querySelector('#nombre').value.toUpperCase() //Parametro pasado a mayuscula
@@ -15,35 +36,39 @@ function buscar(){
     edad = document.querySelector('#edad').value.toUpperCase() //Parametro pasado a mayuscula
     table = document.querySelector('table')
     tr = table.getElementsByTagName("tr") 
-    //columna = event.target.parentNode.querySelector('select').value //Culumna en cual va a hacer la busqueda
     td_cont = 0
-    td_none = 0
-
     // recorre todos los tr
     for (let i = 0; i < tr.length; i++) {
         // Elemento td de la columna seleccionada
         td = tr[i].getElementsByTagName("td")[0]
         td1 = tr[i].getElementsByTagName("td")[1]
         td2 = tr[i].getElementsByTagName("td")[2]
-        if (td || td1 || td2) {
+        td3 = tr[i].getElementsByTagName("td")[3]
+
+            
+        if (td || td1 || td2 || td3) {
             td_cont++
+            td = td.innerHTML.toUpperCase().indexOf(apellido)
+            td1 = td1.innerHTML.toUpperCase().indexOf(nombre)
+            td2 = td2.innerHTML.toUpperCase().indexOf(edad)
+            td3 = td3.innerHTML.toUpperCase().indexOf(actividad)
             //indexOf() retorna el indice donde se encuentra la palaba(filter) o -1 si no esta
-            if (td.innerHTML.toUpperCase().indexOf(apellido) > -1) {
+            if(td > -1 && apellido != '' || td1 > -1 && nombre != '' || td2 > -1 && edad != '' || td3 > -1 && actividad != ''){
                 tr[i].style.display = ""
-            } else if(td.innerHTML.toUpperCase().indexOf(nombre) > -1){
-                tr[i].style.display = ""
-            } else if(td2.innerHTML.toUpperCase().indexOf(actividad) > -1){
-                tr[i].style.display = ""
-            } else {
-                td_none++
+                document.querySelector('#no_result').style.display = "none"
+            }else{
+                td_cont--
                 tr[i].style.display = "none"
             }
         }
     }
-    // td_cont va a contar todos los td y td_none va a contar todos los que puso en none
-    // si son iguales es porque no encontro ningun dato con los parametros
-    if(td_cont == td_none){
-        console.log('No se encontraron datos.')
+
+    if(td_cont == 0){
+        document.querySelector('#no_result').style.display = ""
     }
 }
-    
+
+function alumno_id(id){
+    // alert('dsads'+id)
+    document.querySelector('form[name="alumno_'+id+'"]').submit()
+}
