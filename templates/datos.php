@@ -33,11 +33,22 @@
         <div class="row d-flex justify-content-center">
 
             <div class="col-md-12 d-flex justify-content-center mt-3">
-
-                <div class="form-group">
-                    <div class="perfil-img">
+                <div class="form-group col-md-3 mt-5">
+                    <label for="exampleFormControlInput1">Apellido</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$apellido;?>">
+                </div>
+                <div class="form-group col-md-3 mt-5">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
+                </div>
+                <div class="form-group col-md-3 mt-5">
+                    <label for="exampleFormControlInput1">Edad</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$edad;?>">
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="perfil-img ml-5">
                         <button type="submit" name="eliminar_foto" class="eliminar_foto">Eliminar foto</button>
-                        <img src="img/icono.jpg" class="rounded-circle" height="150" width="150"/>
+                        <img src="img/icono.jpg" class="rounded-circle" height="125" width="130"/>
                         <div class="file">
                             Cambiar foto
                             <input type="file" name="fotoPerfil" id="fotoPerfil"/>
@@ -47,76 +58,50 @@
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Apellido">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php $nombre ?>" placeholder="Nombre">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Edad</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Edad">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Documento</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Documento">
-                </div>
-            </div>
-            <div class="col-md-12 d-flex justify-content-center">
-                <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Domicilio</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Domicilio">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$domicilio;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Localidad</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Localidad">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$localidad;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Tel. alumno</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Tel. alumno">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$tel_movil;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Tel. fijo</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Tel. fijo">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$tel_fijo;?>">
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Contacto de emergencia</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Contacto de emergencia">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Condiciones clinicas</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Condiciones clinicas">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Cuota</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Cuota">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Descuento</label>
-                    <input type="text" readonly="true"class="form-control" placeholder="Descuento">
-                </div>
-            </div>
-            <div class="col-md-12 d-flex justify-content-center">
-                <div class="form-group col-md-4">
-                    <label>Actividad 1</label>
-                    <textarea class="form-control" readonly="tue" placeholder="Actividad 1" required></textarea>        
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Actividad 2</label>
-                    <textarea class="form-control" readonly="tue" placeholder="Actividad 2" required></textarea>        
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Actividad 3</label>
-                    <textarea class="form-control" readonly="tue" placeholder="Actividad 3" required></textarea>        
+                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-12">
+                    <label>Actividad</label>
+                    <textarea class="form-control" value="<?php print$actividad;?>" readonly="tue" required></textarea>        
+                </div>
+            </div> 
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-group col-md-12">
                     <label>Observacion de estudios</label>
-                    <textarea class="form-control" readonly="tue" placeholder="Observacion de estudios" required></textarea>        
+                    <textarea class="form-control" value="<?php print$observaciones;?>" readonly="tue" required></textarea>        
                 </div>
             </div>
             <div class="col-md-12 mb-4 mt-3">

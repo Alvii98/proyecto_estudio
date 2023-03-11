@@ -16,11 +16,11 @@
 	<script src="libs/alertifyjs/alertify.min.js"></script>
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA LOGIN -->
-   <script src="js/buscador.js?123"></script> 
+   <script src="js/buscador.js?12331"></script> 
 
    <!-- <script src="js/login.js?{{rand()}}"></script>  -->
     <!-- ESTILOS PARA LOGIN -->
-    <link rel="stylesheet" href="css/estilo.css?">
+    <link rel="stylesheet" href="css/estilo.css?313">
 </head>
 <body>
     <div class="container mt-3">

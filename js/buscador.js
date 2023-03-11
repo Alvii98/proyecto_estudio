@@ -53,9 +53,11 @@ function buscar(){
             td2 = td2.innerHTML.toUpperCase().indexOf(edad)
             td3 = td3.innerHTML.toUpperCase().indexOf(actividad)
             //indexOf() retorna el indice donde se encuentra la palaba(filter) o -1 si no esta
-            if(td > -1 && apellido != '' || td1 > -1 && nombre != '' || td2 > -1 && edad != '' || td3 > -1 && actividad != ''){
+            if(td > -1 && apellido.trim() != '' || td1 > -1 && nombre.trim() != '' || td2 > -1 && edad.trim() != '' || td3 > -1 && actividad.trim() != ''){
                 tr[i].style.display = ""
                 document.querySelector('#no_result').style.display = "none"
+            }else if(apellido.trim() == '' && nombre.trim() == '' && edad.trim() == '' && actividad.trim() == ''){
+                tr[i].style.display = ""
             }else{
                 td_cont--
                 tr[i].style.display = "none"

@@ -20,6 +20,12 @@ class datos{
         $query = "SELECT * FROM alumnos WHERE id =".$id." LIMIT 1";    
 
         return datos::respuestaQuery($query);
+    }
+    static public function familiar($id){
+
+        $query = "SELECT * FROM familiar WHERE id_alumno = ".$id;    
+
+        return datos::respuestaQuery($query);
     }    
     static public function update($id,$count){
         $instancia = SingletonConexion::getInstance();
@@ -30,6 +36,17 @@ class datos{
         $datos_usuarios = mysqli_query($conn, $query);
 
         return $datos_usuarios;
+    }
+    static public function obtener_edad($fecha_nac){
+        $arr = explode('/', $fecha_nac);
+        $fecha_nac = $arr[2].'-'.$arr[1].'-'.$arr[0];
+        
+        $nacimiento = new DateTime($fecha_nac);
+        $actual = new DateTime(date("Y-m-d"));
+
+        $diferencia = $actual->diff($nacimiento);
+
+        return $diferencia->format("%y");
     }
 }
 
