@@ -33,10 +33,10 @@
     <div class="container border rounded mb-4 text-light">
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 d-flex justify-content-center mt-4">
-                <input type="text" name="" id="apellido" placeholder="Apellido" class="form-control col-md-3">
-                <input type="text" name="" id="nombre" placeholder="Nombre" class="form-control ml-2 col-md-3">
-                <input type="text" name="" id="edad" placeholder="Edad" class="form-control ml-2 col-md-3">
-                <input type="text" name="" id="actividad" placeholder="Actividad" class="form-control ml-2 col-md-3">
+                <input type="text" id="apellido" placeholder="Apellido" class="form-control col-md-3">
+                <input type="text" id="nombre" placeholder="Nombre" class="form-control ml-2 col-md-3">
+                <input type="text" id="edad" placeholder="Edad" class="form-control ml-2 col-md-3">
+                <input type="text" id="actividad" placeholder="Actividad" class="form-control ml-2 col-md-3">
             </div>
             <div class="col-md-10 d-flex justify-content-center mt-3">
                 <button class="btn btn-dark btn-lg rounded-pill col-md-3" id="buscar">Buscar</button>

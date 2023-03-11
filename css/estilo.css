@@ -101,3 +101,12 @@ th{
   overflow-x:auto;
 }
 /******************************/
+
+.form-control{
+    background-color: rgba(78, 52, 85, 0.9) !important;
+    color: #fff !important;
+}
+textarea{
+    background-color: rgba(78, 52, 85, 0.9) !important;
+    color: #fff !important;
+}

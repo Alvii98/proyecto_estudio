@@ -38,6 +38,7 @@ class datos{
         return $datos_usuarios;
     }
     static public function obtener_edad($fecha_nac){
+        
         $arr = explode('/', $fecha_nac);
         $fecha_nac = $arr[2].'-'.$arr[1].'-'.$arr[0];
         

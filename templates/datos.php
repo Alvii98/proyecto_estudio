@@ -1,4 +1,3 @@
-<?php require_once 'datos.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,15 +34,19 @@
             <div class="col-md-12 d-flex justify-content-center mt-3">
                 <div class="form-group col-md-3 mt-5">
                     <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$apellido;?>">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['apellido'];?>">
                 </div>
                 <div class="form-group col-md-3 mt-5">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['nombre'];?>">
                 </div>
-                <div class="form-group col-md-3 mt-5">
+                <div class="form-group col-md-1 mt-5">
                     <label for="exampleFormControlInput1">Edad</label>
                     <input type="text" readonly="true"class="form-control" value="<?php print$edad;?>">
+                </div>
+                <div class="form-group col-md-2 mt-5">
+                    <label for="exampleFormControlInput1">Fecha de nacimiento</label>
+                    <input type="date" readonly="true"class="form-control" value="<?php print$fecha_nac;?>">
                 </div>
                 <div class="form-group col-md-3">
                     <div class="perfil-img ml-5">
@@ -58,52 +61,79 @@
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Domicilio</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$domicilio;?>">
+                    <label for="exampleFormControlInput1">Documento</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['documento'];?>">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Localidad</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$localidad;?>">
+                    <label for="exampleFormControlInput1">Correo</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['mail'];?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Tel. alumno</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$tel_movil;?>">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['tel_movil'];?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="exampleFormControlInput1">Tel. fijo</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$tel_fijo;?>">
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['tel_fijo'];?>">
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Contacto de emergencia</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
+                    <label for="exampleFormControlInput1">Nacionalidad</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['nacionalidad'];?>">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Condiciones clinicas</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
+                    <label for="exampleFormControlInput1">Localidad</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['localidad'];?>">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Cuota</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
+                    <label for="exampleFormControlInput1">Domicilio</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['domicilio'];?>">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="exampleFormControlInput1">Descuento</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$nombre;?>">
+                    <label for="exampleFormControlInput1">Salud</label>
+                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['salud'];?>">
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-12">
                     <label>Actividad</label>
-                    <textarea class="form-control" value="<?php print$actividad;?>" readonly="tue" required></textarea>        
+                    <textarea class="form-control" readonly="tue"><?php print$alumno['actividad'];?></textarea>        
                 </div>
             </div> 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-12">
-                    <label>Observacion de estudios</label>
-                    <textarea class="form-control" value="<?php print$observaciones;?>" readonly="tue" required></textarea>        
+                    <label>Observacion</label>
+                    <textarea class="form-control" readonly="tue"><?php print$alumno['observaciones'];?></textarea>        
                 </div>
             </div>
+            <div class="col-md-12">
+                <h3 class="ml-3 mt-3">Familiares</h3>
+            </div>
+            <?php foreach ($familiar as $key) { 
+                if(empty($key['nombre_apellido']) && empty($key['vinculo']) && empty($key['telefono'])) continue;
+            ?>
+                <div class="col-md-12 d-flex justify-content-center">
+                    <div class="form-group col-md-4">
+                        <label for="exampleFormControlInput1">Nombre y apellido</label>
+                        <input type="text" readonly="true"class="form-control" value="<?php print$key['nombre_apellido'];?>">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="exampleFormControlInput1">Vinculo</label>
+                        <input type="text" readonly="true"class="form-control" value="<?php print$key['vinculo'];?>">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="exampleFormControlInput1">Telefono</label>
+                        <input type="text" readonly="true"class="form-control" value="<?php print$key['telefono'];?>">
+                    </div>
+                </div>
+                <div class="col-md-12 d-flex justify-content-center">
+                    <div class="form-group col-md-12">
+                        <label>Observacion</label>
+                        <textarea class="form-control" readonly="tue"><?php print$key['observacion'];?></textarea>        
+                    </div>
+                </div>
+            <?php } ?>
             <div class="col-md-12 mb-4 mt-3">
                 <div class="form-group">
                     <button class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Editar datos</button>
