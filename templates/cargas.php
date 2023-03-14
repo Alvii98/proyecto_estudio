@@ -15,10 +15,10 @@
 	<link rel="stylesheet" href="libs/alertifyjs/css/themes/default.min.css" />
 	<script src="libs/alertifyjs/alertify.min.js"></script>
 	<script src="libs/alertifyjs/settings.js"></script>
-    <!-- JS PARA LOGIN -->
-    <!-- {{-- <script src="js/login.js?{{rand()}}"></script> --}} -->
+    <!-- JS PARA guardar_datos -->
+    <script src="js/ajax_guardar_datos.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
-    <link rel="stylesheet" href="css/estilo.css?{{rand()}}">
+    <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
 <body>
     <div class="container mt-3">
@@ -29,10 +29,11 @@
         </div>
     </div>
     <div class="container border rounded mb-4 text-light">
-        <div class="row">
+    <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
+                        <button type="submit" name="eliminar_foto" class="eliminar_foto">Eliminar foto</button>
                         <img src="img/icono.jpg" class="rounded-circle" height="125" width="130"/>
                         <div class="file">
                             Cambiar foto
@@ -40,74 +41,78 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group float-left">
+                    <!-- border-radius: 50rem!important;position: absolute;bottom: 72%;left: 1%; -->
+                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php" style="position: absolute;">Volver</a>
+                </div>
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="text" class="form-control" placeholder="Apellido">
+                    <input type="text" id="apellido" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre">
+                    <input type="text" id="nombre" class="form-control">
                 </div>
                 <div class="form-group col-md-1 float-left mt-datos">
                     <label for="exampleFormControlInput1">Edad</label>
-                    <input type="text"  class="form-control" placeholder="Edad">
+                    <input type="text" id="edad" class="form-control">
                 </div>
                 <div class="form-group col-md-2 float-left mt-datos">
                     <label for="exampleFormControlInput1">Fecha de nac.</label>
-                    <input type="date" class="form-control">
+                    <input type="date" id="fecha_nac" class="form-control">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Documento</label>
-                    <input type="text" class="form-control" placeholder="Documento">
+                    <input type="text" id="documento" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Correo</label>
-                    <input type="text" class="form-control" placeholder="Correo">
+                    <input type="text" id="correo" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
-                    <label for="exampleFormControlInput1">Tel. alumno</label>
-                    <input type="text" class="form-control" placeholder="Tel. alumno">
+                    <label for="exampleFormControlInput1">Tel. movil</label>
+                    <input type="text" id="tel_alumno" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Tel. fijo</label>
-                    <input type="text" class="form-control" placeholder="Tel. fijo">
+                    <input type="text" id="tel_fijo" class="form-control">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Nacionalidad</label>
-                    <input type="text" class="form-control" placeholder="Nacionalidad">
+                    <input type="text" id="nacionalidad" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Localidad</label>
-                    <input type="text" class="form-control" placeholder="Localidad">
+                    <input type="text" id="localidad" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Domicilio</label>
-                    <input type="text" class="form-control" placeholder="Domicilio">
+                    <input type="text" id="domicilio" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Salud</label>
-                    <input type="text" class="form-control" placeholder="Salud">
+                    <input type="text" id="salud" class="form-control">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Actividad</label>
-                    <textarea class="form-control" placeholder="Actividad" readonly="tue"></textarea>        
+                    <textarea class="form-control" id="actividad"></textarea>        
                 </div>
             </div> 
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Observacion</label>
-                    <textarea class="form-control" placeholder="Observacion" readonly="tue"></textarea>        
+                    <textarea class="form-control" id="observacion_alumno"></textarea>        
                 </div>
             </div>
             <div class="col-md-12 mb-4 mt-3">
                 <div class="form-group col-md-12">
-                    <button class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Guardar datos</button>
+                    <button class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3" id="guardar_datos">Guardar datos</button>
                 </div>
             </div>
         </div>

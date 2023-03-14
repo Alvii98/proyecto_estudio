@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busqueda</title>
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
@@ -16,11 +17,11 @@
 	<script src="libs/alertifyjs/alertify.min.js"></script>
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA LOGIN -->
-   <script src="js/buscador.js?12331"></script> 
+   <script src="js/buscador.js?<?php print time();?>"></script> 
 
    <!-- <script src="js/login.js?{{rand()}}"></script>  -->
     <!-- ESTILOS PARA LOGIN -->
-    <link rel="stylesheet" href="css/estilo.css?313">
+    <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
 <body>
     <div class="container mt-3">

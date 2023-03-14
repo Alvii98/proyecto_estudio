@@ -1,30 +1,34 @@
-let video = document.getElementById("video"),
-canvas = document.getElementById("canvas"),
-boton = document.getElementById("boton"),
-estado = document.getElementById("estado");
 
-function tieneSoporteUserMedia(){
-	return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+
+
+function camara(){
+    let video = document.getElementById("video"),
+    canvas = document.getElementById("canvas"),
+    boton = document.getElementById("boton"),
+    estado = document.getElementById("estado");
+
+    function tieneSoporteUserMedia(){
+        return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+    }
+    function _getUserMedia(){
+        return (navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments)
+    }
+
+
+    if (tieneSoporteUserMedia()) {
+        _getUserMedia(
+            {video: true},
+            function (stream) {
+                console.log("Permiso concedido");
+                document.getElementById("video").srcObject = stream;
+                document.getElementById("video").play();
+            }, function (error) {
+                console.log("Permiso denegado o error: ", error);
+            });
+    } else {
+        alert("Lo siento. Tu navegador no soporta esta característica");
+    }
 }
-function _getUserMedia(){
-	return (navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments)
-}
-
-
-if (tieneSoporteUserMedia()) {
-    _getUserMedia(
-        {video: true},
-        function (stream) {
-            console.log("Permiso concedido");
-            document.getElementById("video").srcObject = stream;
-            document.getElementById("video").play();
-        }, function (error) {
-            console.log("Permiso denegado o error: ", error);
-        });
-} else {
-    alert("Lo siento. Tu navegador no soporta esta característica");
-}
-
 window.addEventListener("click", function(event){
     if(event.target.id != 'boton') return
     //Pausar reproducción
@@ -52,4 +56,7 @@ window.addEventListener("click", function(event){
  
     //Reanudar reproducción
     document.getElementById("video").play();
-});
+})
+
+
+

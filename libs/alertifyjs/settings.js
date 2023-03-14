@@ -51,7 +51,7 @@ alertify.defaults = {
     // language resources 
     glossary:{
         // dialogs default title
-        title:'<img src="img/iconoChat.png" class="float-left mr-2 mt-2" width="30px" height="30px"><h4 class="letra-header mt-2">Tu chat</h4>',
+        title:'Estudio 6',
         // ok button text
         ok: 'Aceptar',
         // cancel button text

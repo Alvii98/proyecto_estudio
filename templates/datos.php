@@ -16,9 +16,9 @@
 	<script src="libs/alertifyjs/alertify.min.js"></script>
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA LOGIN -->
-    <!-- {{-- <script src="js/funciones.js?{{rand()}}"></script> --}} -->
+    <script src="js/ajax_editar_datos.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
-    <link rel="stylesheet" href="css/estilo.css?23321">
+    <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
 <body>
     <div class="container mt-3">
@@ -41,69 +41,74 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group float-left">
+                    <!-- border-radius: 50rem!important;position: absolute;bottom: 72%;left: 1%; -->
+                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php" style="position: absolute;">Volver</a>
+                </div>
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['apellido'];?>">
+                    <input type="hidden" id="id_alumno" value="<?php print$alumno['id'];?>">
+                    <input type="text" readonly="true" id="apellido" class="form-control" value="<?php print$alumno['apellido'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['nombre'];?>">
+                    <input type="text" readonly="true" id="nombre" class="form-control" value="<?php print$alumno['nombre'];?>">
                 </div>
                 <div class="form-group col-md-1 float-left mt-datos">
                     <label for="exampleFormControlInput1">Edad</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$edad;?>">
+                    <input type="text" readonly="true" id="edad" class="form-control" value="<?php print datos::obtener_edad($alumno['fecha_nac']);?>">
                 </div>
                 <div class="form-group col-md-2 float-left mt-datos">
                     <label for="exampleFormControlInput1">Fecha de nac.</label>
-                    <input type="date" readonly="true"class="form-control" value="<?php print$fecha_nac;?>">
+                    <input type="date" readonly="true" id="fecha_nac" class="form-control" value="<?php print$alumno['fecha_nac'];?>">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Documento</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['documento'];?>">
+                    <input type="text" readonly="true" id="documento" class="form-control" value="<?php print$alumno['documento'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Correo</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['mail'];?>">
+                    <input type="text" readonly="true" id="correo" class="form-control" value="<?php print$alumno['mail'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left">
-                    <label for="exampleFormControlInput1">Tel. alumno</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['tel_movil'];?>">
+                    <label for="exampleFormControlInput1">Tel. movil</label>
+                    <input type="text" readonly="true" id="tel_alumno" class="form-control" value="<?php print$alumno['tel_movil'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Tel. fijo</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['tel_fijo'];?>">
+                    <input type="text" readonly="true" id="tel_fijo" class="form-control" value="<?php print$alumno['tel_fijo'];?>">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Nacionalidad</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['nacionalidad'];?>">
+                    <input type="text" readonly="true" id="nacionalidad" class="form-control" value="<?php print$alumno['nacionalidad'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Localidad</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['localidad'];?>">
+                    <input type="text" readonly="true" id="localidad" class="form-control" value="<?php print$alumno['localidad'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Domicilio</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['domicilio'];?>">
+                    <input type="text" readonly="true" id="domicilio" class="form-control" value="<?php print$alumno['domicilio'];?>">
                 </div>
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Salud</label>
-                    <input type="text" readonly="true"class="form-control" value="<?php print$alumno['salud'];?>">
+                    <input type="text" readonly="true" id="salud" class="form-control" value="<?php print$alumno['salud'];?>">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Actividad</label>
-                    <textarea class="form-control" readonly="tue"><?php print$alumno['actividad'];?></textarea>        
+                    <textarea class="form-control" readonly="tue" id="actividad"><?php print$alumno['actividad'];?></textarea>        
                 </div>
             </div> 
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Observacion</label>
-                    <textarea class="form-control" readonly="tue"><?php print$alumno['observaciones'];?></textarea>        
+                    <textarea class="form-control" readonly="tue" id="observacion_alumno"><?php print$alumno['observaciones'];?></textarea>        
                 </div>
             </div>
             <div class="col-md-12">
@@ -115,27 +120,28 @@
                 <div class="col-md-12">
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Nombre y apellido</label>
-                        <input type="text" readonly="true"class="form-control" value="<?php print$key['nombre_apellido'];?>">
+                        <input type="hidden" id="id_familiar" value="<?php print$key['id'];?>">
+                        <input type="text" readonly="true" id="nom_ape" class="form-control" value="<?php print$key['nombre_apellido'];?>">
                     </div>
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Vinculo</label>
-                        <input type="text" readonly="true"class="form-control" value="<?php print$key['vinculo'];?>">
+                        <input type="text" readonly="true" id="vinculo" class="form-control" value="<?php print$key['vinculo'];?>">
                     </div>
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Telefono</label>
-                        <input type="text" readonly="true"class="form-control" value="<?php print$key['telefono'];?>">
+                        <input type="text" readonly="true" id="tel_familiar" class="form-control" value="<?php print$key['telefono'];?>">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group col-md-12 float-left">
                         <label>Observacion</label>
-                        <textarea class="form-control" readonly="tue"><?php print$key['observacion'];?></textarea>        
+                        <textarea class="form-control" readonly="tue" id="observacion_familiar"><?php print$key['observacion'];?></textarea>        
                     </div>
                 </div>
             <?php } ?>
             <div class="col-md-12 mb-4 mt-3">
                 <div class="form-group col-md-12">
-                    <button class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Editar datos</button>
+                    <button id="editar_datos" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Editar datos</button>
                     <!-- {{-- <button class="btn btn-success btn-lg float-right col-md-3">Cargar pago</button> --}} -->
                 </div>
             </div>
