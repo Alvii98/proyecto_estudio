@@ -9,24 +9,41 @@ class datos{
 
         return $datos_usuarios->fetch_all(MYSQLI_ASSOC); 
     }
+    static public function busqueda($ape,$nom,$edad,$activ){
+
+        if(empty($edad)){
+            $query = "SELECT id,apellido,nombre,edad,actividad FROM alumnos 
+            WHERE apellido LIKE '%".$ape."%' AND nombre LIKE '%".$nom."%'
+            AND actividad LIKE '%".$activ."%' OR edad = '".$edad."' ORDER BY apellido ASC";
+        }else{
+            $query = "SELECT id,apellido,nombre,edad,actividad FROM alumnos 
+            WHERE edad = '".$edad."' ORDER BY apellido ASC";
+        }
+    
+        return datos::respuestaQuery($query);
+    }
+
     static public function alumnos(){
 
-        $query = "SELECT * FROM alumnos";    
+        $query = "SELECT * FROM alumnos ORDER BY apellido ASC";    
 
         return datos::respuestaQuery($query);
     }
+    
     static public function alumno_id($id){
 
         $query = "SELECT * FROM alumnos WHERE id =".$id." LIMIT 1";    
 
         return datos::respuestaQuery($query);
     }
+
     static public function familiar($id){
 
         $query = "SELECT * FROM familiar WHERE id_alumno = ".$id;    
 
         return datos::respuestaQuery($query);
     }
+
     static public function insert_datos($array){
         
         $query = "INSERT INTO alumnos(apellido, nombre, fecha_nac, edad, nacionalidad, documento,
@@ -41,6 +58,7 @@ class datos{
 
         return mysqli_query($conn, $query);
     }
+
     static public function update_alumnos($array){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    
@@ -57,6 +75,7 @@ class datos{
         }
         return mysqli_query($conn, $query);
     }
+
     static public function update_familiares($id,$nom_ape,$vinculo,$tel,$observacion){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    
@@ -69,6 +88,7 @@ class datos{
         }
         return mysqli_query($conn, $query);
     }
+
     static public function obtener_edad($fecha_nac){
         
         // $arr = explode('/', $fecha_nac);

@@ -16,18 +16,16 @@
 	<link rel="stylesheet" href="libs/alertifyjs/css/themes/default.min.css" />
 	<script src="libs/alertifyjs/alertify.min.js"></script>
 	<script src="libs/alertifyjs/settings.js"></script>
-    <!-- JS PARA LOGIN -->
-   <script src="js/buscador.js?<?php print time();?>"></script> 
-
-   <!-- <script src="js/login.js?{{rand()}}"></script>  -->
-    <!-- ESTILOS PARA LOGIN -->
+    <!-- JS -->
+   <script src="js/ajax_busqueda.js?<?php print time();?>"></script> 
+    <!-- ESTILOS -->
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
 <body>
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12 text-light">
-                <h3>Buscar personas</h3>
+                <h3>Buscar alumno/a</h3>
             </div>
         </div>
     </div>
@@ -42,7 +40,8 @@
             <div class="col-md-10 d-flex justify-content-center mt-3">
                 <button class="btn btn-dark btn-lg rounded-pill col-md-3" id="buscar">Buscar</button>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-4 text-center">
+                <label id="cant_res"></label>
                 <?php
                 include('partials\tabla.php');
                 ?>

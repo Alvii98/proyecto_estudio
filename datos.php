@@ -1,9 +1,9 @@
 <?php
 require_once 'clases/consultas.php';
 
-if(!isset($_POST['id'])) header('Location: index.php');
+if(!isset($_GET['id'])) header('Location: index.php');
 
-$alumno = datos::alumno_id($_POST['id'])[0];
+$alumno = datos::alumno_id($_GET['id'])[0];
 
 // if(!empty($alumno['fecha_nac'])){
 //     $arr = explode('/', $alumno['fecha_nac']);
@@ -11,7 +11,7 @@ $alumno = datos::alumno_id($_POST['id'])[0];
 //     $edad = datos::obtener_edad($alumno['fecha_nac']);
 // }
 
-$familiar = datos::familiar($_POST['id']);
+$familiar = datos::familiar($_GET['id']);
 
 //print'<pre>';print_r($familiar);exit;
 
