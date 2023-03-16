@@ -24,12 +24,12 @@
 <body>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-12 text-light">
+            <div class="col-md-12">
                 <h3>Buscar alumno/a</h3>
             </div>
         </div>
     </div>
-    <div class="container border rounded mb-4 text-light">
+    <div class="container border rounded mb-4 text-body">
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 d-flex justify-content-center mt-4">
                 <input type="text" id="apellido" placeholder="Apellido" class="form-control col-md-3">

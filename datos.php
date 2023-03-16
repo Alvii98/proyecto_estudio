@@ -14,7 +14,7 @@ $alumno = datos::alumno_id($_GET['id'])[0];
 $familiar = datos::familiar($_GET['id']);
 
 //print'<pre>';print_r($familiar);exit;
-
+include __DIR__.('\templates\partials\camara.php');
 include __DIR__.('\templates\partials\header.php');
 include __DIR__.('\templates\datos.php');
 ?>

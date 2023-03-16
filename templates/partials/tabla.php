@@ -1,5 +1,5 @@
 <div class="scroll mb-3">
-    <table class="table table-bordered text-light">
+    <table class="table table-bordered text-body">
         <thead align="center">
             <tr>
                 <th scope="col">Apellido</th>

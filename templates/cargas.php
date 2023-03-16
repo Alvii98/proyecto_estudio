@@ -33,7 +33,7 @@
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
-                        <button type="submit" name="eliminar_foto" class="eliminar_foto">Eliminar foto</button>
+                        <button type="submit" name="tomar_foto" class="tomar_foto">Eliminar foto</button>
                         <img src="img/icono.jpg" class="rounded-circle" height="125" width="130"/>
                         <div class="file">
                             Cambiar foto

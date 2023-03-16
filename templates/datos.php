@@ -17,23 +17,25 @@
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA LOGIN -->
     <script src="js/ajax_editar_datos.js?<?php print time();?>"></script>
+    <script src="js/funciones.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
+    <link rel="stylesheet" href="css/camara.css?<?php print time();?>">
 </head>
 <body>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-12 text-light">
+            <div class="col-md-12">
                 <h3>Datos personales</h3>
             </div>
         </div>
     </div>
-    <div class="container border rounded mb-4 text-light">
+    <div class="container border rounded mb-4">
         <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
-                        <button type="submit" name="eliminar_foto" class="eliminar_foto">Eliminar foto</button>
+                        <a href="#openModal" id="tomar_foto" onclick="camara()" class="tomar_foto">Tomar foto</a>
                         <img src="img/icono.jpg" class="rounded-circle" height="125" width="130"/>
                         <div class="file">
                             Cambiar foto
@@ -61,6 +63,18 @@
                 <div class="form-group col-md-2 float-left mt-datos">
                     <label for="exampleFormControlInput1">Fecha de nac.</label>
                     <input type="date" readonly="true" id="fecha_nac" class="form-control" value="<?php print$alumno['fecha_nac'];?>">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-12 float-left">
+                    <label>Actividad</label>
+                    <textarea class="form-control" readonly="tue" id="actividad"><?php print$alumno['actividad'];?></textarea>        
+                </div>
+            </div> 
+            <div class="col-md-12">
+                <div class="form-group col-md-12 float-left">
+                    <label>Observacion</label>
+                    <textarea class="form-control" readonly="tue" id="observacion_alumno"><?php print$alumno['observaciones'];?></textarea>        
                 </div>
             </div>
             <div class="col-md-12">
@@ -97,18 +111,6 @@
                 <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Salud</label>
                     <input type="text" readonly="true" id="salud" class="form-control" value="<?php print$alumno['salud'];?>">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group col-md-12 float-left">
-                    <label>Actividad</label>
-                    <textarea class="form-control" readonly="tue" id="actividad"><?php print$alumno['actividad'];?></textarea>        
-                </div>
-            </div> 
-            <div class="col-md-12">
-                <div class="form-group col-md-12 float-left">
-                    <label>Observacion</label>
-                    <textarea class="form-control" readonly="tue" id="observacion_alumno"><?php print$alumno['observaciones'];?></textarea>        
                 </div>
             </div>
             <div class="col-md-12">

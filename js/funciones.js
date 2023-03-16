@@ -1,19 +1,14 @@
-
-
-
 function camara(){
-    let video = document.getElementById("video"),
+    video = document.getElementById("video"),
     canvas = document.getElementById("canvas"),
-    boton = document.getElementById("boton"),
-    estado = document.getElementById("estado");
-
+    boton = document.getElementById("boton")
+    
     function tieneSoporteUserMedia(){
         return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
     }
     function _getUserMedia(){
         return (navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments)
     }
-
 
     if (tieneSoporteUserMedia()) {
         _getUserMedia(
@@ -30,6 +25,7 @@ function camara(){
     }
 }
 window.addEventListener("click", function(event){
+    if(event.target.id == 'tomar_foto') camara()
     if(event.target.id != 'boton') return
     //Pausar reproducción
     document.getElementById("video").pause();
@@ -41,7 +37,6 @@ window.addEventListener("click", function(event){
     contexto.drawImage(document.getElementById("video"), 0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
  
     var foto = document.getElementById("canvas").toDataURL(); //Esta es la foto, en base 64
-    document.getElementById("estado").innerHTML = "Enviando foto. Por favor, espera...";
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "./guardar_foto.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -50,7 +45,7 @@ window.addEventListener("click", function(event){
     xhr.onreadystatechange = function() {
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             console.log("La foto fue enviada correctamente");
-            estado.innerHTML = "Foto guardada con éxito. Puedes verla <a target='_blank' href='./" + xhr.responseText + "'> aquí</a>";
+            console.log(foto)
         }
     }
  
