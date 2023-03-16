@@ -12,11 +12,12 @@
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
 	pointer-events: none;
+	display: none;
 }
-.modalDialog:target {
+/* .modalDialog:target {
 	opacity:1;
 	pointer-events: auto;
-}
+} */
 .modalDialog > div > div{
     border-radius: 10px;
 	background: #fff;

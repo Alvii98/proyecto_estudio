@@ -35,7 +35,7 @@
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
-                        <a href="#openModal" id="tomar_foto" onclick="camara()" class="tomar_foto">Tomar foto</a>
+                        <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
                         <img src="img/icono.jpg" class="rounded-circle" height="125" width="130"/>
                         <div class="file">
                             Cambiar foto

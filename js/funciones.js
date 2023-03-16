@@ -1,4 +1,6 @@
-function camara(){
+function camara(event){
+    document.querySelector(".modalDialog").setAttribute('style','display:block !important;opacity:1;')
+    
     video = document.getElementById("video"),
     canvas = document.getElementById("canvas"),
     boton = document.getElementById("boton")
@@ -25,7 +27,7 @@ function camara(){
     }
 }
 window.addEventListener("click", function(event){
-    if(event.target.id == 'tomar_foto') camara()
+    if(event.target.id == 'tomar_foto') camara(event)
     if(event.target.id != 'boton') return
     //Pausar reproducción
     document.getElementById("video").pause();
