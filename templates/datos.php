@@ -65,12 +65,29 @@
                     <input type="date" readonly="true" id="fecha_nac" class="form-control" value="<?php print$alumno['fecha_nac'];?>">
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group col-md-12 float-left">
-                    <label>Actividad</label>
-                    <textarea class="form-control" readonly="tue" id="actividad"><?php print$alumno['actividad'];?></textarea>        
+            <?php if(empty($alumno['actividad'])){?>
+                <div class="col-md-12">
+                    <div class="form-group col-md-12 float-left">
+                        <label>Actividad 1</label>
+                        <i class="bi bi-plus-circle-dotted agregar_actividad" title="Agregar actividad" id="agregar_actividad"></i>
+                        <textarea class="form-control" readonly="tue" id="actividad"></textarea>        
+                    </div>
                 </div>
-            </div> 
+            <?php } ?>
+            <?php foreach ($actividades as $key => $value) { if(empty(trim($value))) continue;?>
+                <div class="col-md-12">
+                    <div class="form-group col-md-12 float-left">
+                        <label>Actividad <?php print$key+1;?> </label>
+                        <?php if($key == 0) { ?>
+                            <i class="bi bi-plus-circle-dotted agregar_actividad" title="Agregar actividad" id="agregar_actividad"></i>
+                        <?php }else{ ?>
+                            <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar actividad" id="eliminar_actividad"></i>
+                        <?php } ?>
+                        <textarea class="form-control" readonly="tue" id="actividad"><?php print trim($value);?></textarea>        
+                    </div>
+                </div> 
+            <?php } ?>
+            <div id="nueva_actividad" class="col-md-12"></div>
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Observacion</label>
@@ -113,38 +130,41 @@
                     <input type="text" readonly="true" id="salud" class="form-control" value="<?php print$alumno['salud'];?>">
                 </div>
             </div>
-            <div class="col-md-12">
-                <h3 class="ml-3 mt-3">Familiares</h3>
-            </div>
-            <?php foreach ($familiar as $key) { 
-                if(empty($key['nombre_apellido']) && empty($key['vinculo']) && empty($key['telefono'])) continue;
+            <?php if(!empty($familiar)){ ?>
+                <div class="col-md-12">
+                    <h3 class="ml-3 mt-3">Familiares</h3>
+                </div>
+            <?php } ?>
+            <?php 
+                foreach ($familiar as $value) { 
+                if(empty($value['nombre_apellido']) && empty($value['vinculo']) && empty($value['telefono'])) continue;
             ?>
                 <div class="col-md-12">
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Nombre y apellido</label>
-                        <input type="hidden" id="id_familiar" value="<?php print$key['id'];?>">
-                        <input type="text" readonly="true" id="nom_ape" class="form-control" value="<?php print$key['nombre_apellido'];?>">
+                        <input type="hidden" id="id_familiar" value="<?php print$value['id'];?>">
+                        <input type="text" readonly="true" id="nom_ape" class="form-control" value="<?php print$value['nombre_apellido'];?>">
                     </div>
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Vinculo</label>
-                        <input type="text" readonly="true" id="vinculo" class="form-control" value="<?php print$key['vinculo'];?>">
+                        <input type="text" readonly="true" id="vinculo" class="form-control" value="<?php print$value['vinculo'];?>">
                     </div>
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Telefono</label>
-                        <input type="text" readonly="true" id="tel_familiar" class="form-control" value="<?php print$key['telefono'];?>">
+                        <input type="text" readonly="true" id="tel_familiar" class="form-control" value="<?php print$value['telefono'];?>">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group col-md-12 float-left">
                         <label>Observacion</label>
-                        <textarea class="form-control" readonly="tue" id="observacion_familiar"><?php print$key['observacion'];?></textarea>        
+                        <textarea class="form-control" readonly="tue" id="observacion_familiar"><?php print$value['observacion'];?></textarea>        
                     </div>
                 </div>
             <?php } ?>
             <div class="col-md-12 mb-4 mt-3">
                 <div class="form-group col-md-12">
                     <button id="editar_datos" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Editar datos</button>
-                    <!-- {{-- <button class="btn btn-success btn-lg float-right col-md-3">Cargar pago</button> --}} -->
+                    <button id="eliminar_alumno" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Eliminar alumno</button>
                 </div>
             </div>
         </div>

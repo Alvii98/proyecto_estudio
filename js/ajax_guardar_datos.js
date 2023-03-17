@@ -23,22 +23,27 @@ function guardar_datos(event){
     if(alumno.fecha_nac.trim() == '' || alumno.apellido.trim() == '' || alumno.nombre.trim() == ''){
         return alertify.alert('Carga de datos','Complete los datos obligatorios (*)')
     }
-    // return
-    fetch('ajax/ajax_guardar_datos.php', {
-        method: "POST",
-        // Set the post data
-        body: JSON.stringify({'alumno':alumno})
-    })
-    .then(response => response.json())
-    .then(function (json) {
-        // console.log(json)
-        if(json.error != '') alertify.alert('Carga de datos',json.error)
-        if(json.respAlumno) alertify.alert('Carga de datos','Datos guardados correctamente.').set('onok', function(){ location.reload()} ); 
-        
-    })
-    .catch(function (error){
-        console.log(error)
-        // Catch errors
-        alertify.alert('Carga de datos','Ocurrio un error al guardar los datos.')
-    })
+    alertify.confirm('Carga de datos', 'Seguro que quiere guardar los datos de este alumno/a ?', function(){
+
+        fetch('ajax/ajax_guardar_datos.php', {
+            method: "POST",
+            // Set the post data
+            body: JSON.stringify({'alumno':alumno})
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            // console.log(json)
+            if(json.error != '') alertify.alert('Carga de datos',json.error)
+            if(json.respAlumno){
+                alertify.success('Guardado correctamente')
+                setTimeout(function(){window.location.href = 'index.php'}, 2000)
+            }            
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Carga de datos','Ocurrio un error al guardar los datos.')
+        })
+    }, function(){ alertify.error('Cancelado')});
+
 }

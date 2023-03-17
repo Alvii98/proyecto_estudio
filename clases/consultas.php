@@ -55,10 +55,9 @@ class datos{
         '".$array['correo']."','".$array['actividad']."','".$array['salud']."','".$array['observacion_alumno']."')";
         
         if (!mysqli_query($conn, $query)) {
-            die(mysqli_error($conn));
+            return mysqli_error($conn);
         }
-
-        return mysqli_query($conn, $query);
+        return true;
     }
 
     static public function update_alumnos($array){
@@ -73,9 +72,9 @@ class datos{
         observaciones = '".$array['observacion_alumno']."' WHERE id = ".$array['id_alumno'];
         
         if (!mysqli_query($conn, $query)) {
-            die(mysqli_error($conn));
+            return mysqli_error($conn);
         }
-        return mysqli_query($conn, $query);
+        return true;
     }
 
     static public function update_familiares($id,$nom_ape,$vinculo,$tel,$observacion){
@@ -86,9 +85,9 @@ class datos{
         vinculo = '".$vinculo."', observacion = '".$observacion."' WHERE id = ".$id;
         
         if (!mysqli_query($conn, $query)) {
-            die(mysqli_error($conn));
+            return mysqli_error($conn);
         }
-        return mysqli_query($conn, $query);
+        return true;
     }
     static public function update_acomodar_edad($id,$edad){
         $instancia = SingletonConexion::getInstance();
@@ -97,9 +96,9 @@ class datos{
         $query = "UPDATE alumnos SET edad = '".$edad."' WHERE id = ".$id;
         
         if (!mysqli_query($conn, $query)) {
-            die(mysqli_error($conn));
+            return mysqli_error($conn);
         }
-        return mysqli_query($conn, $query);
+        return true;
     }
     static public function update_actividad($id,$actividad){
         $instancia = SingletonConexion::getInstance();
@@ -108,9 +107,20 @@ class datos{
         $query = "UPDATE alumnos SET actividad = '".$actividad."' WHERE id = ".$id;
         
         if (!mysqli_query($conn, $query)) {
-            die(mysqli_error($conn));
+            return mysqli_error($conn);
         }
-        return mysqli_query($conn, $query);
+        return true;
+    }
+    static public function eliminar_alumno($id){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "DELETE FROM alumnos WHERE id = ".$id;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
     }
 
     static public function obtener_edad($fecha_nac){

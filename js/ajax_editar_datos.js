@@ -1,15 +1,18 @@
 window.addEventListener("click", function(event){
     if(event.target.id == 'editar_datos') editar_datos(event)
+    if(event.target.id == 'eliminar_actividad') eliminar_actividad(event)
+    if(event.target.id == 'agregar_actividad') agregar_actividad(event)
+    if(event.target.id == 'eliminar_alumno') eliminar_alumno(event)
 })
 
+/************** EDITAR ALUMNO ****************/
 function editar_datos(event){
     let inputs = document.getElementsByTagName('input'),
     textareas = document.getElementsByTagName('textarea'),
-    alumno = {},familiares = [], familiar = {}
+    actividad = '',alumno = {},familiares = [], familiar = {}
 
     for (let i = 0; i < document.querySelectorAll('#nom_ape').length; i++) {
         familiar = {}
-
         familiar = {'id_familiar': document.querySelectorAll('#id_familiar')[i].value,
         'nom_ape': document.querySelectorAll('#nom_ape')[i].value,
         'vinculo': document.querySelectorAll('#vinculo')[i].value,
@@ -19,6 +22,12 @@ function editar_datos(event){
         familiares.push(familiar)
     }
 
+    for (let i = 0; i < document.querySelectorAll('#actividad').length; i++) {
+        if(document.querySelectorAll('#actividad')[i].value == '') continue
+        actividad += document.querySelectorAll('#actividad')[i].value+'|'
+    }
+    // console.log(familiar)
+    // return
     alumno = {'id_alumno': document.querySelector('#id_alumno').value,
     'apellido': document.querySelector('#apellido').value,
     'nombre': document.querySelector('#nombre').value,
@@ -32,26 +41,29 @@ function editar_datos(event){
     'localidad': document.querySelector('#localidad').value,
     'domicilio': document.querySelector('#domicilio').value,
     'salud': document.querySelector('#salud').value,
-    'actividad': document.querySelector('#actividad').value,
+    'actividad': actividad,
     'observacion_alumno': document.querySelector('#observacion_alumno').value}
 
     if(event.target.textContent == 'Guardar datos'){
-        /************** CARGA LOS DATOS ****************/
-        fetch('ajax/ajax_editar_datos.php', {
-            method: "POST",
-            // Set the post data
-            body: JSON.stringify({'alumno':alumno,'familiares':familiares})
-        })
-        .then(response => response.json())
-        .then(function (json) {
-            console.log(json)
-            if(json.respAlumno && json.respFamiliar) alertify.alert('Datos personales','Guardado correctamente.')
-        })
-        .catch(function (error){
-            console.log(error)
-            // Catch errors
-            alertify.alert('Datos personales','Ocurrio un error al guardar los datos.')
-        })
+        alertify.confirm('Datos personales', 'Seguro que quiere editar los datos de este alumno/a ?', function(){
+            /************** CARGA LOS DATOS ****************/
+            fetch('ajax/ajax_editar_datos.php', {
+                method: "POST",
+                // Set the post data
+                body: JSON.stringify({'alumno':alumno,'familiares':familiares})
+            })
+            .then(response => response.json())
+            .then(function (json) {
+                console.log(json)
+                alertify.success('Guardado correctamente.')
+            })
+            .catch(function (error){
+                console.log(error)
+                // Catch errors
+                alertify.alert('Datos personales','Ocurrio un error al guardar los datos.')
+            })
+        }, function(){ alertify.error('Cancelado')});
+
     }
     /************* LE SACO LOS READONLY ******************/
     for (let i = 0; i < inputs.length; i++) {
@@ -75,4 +87,46 @@ function editar_datos(event){
     /*********** LE CAMBIO EL NOMBRE AL BOTON ********************/
     if(event.target.textContent == 'Editar datos') event.target.textContent = 'Guardar datos'
     else event.target.textContent = 'Editar datos'
+}
+
+
+
+
+/************** ELMINIAR ALUMNO ****************/
+function eliminar_alumno(){
+    const datosPost = new FormData()
+    datosPost.append('id', document.querySelector('#id_alumno').value)
+    alertify.confirm('Datos personales', 'Seguro que quiere eliminar a este alumno/a ?', function(){
+        fetch('ajax/ajax_eliminar_alumno.php', {
+            method: "POST",
+            // Set the post data
+            body: datosPost
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            console.log(json)
+            alertify.error('Eliminado correctamente')
+            setTimeout(function(){window.location.href = 'index.php'}, 2000)
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Datos personales','Ocurrio un error al eliminar al alumno.')
+        })
+    }, function(){ alertify.error('Cancelado')});
+}
+
+function agregar_actividad(){
+    document.querySelector('#nueva_actividad').innerHTML += `<div class="form-group col-md-12 float-left">
+                <label>Nueva actividad</label>
+                <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar actividad" id="eliminar_actividad"></i>
+                <textarea class="form-control" id="actividad"></textarea>        
+            </div>`
+}
+function eliminar_actividad(event){
+
+    let element = event.target.parentElement 
+
+    if(element.querySelector('label').textContent == 'Nueva actividad') element.innerHTML = ''
+    else element.parentElement.innerHTML = ''
 }

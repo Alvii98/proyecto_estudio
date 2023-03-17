@@ -27,7 +27,11 @@ function camara(event){
     }
 }
 window.addEventListener("click", function(event){
+    console.log(event.target.id)
     if(event.target.id == 'tomar_foto') camara(event)
+    if(event.target.id == 'close'){
+        document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
+    }
     if(event.target.id != 'boton') return
     //Pausar reproducción
     document.getElementById("video").pause();
@@ -55,5 +59,9 @@ window.addEventListener("click", function(event){
     document.getElementById("video").play();
 })
 
-
+document.addEventListener('keyup', function (event) {
+    console.log(event.keyCode)
+    if(event.keyCode != 27) return
+    document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
+})
 

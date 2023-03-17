@@ -125,13 +125,25 @@ th{
 }
 /******************************/
 
-.form-control{
-    /* background-color: rgba(78, 52, 85, 0.9) !important; */
-    /* color: #fff !important; */
+.agregar_actividad{
+    position:relative;
+    top:3;
+    left:10;
+    font-size: 20px;
+    cursor: pointer;
 }
-textarea{
-    /* background-color: rgba(78, 52, 85, 0.9) !important;
-    color: #fff !important; */
+.agregar_actividad:hover{
+  color: rgb(0, 255, 0) !important;
+}
+.eliminar_actividad{
+    position:relative;
+    top:3;
+    left:10;
+    font-size: 20px;
+    cursor: pointer;
+}
+.eliminar_actividad:hover{
+    color: red !important;
 }
 .mt-datos{
     margin-top: 5% !important;
