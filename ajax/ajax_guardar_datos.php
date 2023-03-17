@@ -1,6 +1,8 @@
 <?php
 require_once '../clases/consultas.php';
 $json = new StdClass();
+$json->respAlumno = '';
+$json->error = '';
 $datos = json_decode(file_get_contents('php://input'));
 
 $array_insert = ['apellido' => $datos->alumno->apellido,
@@ -18,7 +20,12 @@ $array_insert = ['apellido' => $datos->alumno->apellido,
                 'salud' => $datos->alumno->salud,
                 'observacion_alumno' => $datos->alumno->observacion_alumno];
 
-$json->respAlumno = datos::insert_datos($array_insert);
+if(!empty(trim($array_insert['fecha_nac']))){
+    $json->respAlumno = datos::insert_datos($array_insert);
+    // $json->respAlumno = $array_insert;
+}else{
+    $json->error = 'Complete los campos requeridos';
+}
 
 
 print json_encode($json);

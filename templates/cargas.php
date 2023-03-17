@@ -23,12 +23,12 @@
 <body>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-12 text-light">
+            <div class="col-md-12">
                 <h3>Cargar datos</h3>
             </div>
         </div>
     </div>
-    <div class="container border rounded mb-4 text-light">
+    <div class="container border rounded mb-4">
     <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
@@ -46,19 +46,19 @@
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php" style="position: absolute;">Volver</a>
                 </div>
                 <div class="form-group col-md-3 float-left mt-datos">
-                    <label for="exampleFormControlInput1">Apellido</label>
+                    <label for="exampleFormControlInput1">Apellido (*)</label>
                     <input type="text" id="apellido" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left mt-datos">
-                    <label for="exampleFormControlInput1">Nombre</label>
+                    <label for="exampleFormControlInput1">Nombre (*)</label>
                     <input type="text" id="nombre" class="form-control">
                 </div>
                 <div class="form-group col-md-1 float-left mt-datos">
-                    <label for="exampleFormControlInput1">Edad</label>
+                    <label for="exampleFormControlInput1">Edad (*)</label>
                     <input type="text" id="edad" class="form-control">
                 </div>
                 <div class="form-group col-md-2 float-left mt-datos">
-                    <label for="exampleFormControlInput1">Fecha de nac.</label>
+                    <label for="exampleFormControlInput1">Fecha de nac. (*)</label>
                     <input type="date" id="fecha_nac" class="form-control">
                 </div>
             </div>

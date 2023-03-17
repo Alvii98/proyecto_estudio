@@ -6,7 +6,8 @@ document.addEventListener('keyup', function (event) {
     }else{
         document.querySelector('#edad').value = ''
     }
-    if(event.keyCode == 13) buscar()
+    buscar()
+    // if(event.keyCode == 13) buscar()
 })
 
 document.addEventListener('click', function (event) {
@@ -32,6 +33,7 @@ function buscar(){
     .then(function (json) {
         let tbody = ''
         console.log(json.datos)
+        // return
         if(json.datos.length > 0){
             json.datos.forEach(element => {
                 document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'

@@ -12,14 +12,14 @@ class datos{
     static public function busqueda($ape,$nom,$edad,$activ){
 
         if(empty($edad)){
-            $query = "SELECT id,apellido,nombre,edad,actividad FROM alumnos 
+            $query = "SELECT id,apellido,nombre,edad,fecha_nac,actividad FROM alumnos 
             WHERE apellido LIKE '%".$ape."%' AND nombre LIKE '%".$nom."%'
-            AND actividad LIKE '%".$activ."%' OR edad = '".$edad."' ORDER BY apellido ASC";
+            AND actividad LIKE '%".$activ."%' ORDER BY apellido ASC";
         }else{
-            $query = "SELECT id,apellido,nombre,edad,actividad FROM alumnos 
-            WHERE edad = '".$edad."' ORDER BY apellido ASC";
+            $query = "SELECT id,apellido,nombre,edad,fecha_nac,actividad FROM alumnos 
+            WHERE edad = ".$edad." ORDER BY apellido ASC";
         }
-    
+
         return datos::respuestaQuery($query);
     }
 
@@ -45,7 +45,9 @@ class datos{
     }
 
     static public function insert_datos($array){
-        
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection(); 
+
         $query = "INSERT INTO alumnos(apellido, nombre, fecha_nac, edad, nacionalidad, documento,
         domicilio, localidad, tel_fijo, tel_movil, mail, actividad, salud, observaciones) VALUES 
         ('".$array['apellido']."','".$array['nombre']."','".$array['fecha_nac']."','".$array['edad']."','".$array['nacionalidad']."',
@@ -88,6 +90,28 @@ class datos{
         }
         return mysqli_query($conn, $query);
     }
+    static public function update_acomodar_edad($id,$edad){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "UPDATE alumnos SET edad = '".$edad."' WHERE id = ".$id;
+        
+        if (!mysqli_query($conn, $query)) {
+            die(mysqli_error($conn));
+        }
+        return mysqli_query($conn, $query);
+    }
+    static public function update_actividad($id,$actividad){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "UPDATE alumnos SET actividad = '".$actividad."' WHERE id = ".$id;
+        
+        if (!mysqli_query($conn, $query)) {
+            die(mysqli_error($conn));
+        }
+        return mysqli_query($conn, $query);
+    }
 
     static public function obtener_edad($fecha_nac){
         
@@ -105,9 +129,16 @@ class datos{
 
 // foreach (datos::alumnos() as $key) {
 //     # code...
-//     $arr = explode('/', $key['fecha_nac']);
-//     $fecha_nac = $arr[2].'-'.$arr[1].'-'.$arr[0];
-//     echo $key['id'].'- '.$fecha_nac.'<br>';
-//     datos::update($key['id'],$fecha_nac);
+//     $arr = explode('|', $key['actividad']);
+//     $dato = '';
+//     foreach ($arr as $key2) {
+//         # code...
+//         $dato .= $key2;
+//         // echo $key2.'|';
+//     }
+//     echo $dato.'|';
+//     echo $key['id'].'<br>';
+//     // datos::update_actividad($key['id'],$dato);
 // }
+// exit;
 // print'<pre>';print_r(datos::alumnos());exit;

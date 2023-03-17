@@ -20,6 +20,10 @@ function guardar_datos(event){
     'actividad': document.querySelector('#actividad').value,
     'observacion_alumno': document.querySelector('#observacion_alumno').value}
 
+    if(alumno.fecha_nac.trim() == '' || alumno.apellido.trim() == '' || alumno.nombre.trim() == ''){
+        return alertify.alert('Carga de datos','Complete los datos obligatorios (*)')
+    }
+    // return
     fetch('ajax/ajax_guardar_datos.php', {
         method: "POST",
         // Set the post data
@@ -27,8 +31,10 @@ function guardar_datos(event){
     })
     .then(response => response.json())
     .then(function (json) {
-        console.log(json)
-        if(json.respAlumno) alertify.alert('Carga de datos','Datos guardados correctamente.')
+        // console.log(json)
+        if(json.error != '') alertify.alert('Carga de datos',json.error)
+        if(json.respAlumno) alertify.alert('Carga de datos','Datos guardados correctamente.').set('onok', function(){ location.reload()} ); 
+        
     })
     .catch(function (error){
         console.log(error)

@@ -4,7 +4,28 @@
     background-size: 100% ;
     color: #FFFFFF;
 } */
+.boton-cargar{
+    background-color: #000000;
+    color:aliceblue;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.boton-cargar:hover{
+    background-color: #464646;
+}
+.border{
+    border-color: #929292 !important;
+}
+.btn-dark{
+    background-color: #000000 !important;
 
+}
+.btn-dark:hover{
+    background-color: #464646 !important;
+}
 /****** CAMBIAR FOTO DE PERFIL DISEÑO INPUT ******/
 .perfil-img {
     width: 130px; /* alto y ancho específico para que el círculo sea redondo */

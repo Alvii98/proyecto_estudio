@@ -57,19 +57,19 @@ function editar_datos(event){
     for (let i = 0; i < inputs.length; i++) {
         if(inputs[i].readOnly == true){
             inputs[i].readOnly = false
-            inputs[i].setAttribute('style','background: rgba(102, 88, 106, 0.9) !important;')
+            // inputs[i].setAttribute('style','background: rgba(102, 88, 106, 0.9) !important;')
         }else{
             inputs[i].readOnly = true
-            inputs[i].setAttribute('style','background: rgba(31, 4, 24, 0.9) !important;')
+            // inputs[i].setAttribute('style','background: rgba(31, 4, 24, 0.9) !important;')
         }
     }
     for (let t = 0; t < textareas.length; t++) {
         if(textareas[t].readOnly == true){
             textareas[t].readOnly = false
-            textareas[t].setAttribute('style','background: rgba(102, 88, 106, 0.9) !important;')
+            // textareas[t].setAttribute('style','background: rgba(102, 88, 106, 0.9) !important;')
         }else{
             textareas[t].readOnly = true
-            textareas[t].setAttribute('style','background: rgba(31, 4, 24, 0.9) !important;')
+            // textareas[t].setAttribute('style','background: rgba(31, 4, 24, 0.9) !important;')
         }
     }
     /*********** LE CAMBIO EL NOMBRE AL BOTON ********************/
