@@ -127,7 +127,10 @@ function agregar_actividad(){
 function eliminar_actividad(event){
 
     let element = event.target.parentElement 
-
-    if(element.querySelector('label').textContent == 'Nueva actividad') element.innerHTML = ''
-    else element.parentElement.innerHTML = ''
+    // let node = document.getElementById("nested");
+    // if (node.parentNode) {
+    //   node.parentNode.removeChild(node);
+    // }
+    if(element.querySelector('label').textContent == 'Nueva actividad') element.parentNode.removeChild(element)
+    else element.parentNode.removeChild(element)
 }

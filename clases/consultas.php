@@ -60,6 +60,18 @@ class datos{
         return true;
     }
 
+    static public function insert_familiar($array){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();
+
+        $query = "INSERT INTO familiar(id_alumno, nombre_apellido, telefono, vinculo, observacion)
+        VALUES ('".$array['id_alumno']."','".$array['nom_ape']."','".$array['tel_familiar']."','".$array['vinculo']."','".$array['observacion_familiar']."')";
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
     static public function update_alumnos($array){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    
@@ -111,11 +123,22 @@ class datos{
         }
         return true;
     }
-    static public function eliminar_alumno($id){
+    static public function delete_alumno($id){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    
 
         $query = "DELETE FROM alumnos WHERE id = ".$id;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
+    static public function delete_familiar($id){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "DELETE FROM familiar WHERE id = ".$id;
         
         if (!mysqli_query($conn, $query)) {
             return mysqli_error($conn);

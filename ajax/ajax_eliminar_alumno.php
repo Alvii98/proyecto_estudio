@@ -3,7 +3,7 @@ require_once '../clases/consultas.php';
 
 $json = new StdClass();
 
-$eliminar = datos::eliminar_alumno(trim($_POST['id']));
+$eliminar = datos::delete_alumno(trim($_POST['id']));
 
 $json->resp = $eliminar ;
 

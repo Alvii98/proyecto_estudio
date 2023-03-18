@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-12 d-flex justify-content-center mt-4">
                             <!-- Aquí el video embebido de la webcam  -->
-                            <video id="video" class="video" playsinline autoplay></video>
+                            <video id="video" height="130" width="130" class="video" playsinline autoplay></video>
                         </div>
                         <div class="col-md-12 d-flex justify-content-center">
                             <i class="bi bi-camera-fill"></i>

@@ -19,8 +19,8 @@
     <script src="js/ajax_editar_datos.js?<?php print time();?>"></script>
     <script src="js/foto_perfil.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
-    <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
     <link rel="stylesheet" href="css/camara.css?<?php print time();?>">
+    <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
 <body>
     <div class="container mt-3">
@@ -36,7 +36,7 @@
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
-                        <img src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="125" width="130"/>
+                        <img src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
                         <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
                         <div class="file">
                             Cambiar foto
@@ -166,6 +166,7 @@
                 <div class="form-group col-md-12">
                     <button id="editar_datos" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Editar datos</button>
                     <button id="eliminar_alumno" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Eliminar alumno</button>
+                    <button id="agregar_familiar" onclick="location.href='familiares.php?id=<?php print$_GET['id'] ?>'" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Agregar familiar</button>
                 </div>
             </div>
         </div>

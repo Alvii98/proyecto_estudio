@@ -48,7 +48,7 @@
             <div class="col-md-12 mt-4 text-center">
                 <label id="cant_res"></label>
                 <?php
-                include('partials\tabla.php');
+                include('partials\tabla_temp.php');
                 ?>
             </div>
         </div>
