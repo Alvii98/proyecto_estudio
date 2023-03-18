@@ -17,7 +17,7 @@
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA LOGIN -->
     <script src="js/ajax_editar_datos.js?<?php print time();?>"></script>
-    <script src="js/funciones.js?<?php print time();?>"></script>
+    <script src="js/foto_perfil.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
     <link rel="stylesheet" href="css/camara.css?<?php print time();?>">
@@ -36,7 +36,8 @@
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
-                        <img src="img/icono.jpg" class="rounded-circle" height="125" width="130"/>
+                        <img src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="125" width="130"/>
+                        <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
                         <div class="file">
                             Cambiar foto
                             <input type="file" name="fotoPerfil" id="fotoPerfil"/>

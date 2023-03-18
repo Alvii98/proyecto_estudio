@@ -7,6 +7,7 @@ $datos = json_decode(file_get_contents('php://input'));
 
 $array_insert = ['apellido' => $datos->alumno->apellido,
                 'nombre' => $datos->alumno->nombre,
+                'foto_perfil' => $datos->alumno->foto_perfil,
                 'fecha_nac' => $datos->alumno->fecha_nac,
                 'edad' => $datos->alumno->edad,
                 'nacionalidad' => $datos->alumno->nacionalidad,
@@ -26,7 +27,6 @@ if(!empty(trim($array_insert['fecha_nac']))){
 }else{
     $json->error = 'Complete los campos requeridos';
 }
-
 
 print json_encode($json);
 ?>

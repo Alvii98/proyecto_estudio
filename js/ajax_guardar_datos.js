@@ -7,6 +7,7 @@ function guardar_datos(event){
 
     alumno = {'apellido': document.querySelector('#apellido').value,
     'nombre': document.querySelector('#nombre').value,
+    'foto_perfil': document.querySelector('#foto_base64').value,
     'edad': document.querySelector('#edad').value,
     'fecha_nac': document.querySelector('#fecha_nac').value,
     'documento': document.querySelector('#documento').value,

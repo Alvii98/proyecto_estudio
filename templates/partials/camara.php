@@ -1,4 +1,4 @@
-<div id="openModal" class="modalDialog">
+<div id="openModal" class="modalDialog" style="display: none;">
     <div class="container mt-5">
         <div class="row">
             <!-- <div class="col-md-12 float-right">

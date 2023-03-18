@@ -6,6 +6,7 @@ $datos = json_decode(file_get_contents('php://input'));
 $array_update = ['id_alumno' => $datos->alumno->id_alumno,
                 'apellido' => $datos->alumno->apellido,
                 'nombre' => $datos->alumno->nombre,
+                'foto_perfil' => $datos->alumno->foto_perfil,
                 'fecha_nac' => $datos->alumno->fecha_nac,
                 'edad' => $datos->alumno->edad,
                 'nacionalidad' => $datos->alumno->nacionalidad,

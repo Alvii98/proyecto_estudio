@@ -46,11 +46,11 @@ class datos{
 
     static public function insert_datos($array){
         $instancia = SingletonConexion::getInstance();
-        $conn = $instancia->getConnection(); 
+        $conn = $instancia->getConnection();
 
-        $query = "INSERT INTO alumnos(apellido, nombre, fecha_nac, edad, nacionalidad, documento,
+        $query = "INSERT INTO alumnos(apellido, nombre, foto_perfil, fecha_nac, edad, nacionalidad, documento,
         domicilio, localidad, tel_fijo, tel_movil, mail, actividad, salud, observaciones) VALUES 
-        ('".$array['apellido']."','".$array['nombre']."','".$array['fecha_nac']."','".$array['edad']."','".$array['nacionalidad']."',
+        ('".$array['apellido']."','".$array['nombre']."','".$array['foto_perfil']."','".$array['fecha_nac']."','".$array['edad']."','".$array['nacionalidad']."',
         '".$array['documento']."','".$array['domicilio']."','".$array['localidad']."','".$array['tel_fijo']."','".$array['tel_alumno']."',
         '".$array['correo']."','".$array['actividad']."','".$array['salud']."','".$array['observacion_alumno']."')";
         
@@ -64,7 +64,7 @@ class datos{
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    
 
-        $query = "UPDATE alumnos SET apellido = '".$array['apellido']."', nombre = '".$array['nombre']."',
+        $query = "UPDATE alumnos SET apellido = '".$array['apellido']."', nombre = '".$array['nombre']."', foto_perfil = '".$array['foto_perfil']."',
         fecha_nac = '".$array['fecha_nac']."', edad = '".$array['edad']."', nacionalidad = '".$array['nacionalidad']."',
         documento = '".$array['documento']."',domicilio = '".$array['domicilio']."',localidad = '".$array['localidad']."',
         tel_fijo = '".$array['tel_fijo']."', tel_movil = '".$array['tel_alumno']."', mail = '".$array['correo']."',
