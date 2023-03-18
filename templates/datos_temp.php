@@ -143,6 +143,7 @@
                 <div class="col-md-12">
                     <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Nombre y apellido</label>
+                        <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar familiar" id="eliminar_familiar"></i>
                         <input type="hidden" id="id_familiar" value="<?php print$value['id'];?>">
                         <input type="text" readonly="true" id="nom_ape" class="form-control" value="<?php print$value['nombre_apellido'];?>">
                     </div>

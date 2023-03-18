@@ -3,6 +3,7 @@ window.addEventListener("click", function(event){
     if(event.target.id == 'eliminar_actividad') eliminar_actividad(event)
     if(event.target.id == 'agregar_actividad') agregar_actividad(event)
     if(event.target.id == 'eliminar_alumno') eliminar_alumno(event)
+    if(event.target.id == 'eliminar_familiar') eliminar_familiar(event)
 })
 
 /************** EDITAR ALUMNO ****************/
@@ -117,6 +118,30 @@ function eliminar_alumno(){
     }, function(){ alertify.error('Cancelado')});
 }
 
+function eliminar_familiar(event){
+
+    const datosPost = new FormData()
+    datosPost.append('id', event.target.parentNode.querySelector('#id_familiar').value)
+    alertify.confirm('Datos personales', 'Seguro que quiere eliminar a este familiar/a ?', function(){
+        fetch('ajax/ajax_eliminar_familiar.php', {
+            method: "POST",
+            // Set the post data
+            body: datosPost
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            console.log(json)
+            alertify.error('Eliminado correctamente')
+            setTimeout(function(){location.reload()}, 2000)
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Datos personales','Ocurrio un error al eliminar al alumno.')
+        })
+    }, function(){ alertify.error('Cancelado')});
+}
+
 function agregar_actividad(){
     document.querySelector('#nueva_actividad').innerHTML += `<div class="form-group col-md-12 float-left">
                 <label>Nueva actividad</label>
@@ -127,10 +152,6 @@ function agregar_actividad(){
 function eliminar_actividad(event){
 
     let element = event.target.parentElement 
-    // let node = document.getElementById("nested");
-    // if (node.parentNode) {
-    //   node.parentNode.removeChild(node);
-    // }
     if(element.querySelector('label').textContent == 'Nueva actividad') element.parentNode.removeChild(element)
     else element.parentNode.removeChild(element)
 }
