@@ -150,4 +150,19 @@ th{
     .mt-datos{
         margin-top: 0% !important;
     }
+    .center{
+        width: 100% !important;
+        position:static !important; 
+        /* left: 50% !important; */
+    }
+}
+
+.desarrollador{
+    position: relative;
+    bottom: 40px;
+    left: 204px;
+    font-weight:900;
+}
+i {
+    cursor: pointer;
 }
