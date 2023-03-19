@@ -23,10 +23,12 @@
     <link rel="stylesheet" href="css/camara.css?<?php print time();?>">
 </head>
 <body>
+    <?php include('partials\header_temp.php'); ?>
+    <?php include('partials\camara_temp.php'); ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
-                <h3>Cargar datos</h3>
+                <h3>Cargar alumno/a</h3>
             </div>
         </div>
     </div>
@@ -120,5 +122,6 @@
             </div>
         </div>
     </div>
+    <?php include('partials\footer_temp.php');?>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-require_once 'clases/consultas.php';
+require_once __DIR__.'/clases/consultas.php';
 
 if(!isset($_GET['id'])) header('Location: index.php');
 
@@ -11,7 +11,5 @@ $actividades = explode('|',$alumno['actividad']);
 // print'<pre>';print_r(count($alumno));exit;
 $familiar = datos::familiar($_GET['id']);
 
-include __DIR__.('\templates\partials\camara_temp.php');
-include __DIR__.('\templates\partials\header_temp.php');
-include __DIR__.('\templates\datos_temp.php');
+include_once __DIR__.('\templates\datos_temp.php');
 ?>

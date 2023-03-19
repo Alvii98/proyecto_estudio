@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
 <body>
+    <?php include('partials\header_temp.php'); ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
@@ -47,11 +48,10 @@
             </div> -->
             <div class="col-md-12 mt-4 text-center">
                 <label id="cant_res"></label>
-                <?php
-                include('partials\tabla_temp.php');
-                ?>
+                <?php include('partials\tabla_temp.php');?>
             </div>
         </div>
     </div>
+    <?php include('partials\footer_temp.php');?>
 </body>
 </html>
