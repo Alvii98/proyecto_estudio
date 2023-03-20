@@ -32,7 +32,8 @@ document.addEventListener('change', function (event) {
 
 function iniciar_camara(event){
     document.querySelector(".modalDialog").setAttribute('style','display:block;opacity:1;')
-    
+    let info = document.querySelector('#datos_camara')
+
     function tieneSoporteUserMedia(){
         return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevsices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
     }
@@ -45,12 +46,17 @@ function iniciar_camara(event){
             {video: true},
             function (stream) {
                 console.log("Permiso concedido");
+                info.innerText  = 'Permiso concedido.'
                 video.srcObject = stream;
                 video.play();
             }, function (error) {
-                console.log("Permiso denegado o error: ", error);
+                console.log("El permiso fue denegado o no se encontro la camara.");
+                info.style.color = 'red'
+                info.innerText = 'El permiso fue denegado o no se encontro la camara.'
             });
     } else {
+        info.style.color = 'red'
+        info.innerText  = 'Lo siento. Tu navegador no soporta esta característica'
         alert("Lo siento. Tu navegador no soporta esta característica");
     }
 }

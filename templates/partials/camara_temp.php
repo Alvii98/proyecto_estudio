@@ -10,6 +10,10 @@
                 <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
+                <label id="datos_camara"></label>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <label id="datos_camara"></label>
                 <i class="bi bi-camera-fill" id="boton" role="button"></i>
             </div>
         </div>

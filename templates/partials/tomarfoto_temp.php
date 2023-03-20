@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../../css/camara.css?<?php print time();?>">
 </head>
 <body>
-    <div class="container border">
+    <div class="container border border-color">
         <div class="row d-flex justify-content-center">
             <!-- El elemento canvas -->
             <div class="controller">
@@ -43,6 +43,7 @@
                         <div class="col-md-12 d-flex justify-content-center mt-4">
                             <!-- Aquí el video embebido de la webcam  -->
                             <video id="video" height="130" width="130" class="video" playsinline autoplay></video>
+                            <label id="datos_camara"></label>
                         </div>
                         <div class="col-md-12 d-flex justify-content-center">
                             <i class="bi bi-camera-fill"></i>

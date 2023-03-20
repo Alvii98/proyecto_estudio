@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="container border rounded mb-4 text-body">
+    <div class="container border border-color rounded mb-4 text-body">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="col-md-4 boton-cargar" onclick="location.href='cargas.php'">Cargar alumno</div>

@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="container border rounded mb-4">
+    <div class="container border border-color rounded mb-4">
     <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">

@@ -16,7 +16,7 @@
 .boton-cargar:hover{
     background-color: #464646;
 }
-.border{
+.border-color{
     border-color: #929292 !important;
 }
 .btn-dark{
@@ -90,27 +90,31 @@
 
 /******************************/
 /*    SCROLL DISEÑO          */
+
 table thead{
     /* background-color: #22081c; */
     /* position: -webkit-sticky; */
-    background-color: white;
+    background-color: rgb(218, 218, 218);
     position: sticky;
     top: 0;
     z-index: 10;
-    /* top: -20px; */
 }
 tbody tr{
     cursor: pointer;
+    border-color: #929292 !important;
 }
 tbody tr:hover{
     /* background-color: rgba(78, 52, 85, 0.9); */
     background-color: rgba(199, 199, 199, 0.9);
+    border-color: #929292 !important;
 }
 td{
   font-size: 12px !important;
+  border-color: #929292 !important;
 }
 th{
   font-size: 15px !important;
+  border-color: #929292 !important;
 }
 
 .scroll{
@@ -165,4 +169,7 @@ th{
 }
 i {
     cursor: pointer;
+}
+.form-control[readonly="true"] {
+    background-color: #dddddd !important;
 }

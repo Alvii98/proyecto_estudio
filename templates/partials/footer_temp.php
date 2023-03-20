@@ -1,4 +1,4 @@
-<header class="container-fluid border-top p-3">
+<header class="container-fluid border-top border-color p-3">
     <div class="row">
         <div class="col-md-12">
             <div class="float-left col-md-6">

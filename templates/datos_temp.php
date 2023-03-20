@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="container border rounded mb-4">
+    <div class="container border border-color rounded mb-4">
         <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
@@ -73,7 +73,7 @@
                     <div class="form-group col-md-12 float-left">
                         <label>Actividad 1</label>
                         <i class="bi bi-plus-circle-dotted agregar_actividad" title="Agregar actividad" id="agregar_actividad"></i>
-                        <textarea class="form-control" readonly="tue" id="actividad"></textarea>        
+                        <textarea class="form-control" readonly="true" id="actividad"></textarea>        
                     </div>
                 </div>
             <?php } ?>
@@ -86,7 +86,7 @@
                         <?php }else{ ?>
                             <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar actividad" id="eliminar_actividad"></i>
                         <?php } ?>
-                        <textarea class="form-control" readonly="tue" id="actividad"><?php print trim($value);?></textarea>        
+                        <textarea class="form-control" readonly="true" id="actividad"><?php print trim($value);?></textarea>        
                     </div>
                 </div> 
             <?php } ?>
@@ -94,7 +94,7 @@
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Observacion</label>
-                    <textarea class="form-control" readonly="tue" id="observacion_alumno"><?php print$alumno['observaciones'];?></textarea>        
+                    <textarea class="form-control" readonly="true" id="observacion_alumno"><?php print$alumno['observaciones'];?></textarea>        
                 </div>
             </div>
             <div class="col-md-12">
@@ -161,7 +161,7 @@
                 <div class="col-md-12">
                     <div class="form-group col-md-12 float-left">
                         <label>Observacion</label>
-                        <textarea class="form-control" readonly="tue" id="observacion_familiar"><?php print$value['observacion'];?></textarea>        
+                        <textarea class="form-control" readonly="true" id="observacion_familiar"><?php print$value['observacion'];?></textarea>        
                     </div>
                 </div>
             <?php } ?>

@@ -2,10 +2,10 @@
     <table class="table table-bordered text-body">
         <thead align="center">
             <tr>
-                <th scope="col">Apellido</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Actividad</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Actividad</th>
             </tr>
         </thead>
         <tbody>
