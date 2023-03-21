@@ -1,8 +1,6 @@
-video = document.getElementById("video"),
-canvas = document.getElementById("canvas")
-
 window.addEventListener("click", function(event){
-    console.log(event.target.id)
+    video = document.getElementById("video"),
+    canvas = document.getElementById("canvas")
     if(event.target.id == 'tomar_foto') iniciar_camara(event)
     // if(event.target.id == 'close'){
     //     document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
@@ -49,6 +47,7 @@ function iniciar_camara(event){
                 info.innerText  = 'Permiso concedido.'
                 video.srcObject = stream;
                 video.play();
+                info.innerText  = ''
             }, function (error) {
                 console.log("El permiso fue denegado o no se encontro la camara.");
                 info.style.color = 'red'
