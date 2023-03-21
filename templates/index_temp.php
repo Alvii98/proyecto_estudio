@@ -34,7 +34,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="col-md-4 boton-cargar" onclick="location.href='cargas.php'">Cargar alumno</div>
-                <div class="col-md-4 boton-cargar" onclick="location.href='#'">Cargar pago</div>
+                <div class="col-md-4 boton-cargar" onclick="location.href='vinculo.php'">Cargar vinculo</div>
                 <!-- <div class="col-md-4"></div> -->
             </div>
             <div class="col-md-10 d-flex justify-content-center mt-4">

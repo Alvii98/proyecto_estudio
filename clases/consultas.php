@@ -12,12 +12,14 @@ class datos{
     static public function busqueda($ape,$nom,$edad,$activ){
 
         if(empty($edad)){
-            $query = "SELECT id,apellido,nombre,edad,fecha_nac,actividad FROM alumnos 
-            WHERE apellido LIKE '%".$ape."%' AND nombre LIKE '%".$nom."%'
-            AND actividad LIKE '%".$activ."%' ORDER BY apellido ASC";
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,v.vinculo FROM alumnos a
+            LEFT JOIN vinculos v ON a.id = v.id_alumno_1 OR a.id = v.id_alumno_2
+            WHERE a.apellido LIKE '%".$ape."%' AND a.nombre LIKE '%".$nom."%'
+            AND a.actividad LIKE '%".$activ."%' ORDER BY a.apellido ASC;";
         }else{
-            $query = "SELECT id,apellido,nombre,edad,fecha_nac,actividad FROM alumnos 
-            WHERE edad = ".$edad." ORDER BY apellido ASC";
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,v.vinculo FROM alumnos a
+            LEFT JOIN vinculos v ON a.id = v.id_alumno_1 OR a.id = v.id_alumno_2
+            WHERE a.edad = ".$edad." ORDER BY a.apellido ASC";
         }
 
         return datos::respuestaQuery($query);
@@ -50,7 +52,7 @@ class datos{
 
         $query = "INSERT INTO alumnos(apellido, nombre, foto_perfil, fecha_nac, edad, nacionalidad, documento,
         domicilio, localidad, tel_fijo, tel_movil, mail, actividad, salud, observaciones) VALUES 
-        ('".$array['apellido']."','".$array['nombre']."','".$array['foto_perfil']."','".$array['fecha_nac']."','".$array['edad']."','".$array['nacionalidad']."',
+        ('".$array['apellido']."','".$array['nombre']."','".$array['foto_perfil']."','".$array['fecha_nac']."',".$array['edad'].",'".$array['nacionalidad']."',
         '".$array['documento']."','".$array['domicilio']."','".$array['localidad']."','".$array['tel_fijo']."','".$array['tel_alumno']."',
         '".$array['correo']."','".$array['actividad']."','".$array['salud']."','".$array['observacion_alumno']."')";
         
@@ -65,13 +67,27 @@ class datos{
         $conn = $instancia->getConnection();
 
         $query = "INSERT INTO familiar(id_alumno, nombre_apellido, telefono, vinculo, observacion)
-        VALUES ('".$array['id_alumno']."','".$array['nom_ape']."','".$array['tel_familiar']."','".$array['vinculo']."','".$array['observacion_familiar']."')";
+        VALUES (".$array['id_alumno'].",'".$array['nom_ape']."','".$array['tel_familiar']."','".$array['vinculo']."','".$array['observacion_familiar']."')";
         
         if (!mysqli_query($conn, $query)) {
             return mysqli_error($conn);
         }
         return true;
     }
+
+    static public function insert_vinculo($id1,$id2,$vinculo){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();
+
+        $query = "INSERT INTO vinculos(id_alumno_1, id_alumno_2, vinculo)
+        VALUES (".$id1.",".$id2.",'".$vinculo."')";
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
+
     static public function update_alumnos($array){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    

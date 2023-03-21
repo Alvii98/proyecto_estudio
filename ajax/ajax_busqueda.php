@@ -12,6 +12,7 @@ foreach ($datos as $key) {
     $alumnos[] = ['id' => $key['id'],
                 'apellido' => $key['apellido'],
                 'nombre' => $key['nombre'],
+                'vinculo' => $key['vinculo'] == null ? 'Sin vinculo' : $key['vinculo'],
                 'edad' => datos::obtener_edad($key['fecha_nac']),
                 'actividad' => str_replace("|", "<br>", $key['actividad'])];
 }

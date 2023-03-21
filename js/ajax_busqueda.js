@@ -40,7 +40,9 @@ function buscar(){
                 tbody += `<tr onclick="alumno_id(`+element.id+`)"><td>`+element.apellido+`</td>
                 <td>`+element.nombre+`</td>
                 <td>`+element.edad+`</td>
-                <td>`+element.actividad+`</td></tr>`
+                <td>`+element.actividad+`</td>
+                <td>`+element.vinculo+`</td>
+                </tr>`
             });
         }else{
             document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
