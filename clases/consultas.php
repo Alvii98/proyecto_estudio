@@ -24,6 +24,12 @@ class datos{
 
         return datos::respuestaQuery($query);
     }
+    static public function vinculos($id){
+
+        $query = "SELECT * FROM vinculos WHERE id_alumno_1 = ".$id." OR id_alumno_2 =".$id;    
+
+        return datos::respuestaQuery($query);
+    }
 
     static public function alumnos(){
 
@@ -42,6 +48,30 @@ class datos{
     static public function familiar($id){
 
         $query = "SELECT * FROM familiar WHERE id_alumno = ".$id;    
+
+        return datos::respuestaQuery($query);
+    }
+
+    static public function actividades($id_actividad = ''){
+
+        $query = "SELECT * FROM actividades_valores WHERE id =".$id_actividad;
+
+        if (empty($id_actividad)) {
+            $query = "SELECT * FROM actividades_valores order by actividad ASC";    
+        }
+
+        return datos::respuestaQuery($query);
+    }
+
+    static public function actividad_valor_una_vez($actividad){
+
+        $query = "SELECT actividad,una_vez as valor,una_vez_efec as efectivo FROM actividades_valores WHERE actividad LIKE '%".$actividad."%'";    
+
+        return datos::respuestaQuery($query);
+    }
+    static public function actividad_valor_dos_vez($actividad){
+
+        $query = "SELECT actividad,dos_veces as valor,dos_veces_efec as efectivo FROM actividades_valores WHERE actividad LIKE '%".$actividad."%'";    
 
         return datos::respuestaQuery($query);
     }
@@ -104,7 +134,18 @@ class datos{
         }
         return true;
     }
+    static public function update_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
 
+        $query = "UPDATE actividades_valores SET actividad = '".$actividad."',una_vez = ".$una.",
+        una_vez_efec= ".$una_efectivo.",dos_veces = ".$dos.",dos_veces_efec = ".$dos_efectivo." WHERE id = ".$id;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
     static public function update_familiares($id,$nom_ape,$vinculo,$tel,$observacion){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    

@@ -32,19 +32,21 @@
     <div class="container border border-color rounded mb-4">
         <div class="row">
             <div class="col-md-12 mt-3">
-                    <div class="form-group float-left">
-                        <a class="btn btn-dark btn-lg rounded-pill" href="datos.php?id=<?php print$_GET['id']?>" style="position: absolute;">Volver</a>
-                    </div>
-                    <div class="form-group col-md-4 float-left mt-datos">
+                <div class="form-group float-left">
+                    <a class="btn btn-dark btn-lg rounded-pill" href="datos.php?id=<?php print$_GET['id']?>">Volver</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                    <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Nombre y apellido (*)</label>
                         <input type="hidden" id="id_alumno" value="<?php print$_GET['id'] ?>">
                         <input type="text" id="nom_ape" class="form-control">
                     </div>
-                    <div class="form-group col-md-4 float-left mt-datos">
+                    <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Vinculo (*)</label>
                         <input type="text" id="vinculo" class="form-control">
                     </div>
-                    <div class="form-group col-md-4 float-left mt-datos">
+                    <div class="form-group col-md-4 float-left">
                         <label for="exampleFormControlInput1">Telefono (*)</label>
                         <input type="text" id="tel_familiar" class="form-control">
                     </div>

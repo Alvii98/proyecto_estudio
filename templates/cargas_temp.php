@@ -35,6 +35,11 @@
     <div class="container border border-color rounded mb-4">
     <div class="row">
             <div class="col-md-12 mt-3">
+                <div class="form-group float-left">
+                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
+                </div>
+            </div>
+            <div class="col-md-12">
                 <div class="form-group col-md-3 float-right d-flex justify-content-center">
                     <div class="perfil-img">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
@@ -45,10 +50,6 @@
                             <input type="file" name="fotoPerfil" id="fotoPerfil"/>
                         </div>
                     </div>
-                </div>
-                <div class="form-group float-left">
-                    <!-- border-radius: 50rem!important;position: absolute;bottom: 72%;left: 1%; -->
-                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php" style="position: absolute;">Volver</a>
                 </div>
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Apellido (*)</label>

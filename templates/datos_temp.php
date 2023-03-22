@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos personales</title>
+    <title>Datos del alumno/a</title>
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
@@ -25,18 +25,27 @@
 <body>
     <?php include('partials\header_temp.php'); ?>
     <?php include('partials\camara_temp.php'); ?>
+    
+    <?php if($valor == '0,00' || $efectivo == '0,00'){?>
+        <script>
+             alertify.alert('Datos del alumno/a','No se pudo cargar el monto a pagar, revice el nombre de las actividades o los valores por favor.')
+        </script>    
+    <?php } ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
-                <h3>Datos de alumno/a</h3>
+                <h3>Datos del alumno/a</h3>
             </div>
         </div>
     </div>
     <div class="container border border-color rounded mb-4">
         <div class="row">
             <div class="col-md-12 mt-3">
-                <div class="form-group col-md-3 float-right d-flex justify-content-center">
-                    <div class="perfil-img">
+                <div class="form-group float-left col-md-3">
+                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
+                </div>
+                <div class="form-group col-md-3 float-right">
+                    <div class="perfil-img"  style="position:absolute;right:75px;top:15px;">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
                         <img src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
                         <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
@@ -46,10 +55,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group float-left">
-                    <!-- border-radius: 50rem!important;position: absolute;bottom: 72%;left: 1%; -->
-                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php" style="position: absolute;">Volver</a>
+                <div class="form-group float-left col-md-3">
+                    <label for="exampleFormControlInput1">A pagar</label>
+                    <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
                 </div>
+                <div class="form-group float-left col-md-3">
+                    <label for="exampleFormControlInput1">En efectivo</label>
+                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
+                </div>
+            </div>
+            <div class="col-md-12">
+
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Apellido</label>
                     <input type="hidden" id="id_alumno" value="<?php print$alumno['id'];?>">
@@ -68,7 +84,7 @@
                     <input type="date" readonly="true" id="fecha_nac" class="form-control" value="<?php print$alumno['fecha_nac'];?>">
                 </div>
             </div>
-            <?php if(empty($alumno['actividad'])){?>
+            <?php if(empty(trim($alumno['actividad'])) || trim($alumno['actividad']) == '|'){?>
                 <div class="col-md-12">
                     <div class="form-group col-md-12 float-left">
                         <label>Actividad 1</label>

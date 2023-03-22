@@ -34,9 +34,11 @@
         <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="form-group float-left">
-                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php" style="position: absolute;">Volver</a>
+                    <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
-                <div class="form-group col-md-6 float-left mt-5 pt-3">
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-6 float-left">
                     <label class="ml-2">Alumno/a (*)</label>
                     <select class="form-control ml-2" id="id_alumno_1">
                         <option selected value="0">-- Seleccione un alumno/a --</option>
@@ -47,7 +49,7 @@
                         <?php } ?>
                     </select>
                 </div>
-                <div class="form-group col-md-6 float-left mt-5 pt-3">
+                <div class="form-group col-md-6 float-left">
                     <label class="ml-2">Alumno/a (*)</label>
                     <select class="form-control ml-2" id="id_alumno_2">
                         <option selected value="0">-- Seleccione un alumno/a --</option>

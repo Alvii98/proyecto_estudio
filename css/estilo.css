@@ -146,13 +146,12 @@ th{
 .eliminar_actividad:hover{
     color: red !important;
 }
-.mt-datos{
-    margin-top: 5% !important;
-}
+
 /*********** PARA CELULARES *************/
 @media screen and (max-width: 600px){
-    .mt-datos{
-        margin-top: 0% !important;
+    .perfil-img {
+        position: relative !important;
+        left: 30%;
     }
     .center{
         width: 100% !important;
