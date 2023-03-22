@@ -21,7 +21,7 @@ function guardar_vinculo(event){
 
     alertify.confirm('Carga de vinculos', 'Seguro que quiere guardar este vinculo ?', function(){
 
-        fetch('ajax/ajax_guardar_vinculo.php', {
+        fetch('ajax/ajax_guardar_vinculo_actividades.php', {
             method: "POST",
             // Set the post data
             body: JSON.stringify({'alumnos':alumnos})
@@ -51,7 +51,7 @@ function datos_actividad(event){
         return alertify.alert('Actividades','Seleccione una actividad.')
     }
 
-    fetch('ajax/ajax_guardar_vinculo.php', {
+    fetch('ajax/ajax_guardar_vinculo_actividades.php', {
         method: "POST",
         // Set the post data
         body: JSON.stringify({'id_actividad':id_actividad})
@@ -114,7 +114,7 @@ function guardar_actividad(event){
 
     alertify.confirm('Guardar actividad', 'Seguro que quiere guardar esta actividad ?', function(){
 
-        fetch('ajax/ajax_guardar_vinculo.php', {
+        fetch('ajax/ajax_guardar_vinculo_actividades.php', {
             method: "POST",
             // Set the post data
             body: JSON.stringify({'guardar_actividad':guardar_actividad})

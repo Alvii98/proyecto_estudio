@@ -16,7 +16,7 @@
 	<script src="libs/alertifyjs/alertify.min.js"></script>
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA guardar_datos -->
-    <script src="js/vinculos.js?<?php print time();?>"></script>
+    <script src="js/vinculos_actividades.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
