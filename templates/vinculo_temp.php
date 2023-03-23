@@ -27,6 +27,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>Cargar vinculo</h3>
+                <label>(Seleccione alumno y seleccione el vinculo familiar o en caso de que no est&eacute;, escriba el nuevo vinculo familiar.)</label>
             </div>
         </div>
     </div>
@@ -36,22 +37,23 @@
                 <div class="form-group float-left">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
+
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-6 float-left">
-                    <label class="ml-2">Alumno/a (*)</label>
-                    <select class="form-control ml-2" id="id_alumno_1">
-                        <option selected value="0">-- Seleccione un alumno/a --</option>
-                        <?php foreach ($alumnos as $value) {?>
-                            <option value="<?php print$value['id'];?>">
-                                <?php print$value['apellido'].' '.$value['nombre'];?>
+                    <label class="ml-2">Vinculo familiar (*)</label>
+                    <select class="form-control ml-2" id="nom_vinculo">
+                        <option selected value="0">-- Seleccione el vinculo --</option>
+                        <?php foreach ($vinculos as $value) {?>
+                            <option value="<?php print$value['vinculo'];?>">
+                                <?php print$value['vinculo'];?>
                             </option>
                         <?php } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6 float-left">
                     <label class="ml-2">Alumno/a (*)</label>
-                    <select class="form-control ml-2" id="id_alumno_2">
+                    <select class="form-control ml-2" id="id_alumno">
                         <option selected value="0">-- Seleccione un alumno/a --</option>
                         <?php foreach ($alumnos as $value) {?>
                             <option value="<?php print$value['id'];?>">
@@ -63,15 +65,8 @@
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-6">
-                    <label class="ml-2">Vinculo (*)</label>
-                    <select class="form-control ml-2" id="vinculo">
-                        <option selected value="0">-- Seleccione un vinculo --</option>
-                        <option value="Padre">Padre</option>
-                        <option value="Madre">Madre</option>
-                        <option value="Hermano/a">Hermano/a</option>
-                        <option value="Primo/a">Primo/a</option>
-                        <option value="Primo/a"></option>
-                    </select>
+                    <label class="ml-2">Nuevo vinculo familiar (*)</label>
+                    <input type="text" id="nom_vinculo_nuevo" placeholder="Apellidos de alumnos" class="form-control">
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">

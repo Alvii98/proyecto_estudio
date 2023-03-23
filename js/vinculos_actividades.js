@@ -11,12 +11,14 @@ window.addEventListener("change", function(event){
 function guardar_vinculo(event){
     let alumnos = {}
 
-    alumnos = {'id_alumno_1': document.querySelector('#id_alumno_1').value,
-    'id_alumno_2': document.querySelector('#id_alumno_2').value,
-    'vinculo': document.querySelector('#vinculo').value}
+    alumnos = {'nom_vinculo': document.querySelector('#nom_vinculo').value.trim(),
+    'id_alumno': document.querySelector('#id_alumno').value.trim(),
+    'nom_vinculo_nuevo': document.querySelector('#nom_vinculo_nuevo').value.trim()}
 
-    if(alumnos.id_alumno_1.trim() == '0' || alumnos.id_alumno_2.trim() == '0' || alumnos.vinculo.trim() == '0'){
-        return alertify.alert('Carga de vinculos','Complete los datos obligatorios (*)')
+    if(alumnos.id_alumno == '0'){
+        return alertify.alert('Carga de vinculos','Seleccione un alumno por favor.')
+    }else if(alumnos.nom_vinculo_nuevo == '' && alumnos.nom_vinculo == '0'){
+        return alertify.alert('Carga de vinculos','Seleccione un vinculo familiar o si no esta escriba el nuevo vinculo.')
     }
 
     alertify.confirm('Carga de vinculos', 'Seguro que quiere guardar este vinculo ?', function(){

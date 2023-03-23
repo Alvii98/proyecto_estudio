@@ -20,11 +20,13 @@ if(isset($datos->id_actividad)){
     $json->respGuardarActividad = datos::update_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo);
 
 }else{
-    $id1 = $datos->alumnos->id_alumno_1;
-    $id2 = $datos->alumnos->id_alumno_2;
-    $vinculo = $datos->alumnos->vinculo;
+    $id_alumno = $datos->alumnos->id_alumno;
+    $nom_vinculo = $datos->alumnos->nom_vinculo;
+
+    if($nom_vinculo == '0') $nom_vinculo = $datos->alumnos->nom_vinculo_nuevo;
     
-    $json->respVinculo = datos::insert_vinculo($id1,$id2,$vinculo);
+    
+    $json->respVinculo = datos::insert_vinculo($id_alumno,$nom_vinculo);
 }
 
 print json_encode($json);

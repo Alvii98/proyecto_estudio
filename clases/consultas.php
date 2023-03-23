@@ -12,21 +12,25 @@ class datos{
     static public function busqueda($ape,$nom,$edad,$activ){
 
         if(empty($edad)){
-            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,v.vinculo FROM alumnos a
-            LEFT JOIN vinculos v ON a.id = v.id_alumno_1 OR a.id = v.id_alumno_2
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad FROM alumnos a
             WHERE a.apellido LIKE '%".$ape."%' AND a.nombre LIKE '%".$nom."%'
             AND a.actividad LIKE '%".$activ."%' ORDER BY a.apellido ASC;";
         }else{
             $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,v.vinculo FROM alumnos a
-            LEFT JOIN vinculos v ON a.id = v.id_alumno_1 OR a.id = v.id_alumno_2
             WHERE a.edad = ".$edad." ORDER BY a.apellido ASC";
         }
 
         return datos::respuestaQuery($query);
     }
-    static public function vinculos($id){
+    static public function busqueda_familiar($vinculo){
 
-        $query = "SELECT * FROM vinculos WHERE id_alumno_1 = ".$id." OR id_alumno_2 =".$id;    
+        $query = "SELECT id_alumno,vinculo FROM vinculos WHERE vinculo LIKE '%".$vinculo."%'";  
+
+        return datos::respuestaQuery($query);
+    }
+    static public function vinculos(){
+
+        $query = "SELECT * FROM vinculos ORDER BY vinculo ASC";    
 
         return datos::respuestaQuery($query);
     }
@@ -105,12 +109,12 @@ class datos{
         return true;
     }
 
-    static public function insert_vinculo($id1,$id2,$vinculo){
+    static public function insert_vinculo($id_alumno,$nom_vinculo){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();
 
-        $query = "INSERT INTO vinculos(id_alumno_1, id_alumno_2, vinculo)
-        VALUES (".$id1.",".$id2.",'".$vinculo."')";
+        $query = "INSERT INTO vinculos(id_alumno, vinculo)
+        VALUES (".$id_alumno.",'".$nom_vinculo."')";
         
         if (!mysqli_query($conn, $query)) {
             return mysqli_error($conn);
