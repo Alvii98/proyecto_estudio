@@ -48,23 +48,24 @@
                     <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print'';?>">
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group col-md-6 float-left mt-datos">
-                    <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="hidden" id="id_alumno" value="<?php print'';?>">
-                    <input type="text" readonly="true" id="apellido" class="form-control" value="<?php print'';?>">
+            <?php foreach ($alumnos as $value) { ?>
+                <div class="col-md-12">
+                    <div class="form-group col-md-6 float-left mt-datos">
+                        <label for="exampleFormControlInput1">Apellido</label>
+                        <input type="text" readonly="true" id="apellido" class="form-control" value="<?php print$value['apellido'];?>">
+                    </div>
+                    <div class="form-group col-md-6 float-left mt-datos">
+                        <label for="exampleFormControlInput1">Nombre</label>
+                        <input type="text" readonly="true" id="nombre" class="form-control" value="<?php print$value['nombre'];?>">
+                    </div>
                 </div>
-                <div class="form-group col-md-6 float-left mt-datos">
-                    <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" readonly="true" id="nombre" class="form-control" value="<?php print'';?>">
+                <div class="col-md-12">
+                    <div class="form-group col-md-12 float-left">
+                        <label>actividades</label>
+                        <textarea class="form-control" readonly="true" id="actividad"> • <?php print$value['actividad'];?></textarea>        
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group col-md-12 float-left">
-                    <label>actividades</label>
-                    <textarea class="form-control" readonly="true" id="actividad"></textarea>        
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
     <?php include('partials\footer_temp.php');?>

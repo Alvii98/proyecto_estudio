@@ -105,7 +105,7 @@ tbody tr{
 }
 tbody tr:hover{
     /* background-color: rgba(78, 52, 85, 0.9); */
-    background-color: rgba(199, 199, 199, 0.9);
+    background-color: rgba(199, 199, 199, 0.9) !important;
     border-color: #929292 !important;
 }
 td{

@@ -19,13 +19,18 @@ foreach ($datos as $value) {
                 'edad' => datos::obtener_edad($value['fecha_nac']),
                 'actividad' => str_replace("|", "<br>", $value['actividad'])];
 }
+$vinculo = '';
 foreach ($datos2 as $value) {
-    $alumnos[] = ['id' => '',
+    if($vinculo == $value['vinculo']) continue;
+    $vinculo = $value['vinculo'];
+
+    $alumnos[] = ['id' => '0',
     'apellido' => $value['vinculo'],
     'nombre' => '',
-    'vinculo' => 'Familiar',
+    'vinculo' => 'Familia',
     'edad' => '',
     'actividad' => ''];
+
 }
 $json->datos = $alumnos ;
 

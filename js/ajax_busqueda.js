@@ -32,17 +32,21 @@ function buscar(){
     .then(response => response.json())
     .then(function (json) {
         let tbody = ''
-        console.log(json.datos)
         // return
         if(json.datos.length > 0){
+            
             json.datos.forEach(element => {
+                
                 document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
-                tbody += `<tr onclick="alumno_id(`+element.id+`)"><td>`+element.apellido+`</td>
+                let background = element.vinculo == 'Familia' ? 'background-color:#96b796;' : ''
+                tbody += `<tr style="`+background+`"onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
+                <td>`+element.apellido+`</td>
                 <td>`+element.nombre+`</td>
                 <td>`+element.edad+`</td>
                 <td>`+element.actividad+`</td>
                 <td>`+element.vinculo+`</td>
                 </tr>`
+
             });
         }else{
             document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
@@ -59,7 +63,8 @@ function buscar(){
 
 }
 
-function alumno_id(id){
-    // document.querySelector('form[name="alumno_'+id+'"]').submit()
-    window.location.href = 'datos.php?id='+id
+function alumno_id(id,vinculo){
+
+    if(id == 0) window.location.href = 'datos.php?vinculo='+vinculo
+    else window.location.href = 'datos.php?id='+id
 }

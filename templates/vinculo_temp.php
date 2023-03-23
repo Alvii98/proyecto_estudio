@@ -44,7 +44,11 @@
                     <label class="ml-2">Vinculo familiar (*)</label>
                     <select class="form-control ml-2" id="nom_vinculo">
                         <option selected value="0">-- Seleccione el vinculo --</option>
-                        <?php foreach ($vinculos as $value) {?>
+                        <?php $vinculo = ''; 
+                            foreach ($vinculos as $value) {
+                                if($vinculo == $value['vinculo']) continue;
+                                $vinculo = $value['vinculo'];
+                            ?>
                             <option value="<?php print$value['vinculo'];?>">
                                 <?php print$value['vinculo'];?>
                             </option>

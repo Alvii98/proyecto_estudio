@@ -56,10 +56,22 @@ if(isset($_GET['id'])){
     $familiar = datos::familiar($_GET['id']);
 
     include_once __DIR__.('\templates\datos_temp.php');
+
+
 }elseif(isset($_GET['vinculo'])){
 
     $vinculos = datos::busqueda_familiar($_GET['vinculo']);
-    print'<pre>';print_r($vinculo);exit;
+    $alumnos = array();
+    foreach ($vinculos as $value) {
+        # code...
+        $alumno = datos::alumno_id($value['id_alumno']);
+
+        $alumnos[] = array('apellido' => $alumno[0]['apellido'],
+                    'nombre' => $alumno[0]['nombre'],
+                    'actividad' => str_replace('|',' •',trim($alumno[0]['actividad'],'|')));
+    }
+    // print'<pre>';print_r($alumnos);exit;
     include_once __DIR__.('\templates\datos_vinculo_temp.php');
+
 }
 ?>
