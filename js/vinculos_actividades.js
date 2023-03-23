@@ -5,11 +5,15 @@ window.addEventListener("click", function(event){
 })
 
 window.addEventListener("change", function(event){
+    if(event.target.id == 'nom_vinculo') document.querySelector('#nom_vinculo_nuevo').value = ''
     if(event.target.id == 'id_actividad') datos_actividad(event)
 })
-
+window.addEventListener("keyup", function(event){
+    if(event.target.id == 'nom_vinculo_nuevo') document.querySelector('#nom_vinculo').value = '0'
+})
 function guardar_vinculo(event){
-    let alumnos = {}
+    let alumnos = {},
+    familiar
 
     alumnos = {'nom_vinculo': document.querySelector('#nom_vinculo').value.trim(),
     'id_alumno': document.querySelector('#id_alumno').value.trim(),
@@ -19,9 +23,12 @@ function guardar_vinculo(event){
         return alertify.alert('Carga de vinculos','Seleccione un alumno por favor.')
     }else if(alumnos.nom_vinculo_nuevo == '' && alumnos.nom_vinculo == '0'){
         return alertify.alert('Carga de vinculos','Seleccione un vinculo familiar o si no esta escriba el nuevo vinculo.')
+    }else if(alumnos.nom_vinculo_nuevo != '' && alumnos.nom_vinculo != '0'){
+        return alertify.alert('Carga de vinculos','Si el vinculo seleccionado es el correcto borre el nuevo vinculo escrito de lo contrario quite la seleccion.')
     }
+    familiar = alumnos.nom_vinculo_nuevo == '' ? alumnos.nom_vinculo : alumnos.nom_vinculo_nuevo
 
-    alertify.confirm('Carga de vinculos', 'Seguro que quiere guardar este vinculo ?', function(){
+    alertify.confirm('Carga de vinculos', 'Seguro que quiere guardar a este alumno en la familia '+familiar+' ?', function(){
 
         fetch('ajax/ajax_guardar_vinculo_actividades.php', {
             method: "POST",
