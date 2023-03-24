@@ -20,7 +20,6 @@ if(isset($_GET['id'])){
     $valor = number_format($valores['valor'], 2, ',', ' ');
     $efectivo = number_format($valores['efectivo'], 2, ',', ' ');
     
-    // print'<pre>';print_r($vinculo);exit;
     $familiar = datos::familiar($_GET['id']);
 
     include_once __DIR__.('\templates\datos_temp.php');
@@ -37,8 +36,10 @@ if(isset($_GET['id'])){
         $alumnos[] = array('id' => $alumno[0]['id'],
                     'apellido' => $alumno[0]['apellido'],
                     'nombre' => $alumno[0]['nombre'],
-                    'actividad' => str_replace('|',' •',trim($alumno[0]['actividad'],'|')));
+                    'actividad' => explode('|',$alumno[0]['actividad']));
     }
+    // print'<pre>';print_r($alumnos);exit;
+    
     $valores = valores::precio_por_familia($alumnos);
     
     $valor = number_format($valores['valor'], 2, ',', ' ');

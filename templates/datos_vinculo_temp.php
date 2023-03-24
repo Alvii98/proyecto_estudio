@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos del alumno/a</title>
+    <title>Vinculo familiar</title>
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
@@ -59,11 +59,16 @@
                         <input type="text" readonly="true" id="nombre" class="form-control" value="<?php print$value['nombre'];?>">
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group col-md-12 float-left">
-                        <label>actividades</label>
-                        <textarea class="form-control" readonly="true" id="actividad"> • <?php print$value['actividad'];?></textarea>        
+                <?php foreach ($value['actividad'] as $key => $value) { if(empty(trim($value))) continue;?>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-12 float-left">
+                            <label>Actividad <?php print$key+1; ?></label>
+                            <textarea class="form-control" readonly="true" id="actividad"><?php print$value;?></textarea>        
+                        </div>
                     </div>
+                <?php } ?>
+                <div class="col-md-12">
+                    <hr>
                 </div>
             <?php } ?>
         </div>

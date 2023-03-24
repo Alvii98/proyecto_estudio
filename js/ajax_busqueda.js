@@ -40,8 +40,7 @@ function buscar(){
                 document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
                 if(element.vinculo == 'Familia'){
                     tbody += `<tr style="background-color:#96b796;"onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
-                    <td colspan="2">`+element.apellido+`</td>
-                    <td colspan="2">`+element.vinculo+`</td>
+                    <td colspan="4">`+element.vinculo+' '+element.apellido+`</td>
                     </tr>`
                 }else{
                     tbody += `<tr onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">

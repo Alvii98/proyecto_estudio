@@ -44,10 +44,9 @@ class valores{
     static public function precio_por_familia($alumnos){
         $valor = 0;
         $efectivo = 0;
-
+        
         foreach ($alumnos as $value) {
-            $actividades = explode('•',$value['actividad']);
-            $valores = valores::precio_por_alumno($actividades);
+            $valores = valores::precio_por_alumno($value['actividad']);
 
             $valor = $valor + intval($valores['valor']);
             $efectivo = $efectivo + intval($valores['efectivo']);
