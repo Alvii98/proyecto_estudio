@@ -6,7 +6,7 @@
                 <th>Nombre</th>
                 <th>Edad</th>
                 <th>Actividad</th>
-                <th>Vinculo</th>
+                <!-- <th>Vinculo</th> -->
             </tr>
         </thead>
         <tbody>

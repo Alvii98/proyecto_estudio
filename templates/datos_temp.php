@@ -44,28 +44,33 @@
                 <div class="form-group float-left col-md-3">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
-                <div class="form-group col-md-3 float-right">
-                    <div class="perfil-img"  style="position:absolute;right:75px;top:15px;">
+                <?php if(empty($vinculo)){ ?>
+                    <div class="form-group float-left col-md-3">
+                        <label for="exampleFormControlInput1">A pagar</label>
+                        <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
+                    </div>
+                    <div class="form-group float-left col-md-3">
+                        <label for="exampleFormControlInput1">En efectivo</label>
+                        <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
+                    </div>
+                <?php }else{ ?>
+                    <div class="form-group float-left col-md-9">
+                        <a href="datos.php?vinculo=<?php print $vinculo[0]['vinculo'];?>" class="btn btn-dark btn-lg rounded-pill ">Ir a grupo familiar</a>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-3 float-right" align="center">
+                    <div class="perfil-img">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
                         <img src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
                         <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
                         <div class="file">
                             Cambiar foto
-                            <input type="file" name="fotoPerfil" id="fotoPerfil"/>
+                            <input type="file" name="fotoPerfil" id="fotoPerfil" readonly/>
                         </div>
                     </div>
                 </div>
-                <div class="form-group float-left col-md-3">
-                    <label for="exampleFormControlInput1">A pagar</label>
-                    <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
-                </div>
-                <div class="form-group float-left col-md-3">
-                    <label for="exampleFormControlInput1">En efectivo</label>
-                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
-                </div>
-            </div>
-            <div class="col-md-12">
-
                 <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Apellido</label>
                     <input type="hidden" id="id_alumno" value="<?php print$alumno['id'];?>">

@@ -22,9 +22,13 @@ class datos{
 
         return datos::respuestaQuery($query);
     }
-    static public function busqueda_familiar($vinculo){
+    static public function busqueda_familiar($vinculo,$id = ''){
 
-        $query = "SELECT id_alumno,vinculo FROM vinculos WHERE vinculo LIKE '%".$vinculo."%'";  
+        $query = "SELECT DISTINCT id_alumno,vinculo FROM vinculos WHERE id_alumno = ".$id;  
+        
+        if(empty($id)){
+            $query = "SELECT DISTINCT id_alumno,vinculo FROM vinculos WHERE vinculo LIKE '%".$vinculo."%'";  
+        }
 
         return datos::respuestaQuery($query);
     }
@@ -67,16 +71,10 @@ class datos{
         return datos::respuestaQuery($query);
     }
 
-    static public function actividad_valor_una_vez($actividad){
+    static public function actividad_valores($actividad){
 
-        $query = "SELECT actividad,una_vez as valor,una_vez_efec as efectivo FROM actividades_valores WHERE actividad LIKE '%".$actividad."%'";    
-
-        return datos::respuestaQuery($query);
-    }
-    static public function actividad_valor_dos_vez($actividad){
-
-        $query = "SELECT actividad,dos_veces as valor,dos_veces_efec as efectivo FROM actividades_valores WHERE actividad LIKE '%".$actividad."%'";    
-
+        $query = "SELECT actividad,una_vez,una_vez_efec,dos_veces,dos_veces_efec FROM actividades_valores 
+        WHERE '".$actividad."' LIKE CONCAT('%',actividad,'%')";
         return datos::respuestaQuery($query);
     }
 

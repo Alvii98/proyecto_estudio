@@ -38,14 +38,19 @@ function buscar(){
             json.datos.forEach(element => {
                 
                 document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
-                let background = element.vinculo == 'Familia' ? 'background-color:#96b796;' : ''
-                tbody += `<tr style="`+background+`"onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
-                <td>`+element.apellido+`</td>
-                <td>`+element.nombre+`</td>
-                <td>`+element.edad+`</td>
-                <td>`+element.actividad+`</td>
-                <td>`+element.vinculo+`</td>
-                </tr>`
+                if(element.vinculo == 'Familia'){
+                    tbody += `<tr style="background-color:#96b796;"onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
+                    <td colspan="2">`+element.apellido+`</td>
+                    <td colspan="2">`+element.vinculo+`</td>
+                    </tr>`
+                }else{
+                    tbody += `<tr onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
+                    <td>`+element.apellido+`</td>
+                    <td>`+element.nombre+`</td>
+                    <td>`+element.edad+`</td>
+                    <td>`+element.actividad+`</td>
+                    </tr>`
+                }
 
             });
         }else{

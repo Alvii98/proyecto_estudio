@@ -41,11 +41,11 @@
                 </div>
                 <div class="form-group float-left col-md-3">
                     <label for="exampleFormControlInput1">A pagar</label>
-                    <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print'';?>">
+                    <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
                 </div>
                 <div class="form-group float-left col-md-3">
                     <label for="exampleFormControlInput1">En efectivo</label>
-                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print'';?>">
+                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
                 </div>
             </div>
             <?php foreach ($alumnos as $value) { ?>

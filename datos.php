@@ -1,58 +1,26 @@
 <?php
 require_once __DIR__.'/clases/consultas.php';
+require_once __DIR__.'/clases/calcular_precio.php';
 
 if(!isset($_GET['id']) && !isset($_GET['vinculo'])) header('Location: index.php');
 
 if(isset($_GET['id'])){
     $alumno = datos::alumno_id($_GET['id']);
     
-    $vinculo = datos::vinculos($_GET['id']);
+    $vinculo = datos::busqueda_familiar('',$_GET['id']);
     
+
     if(empty($alumno)) header('Location: index.php');
 
     $alumno = $alumno[0];
     $actividades = explode('|',$alumno['actividad']);
-    $actividad = array();
-    foreach ($actividades as $value) {
-        # code...
-        if(strpos($value, '(')){
-            $actividad[] = trim(explode('(',$value)[0]);
-        }
-        if(!strpos($value, '(') && strpos($value, '-')){
-            $actividad[] = trim(explode('-',$value)[0]);
-        }
-    }
-    $valores = array();
-    $valor = 0;
-    $efectivo = 0;
-    // array_count_values se fija si la actividad esta mas de una vez
-    foreach (array_count_values($actividad) as $activ => $value) {
-        # code...
-        // tiene un descuento si hace la actividad mas de una vez
-        if($value >= 2){
-            $valor_actividad = datos::actividad_valor_dos_vez($activ);
-        }else {
-            $valor_actividad = datos::actividad_valor_una_vez($activ);
-        }
-        if(empty($valor_actividad)) continue;
-        
-        $valor = $valor + $valor_actividad[0]['valor'];
-        $efectivo = $efectivo + $valor_actividad[0]['efectivo'];
-    }
 
-    // 10% de descuento por familiares 
-    if(!empty($vinculo)){
-        
-        $porcentaje = intval($valor) * 10 / 100;
-        $valor = intval($valor) - $porcentaje;
-        
-        $porcentaje = intval($efectivo) * 10 / 100;
-        $efectivo = intval($efectivo) - $porcentaje;
-    }
+    $valores = valores::precio_por_alumno($actividades);
 
-    $valor = number_format($valor, 2, ',', ' ');
-    $efectivo = number_format($efectivo, 2, ',', ' ');
-
+    $valor = number_format($valores['valor'], 2, ',', ' ');
+    $efectivo = number_format($valores['efectivo'], 2, ',', ' ');
+    
+    // print'<pre>';print_r($vinculo);exit;
     $familiar = datos::familiar($_GET['id']);
 
     include_once __DIR__.('\templates\datos_temp.php');
@@ -66,11 +34,16 @@ if(isset($_GET['id'])){
         # code...
         $alumno = datos::alumno_id($value['id_alumno']);
 
-        $alumnos[] = array('apellido' => $alumno[0]['apellido'],
+        $alumnos[] = array('id' => $alumno[0]['id'],
+                    'apellido' => $alumno[0]['apellido'],
                     'nombre' => $alumno[0]['nombre'],
                     'actividad' => str_replace('|',' •',trim($alumno[0]['actividad'],'|')));
     }
-    // print'<pre>';print_r($alumnos);exit;
+    $valores = valores::precio_por_familia($alumnos);
+    
+    $valor = number_format($valores['valor'], 2, ',', ' ');
+    $efectivo = number_format($valores['efectivo'], 2, ',', ' ');
+
     include_once __DIR__.('\templates\datos_vinculo_temp.php');
 
 }

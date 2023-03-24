@@ -70,7 +70,7 @@ function editar_datos(event){
     /************* LE SACO LOS READONLY ******************/
     for (let i = 0; i < inputs.length; i++) {
         
-        if(inputs[i].id == 'valor' || inputs[i].id == 'efectivo') continue
+        if(inputs[i].id == 'valor'||inputs[i].id == 'efectivo'||inputs[i].id == 'fotoPerfil') continue
 
         if(inputs[i].readOnly == true){
             inputs[i].readOnly = false
@@ -146,7 +146,7 @@ function eliminar_familiar(event){
 }
 
 function agregar_actividad(){
-    let readOnly = document.getElementsByTagName('input')[3].readOnly
+    let readOnly = document.getElementsByTagName('input')[5].readOnly
     readOnly = readOnly == true ? 'readonly' : ''
 
     document.querySelector('#nueva_actividad').innerHTML += `<div class="form-group col-md-12 float-left">
