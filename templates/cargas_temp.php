@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar alumno/a</title>
+	<link rel="icon" href="img/logo.png" type="image/x-icon">
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
@@ -40,8 +41,8 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="form-group col-md-3 float-right d-flex justify-content-center">
-                    <div class="perfil-img">
+                <div class="form-group col-md-2 float-right">
+                    <div class="perfil-img d-flex justify-content-center">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
                         <img src="img/icono.jpg" id="id_perfil" class="rounded-circle" height="125" width="130"/>
                         <input type="hidden" id="foto_base64" value="">
@@ -51,19 +52,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-md-3 float-left mt-datos">
+                <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Apellido (*)</label>
                     <input type="text" id="apellido" class="form-control">
                 </div>
-                <div class="form-group col-md-3 float-left mt-datos">
+                <div class="form-group col-md-3 float-left">
                     <label for="exampleFormControlInput1">Nombre (*)</label>
                     <input type="text" id="nombre" class="form-control">
                 </div>
-                <div class="form-group col-md-1 float-left mt-datos">
+                <div class="form-group col-md-2 float-left">
                     <label for="exampleFormControlInput1">Edad (*)</label>
                     <input type="text" id="edad" class="form-control">
                 </div>
-                <div class="form-group col-md-2 float-left mt-datos">
+                <div class="form-group col-md-2 float-left">
                     <label for="exampleFormControlInput1">Fecha de nac. (*)</label>
                     <input type="date" id="fecha_nac" class="form-control">
                 </div>
@@ -118,7 +119,7 @@
             </div>
             <div class="col-md-12 mb-4 mt-3">
                 <div class="form-group col-md-12">
-                    <button class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3" id="guardar_datos">Guardar datos</button>
+                    <button class="btn btn-dark btn-lg rounded-pill float-right col-md-2" id="guardar_datos">Guardar datos</button>
                 </div>
             </div>
         </div>

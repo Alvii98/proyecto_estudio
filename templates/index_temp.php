@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busqueda</title>
-	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/logo.png" type="image/x-icon">
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">

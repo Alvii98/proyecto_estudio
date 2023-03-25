@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades</title>
+	<link rel="icon" href="img/logo.png" type="image/x-icon">
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
@@ -54,7 +55,7 @@
             </div>
             <div class="col-md-12 d-flex justify-content-center mt-3">
                 <div class="form-group col-md-12">
-                    <button id="guardar_actividad" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Guardar datos</button>
+                    <button id="guardar_actividad" class="btn btn-dark btn-lg rounded-pill float-right col-md-2">Guardar datos</button>
                 </div>
             </div>
         </div>

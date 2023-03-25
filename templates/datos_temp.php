@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del alumno/a</title>
+	<link rel="icon" href="img/logo.png" type="image/x-icon">
     <!-- BOOTSTRAP 4.6 -->
     <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css">
@@ -41,27 +42,29 @@
     <div class="container border border-color rounded mb-4">
         <div class="row">
             <div class="col-md-12 mt-3">
-                <div class="form-group float-left col-md-3">
+                <div class="form-group float-left">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
                 <?php if(empty($vinculo)){ ?>
-                    <div class="form-group float-left col-md-3">
-                        <label for="exampleFormControlInput1">A pagar</label>
-                        <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
-                    </div>
-                    <div class="form-group float-left col-md-3">
-                        <label for="exampleFormControlInput1">En efectivo</label>
-                        <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
+                    <div class="form-group col-md-10 d-flex justify-content-center">
+                        <div class="float-left">
+                            <label for="exampleFormControlInput1">A pagar</label>
+                            <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
+                        </div>
+                        <div class="ml-3 float-left">
+                            <label for="exampleFormControlInput1">En efectivo</label>
+                            <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
+                        </div>
                     </div>
                 <?php }else{ ?>
-                    <div class="form-group float-left col-md-9">
+                    <div class="form-group float-left ml-3">
                         <a href="datos.php?vinculo=<?php print $vinculo[0]['vinculo'];?>" class="btn btn-dark btn-lg rounded-pill ">Ir a grupo familiar</a>
                     </div>
                 <?php } ?>
             </div>
             <div class="col-md-12">
-                <div class="form-group col-md-3 float-right" align="center">
-                    <div class="perfil-img">
+                <div class="form-group col-md-2 float-right">
+                    <div class="perfil-img d-flex justify-content-center">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
                         <img src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
                         <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
@@ -80,7 +83,7 @@
                     <label for="exampleFormControlInput1">Nombre</label>
                     <input type="text" readonly="true" id="nombre" class="form-control" value="<?php print$alumno['nombre'];?>">
                 </div>
-                <div class="form-group col-md-1 float-left mt-datos">
+                <div class="form-group col-md-2 float-left mt-datos">
                     <label for="exampleFormControlInput1">Edad</label>
                     <input type="text" readonly="true" id="edad" class="form-control" value="<?php print datos::obtener_edad($alumno['fecha_nac']);?>">
                 </div>
@@ -188,9 +191,9 @@
             <?php } ?>
             <div class="col-md-12 mb-4 mt-3">
                 <div class="form-group col-md-12">
-                    <button id="editar_datos" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Editar datos</button>
-                    <button id="eliminar_alumno" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Eliminar alumno</button>
-                    <button id="agregar_familiar" onclick="location.href='familiares.php?id=<?php print$_GET['id'] ?>'" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mr-3">Agregar familiar</button>
+                    <button id="editar_datos" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mt-2">Editar datos</button>
+                    <button id="eliminar_alumno" class="btn btn-dark btn-lg rounded-pill float-right col-md-2  mt-2">Eliminar alumno</button>
+                    <button id="agregar_familiar" onclick="location.href='familiares.php?id=<?php print$_GET['id'] ?>'" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mt-2">Agregar familiar</button>
                 </div>
             </div>
         </div>
