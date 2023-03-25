@@ -2,6 +2,8 @@ window.addEventListener("click", function(event){
     video = document.getElementById("video"),
     canvas = document.getElementById("canvas")
     if(event.target.id == 'tomar_foto') iniciar_camara(event)
+    if(event.target.id == 'id_perfil') zoom_foto(event)
+
     // if(event.target.id == 'close'){
     //     document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
     // }
@@ -79,5 +81,9 @@ function foto_base64(){
 
     //Reanudar reproducción
     video.play();
+}
+function zoom_foto(event) {
+    console.log(event.target)
+    
 }
 

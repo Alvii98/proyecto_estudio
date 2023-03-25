@@ -44,7 +44,7 @@
                 <div class="form-group col-md-2 float-right">
                     <div class="perfil-img d-flex justify-content-center">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
-                        <img src="img/icono.jpg" id="id_perfil" class="rounded-circle" height="125" width="130"/>
+                        <img role="button" src="img/icono.jpg" id="id_perfil" class="rounded-circle" height="125" width="130"/>
                         <input type="hidden" id="foto_base64" value="">
                         <div class="file">
                             Cambiar foto

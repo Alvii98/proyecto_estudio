@@ -7,7 +7,7 @@
             <div class="col-md-12 d-flex justify-content-center mt-4">
                 <!-- Aquí el video embebido de la webcam  -->
                 <video id="video" class="video" playsinline autoplay></video>
-                <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+                <canvas id="canvas" height="125" width="130" style="display: none;"></canvas>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <label id="datos_camara"></label>
