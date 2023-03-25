@@ -45,6 +45,9 @@
     padding: 10px 0 10px;
     cursor: pointer; /* manita de selección al hacer hover */
 }
+.perfil-img .file:hover{
+    text-decoration: underline;
+}
 .perfil-img .file input {
     padding: 30px 0 25px;
     position: absolute;
@@ -69,7 +72,8 @@
     left: 45px;
 }
 .tomar_foto {
-    opacity: 0;
+    background: #212529b8;
+    color: #fff;
     position: absolute;
     width: 100%;
     bottom: 85px;
@@ -81,8 +85,6 @@
     border: transparent;
 }
 .tomar_foto:hover {
-    opacity: 1;
-    background: #212529b8;
     color: #fff;
 }
 

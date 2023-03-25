@@ -187,10 +187,20 @@ class datos{
         $conn = $instancia->getConnection();    
 
         $query = "DELETE FROM alumnos WHERE id = ".$id;
-        
         if (!mysqli_query($conn, $query)) {
             return mysqli_error($conn);
         }
+        
+        $query = "DELETE FROM familiar WHERE id_alumno = ".$id;
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        
+        $query = "DELETE FROM vinculos WHERE id_alumno = ".$id;
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+
         return true;
     }
     static public function delete_familiar($id){

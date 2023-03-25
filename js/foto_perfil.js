@@ -1,4 +1,7 @@
 window.addEventListener("click", function(event){
+    if(document.getElementsByClassName('foto_zoom')[0] != undefined){
+        document.querySelector('body').removeChild(document.getElementsByClassName('foto_zoom')[0])
+    }
     video = document.getElementById("video"),
     canvas = document.getElementById("canvas")
     if(event.target.id == 'tomar_foto') iniciar_camara(event)
@@ -10,6 +13,9 @@ window.addEventListener("click", function(event){
     // if(event.target.id != 'boton') return
 })
 document.addEventListener('keyup', function (event) {
+    if(document.getElementsByClassName('foto_zoom')[0] != undefined){
+        document.querySelector('body').removeChild(document.getElementsByClassName('foto_zoom')[0])
+    }
     if(event.keyCode == 84) foto_base64()
     if(event.keyCode == 27) document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
 })
@@ -82,8 +88,16 @@ function foto_base64(){
     //Reanudar reproducción
     video.play();
 }
+
 function zoom_foto(event) {
-    console.log(event.target)
+    let img = document.createElement('img'),
+    div = document.createElement('div')
     
+    div.setAttribute('class', 'foto_zoom d-flex justify-content-center')
+    // div.setAttribute('id', 'foto_grande')
+    img.setAttribute('src', event.target.src)
+    div.append(img)
+
+    document.querySelector('body').append(div)
 }
 
