@@ -61,6 +61,7 @@ function iniciar_camara(event){
                 info.style.color = 'red'
                 info.innerText = 'El permiso fue denegado o no se encontro la camara.'
             });
+    camaras()
     } else {
         info.style.color = 'red'
         info.innerText  = 'Lo siento. Tu navegador no soporta esta característica'
@@ -100,4 +101,31 @@ function zoom_foto(event) {
 
     document.querySelector('body').append(div)
 }
+const obtenerDispositivos = () => navigator
+    .mediaDevices
+    .enumerateDevices();
 
+function camaras(params) {
+    
+    obtenerDispositivos()
+    .then(dispositivos => {
+        const dispositivosDeVideo = [];
+        dispositivos.forEach(dispositivo => {
+            const tipo = dispositivo.kind;
+            if (tipo === "videoinput") {
+                dispositivosDeVideo.push(dispositivo);
+            }
+        });
+        console.log(dispositivosDeVideo)
+        // Vemos si encontramos algún dispositivo, y en caso de que si, entonces llamamos a la función
+        if (dispositivosDeVideo.length > 0) {
+            // Llenar el select
+            dispositivosDeVideo.forEach(dispositivo => {
+                const option = document.createElement('option');
+                option.value = dispositivo.deviceId;
+                option.text = dispositivo.label;
+                document.querySelector('camaras').appendChild(option);
+            });
+        }
+    });
+}
