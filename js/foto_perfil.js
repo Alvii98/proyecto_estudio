@@ -1,11 +1,12 @@
 window.addEventListener("click", function(event){
-    if(document.getElementsByClassName('foto_zoom')[0] != undefined){
-        document.querySelector('body').removeChild(document.getElementsByClassName('foto_zoom')[0])
-    }
+    // if(document.getElementsByClassName('foto_zoom')[0] != undefined){
+    //     document.querySelector('body').removeChild(document.getElementsByClassName('foto_zoom')[0])
+    // }
+    console.log(event.target)
     video = document.getElementById("video"),
     canvas = document.getElementById("canvas")
     if(event.target.id == 'tomar_foto') iniciar_camara(event)
-    if(event.target.id == 'id_perfil') zoom_foto(event)
+    if(event.target.id == 'id_perfil') modal_foto(event)
 
     // if(event.target.id == 'close'){
     //     document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
@@ -89,17 +90,32 @@ function foto_base64(){
     //Reanudar reproducción
     video.play();
 }
-
-function zoom_foto(event) {
+function modal_camara(event) {
     let img = document.createElement('img'),
     div = document.createElement('div')
     
     div.setAttribute('class', 'foto_zoom d-flex justify-content-center')
     // div.setAttribute('id', 'foto_grande')
+
     img.setAttribute('src', event.target.src)
     div.append(img)
 
     document.querySelector('body').append(div)
+
+}
+function modal_foto(event) {
+    let div = document.createElement('div'),
+    img = document.createElement('img'),
+    i = document.createElement('i')
+    
+    div.setAttribute('class', 'foto_zoom d-flex justify-content-center')
+    img.setAttribute('class', 'col-md-8 mt-3 mb-3')
+    img.setAttribute('src', event.target.src)
+    i.setAttribute('class', 'bi bi-x-circle h2 text-light')
+    div.append(i)
+    div.append(img)
+    document.querySelector('body').append(div)
+    // document.querySelector('body').removeChild(document.getElementsByClassName('foto_zoom')[0])
 }
 const obtenerDispositivos = () => navigator
     .mediaDevices

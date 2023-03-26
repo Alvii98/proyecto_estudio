@@ -4,6 +4,13 @@
             <!-- <div class="col-md-12 float-right">
                 <i class="bi bi-x-circle closee" role="button" id="close"></i>
             </div> -->
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-group col-md-6">
+                    <select class="form-control ml-2" id="id_actividad">
+                        <option selected value="0">-- Seleccione una actividad --</option>
+                    </select>
+                </div>
+            </div>
             <div class="col-md-12 d-flex justify-content-center mt-4">
                 <!-- Aquí el video embebido de la webcam  -->
                 <video id="video" class="video" playsinline autoplay></video>
