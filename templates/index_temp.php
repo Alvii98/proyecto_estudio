@@ -34,14 +34,19 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="col-md-3 boton-cargar" onclick="location.href='cargas.php'">Cargar alumno</div>
-                <div class="col-md-3 boton-cargar" onclick="location.href='vinculo.php'">Cargar vinculo</div>
+                <div class="col-md-3 boton-cargar" onclick="location.href='vinculo.php'">Vinculos familiares</div>
                 <div class="col-md-3 boton-cargar" onclick="location.href='actividades.php'">Actividades</div>
             </div>
             <div class="col-md-10 d-flex justify-content-center mt-4">
                 <input type="text" id="apellido" placeholder="Apellido" class="form-control col-md-3">
                 <input type="text" id="nombre" placeholder="Nombre" class="form-control ml-2 col-md-3">
                 <input type="text" id="edad" placeholder="Edad" class="form-control ml-2 col-md-3">
-                <input type="text" id="actividad" placeholder="Actividad" class="form-control ml-2 col-md-3">
+                <input list="actividades" id="actividad" placeholder="Actividad" class="form-control ml-2 col-md-3">
+                <datalist id="actividades">
+                    <?php foreach ($actividades as $value) {?>
+                        <option value="<?php print$value['actividad'];?>">
+                    <?php } ?>
+                </datalist>
             </div>
             <!-- <div class="col-md-10 d-flex justify-content-center mt-3">
                 <button class="btn btn-dark btn-lg rounded-pill col-md-3" id="buscar">Buscar</button>

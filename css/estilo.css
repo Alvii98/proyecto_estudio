@@ -160,6 +160,9 @@ th{
         position:static !important; 
         /* left: 50% !important; */
     }
+    .mt-datos{
+        margin-top: auto !important;
+    }
 }
 .desarrollador{
     position: relative;
@@ -170,6 +173,9 @@ th{
 i {
     cursor: pointer;
 }
-.form-control[readonly="true"] {
+.mt-datos{
+    margin-top: 4%;
+}
+hr{
     background-color: #dddddd !important;
 }

@@ -4,9 +4,6 @@ require_once '../clases/consultas.php';
 $json = new StdClass();
 $datos = datos::busqueda(trim($_POST['apellido']),trim($_POST['nombre']),trim($_POST['edad']),trim($_POST['actividad']));
 
-if(isset($_POST['apellido'])) $datos2 = datos::busqueda_familiar(trim($_POST['apellido']));
-else $datos2 = array();
-
 $alumnos = array();
 foreach ($datos as $value) {
     if($value['edad'] != datos::obtener_edad($value['fecha_nac'])){
@@ -19,18 +16,22 @@ foreach ($datos as $value) {
                 'edad' => datos::obtener_edad($value['fecha_nac']),
                 'actividad' => str_replace("|", "<br>", $value['actividad'])];
 }
-$vinculo = '';
-foreach ($datos2 as $value) {
-    if($vinculo == $value['vinculo']) continue;
-    $vinculo = $value['vinculo'];
+if(!empty(trim($_POST['apellido']))){
 
-    $alumnos[] = ['id' => '0',
-    'apellido' => $value['vinculo'],
-    'nombre' => '',
-    'vinculo' => 'Familia',
-    'edad' => '',
-    'actividad' => ''];
-
+    $datos2 = datos::busqueda_familiar(trim($_POST['apellido']));
+    $vinculo = '';
+    foreach ($datos2 as $value) {
+        if($vinculo == $value['vinculo']) continue;
+        $vinculo = $value['vinculo'];
+        
+        $alumnos[] = ['id' => '0',
+        'apellido' => $value['vinculo'],
+        'nombre' => '',
+        'vinculo' => 'Familia',
+        'edad' => '',
+        'actividad' => ''];
+        
+    }
 }
 $json->datos = $alumnos ;
 

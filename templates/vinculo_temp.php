@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>Cargar vinculo</h3>
-                <label>(Seleccione alumno y seleccione el vinculo familiar o en caso de que no est&eacute;, escriba el nuevo vinculo familiar.)</label>
+                <label>(Seleccione alumno y seleccione el vinculo familiar o en caso de que no est&eacute;, escriba el nombre del grupo familiar.)</label>
             </div>
         </div>
     </div>
@@ -70,13 +70,14 @@
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-6">
-                    <label class="ml-2">Nuevo vinculo familiar (*)</label>
+                    <label class="ml-2">Nombre del grupo familiar (*)</label>
                     <input type="text" id="nom_vinculo_nuevo" placeholder="Apellidos de alumnos" class="form-control">
                 </div>
             </div>
-            <div class="col-md-12 d-flex justify-content-center">
+            <div class="col-md-12 d-flex justify-content-center mt-2">
                 <div class="form-group col-md-12">
-                    <button id="guardar_vinculo" class="btn btn-dark btn-lg rounded-pill float-right col-md-2">Guardar datos</button>
+                    <button id="guardar_vinculo" class="btn btn-dark btn-lg rounded-pill float-right col-md-2 mt-2">Guardar vinculo</button>
+                    <button id="desvincular" class="btn btn-dark btn-lg rounded-pill float-right col-md-3 mt-2">Desvincular alumno</button>
                 </div>
             </div>
         </div>

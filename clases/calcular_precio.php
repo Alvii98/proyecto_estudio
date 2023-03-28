@@ -10,55 +10,55 @@ class valores{
             $actividad_valores[] = $valor_actividad[0];
             $actividad[] = $valor_actividad[0]['actividad'];
         }
+        // Ordeno array alfabeticamente
         sort($actividad_valores); 
         $valor = 0;
         $efectivo = 0;
+        $combo = 0;
         $temporal = '';
         foreach ($actividad_valores as $value) {
-            # code...
-            // print array_count_values($actividad)[$value['actividad']].'|<br>';
+            // Array_count_value agrupa las actividades repetidas
+            // Si hay una que esta 2 o mas veces se le cobra el valor 2
             if(array_count_values($actividad)[$value['actividad']] >= 2){
                 if($temporal == $value['actividad']) continue;
     
                 $temporal = $value['actividad'];
                 $valor = $valor + $value['dos_veces'];
                 $efectivo = $efectivo + $value['dos_veces_efec'];
+                $combo = $efectivo;
             }else{
                 $valor = $valor + $value['una_vez'];
                 $efectivo = $efectivo + $value['una_vez_efec'];
+                $combo = $efectivo;
             } 
         }
         // 10% de descuento por hacer mas de 1 actividad
         if(count(array_count_values($actividad)) >= 2){
-    
-            $porcentaje = intval($valor) * 10 / 100;
-            $valor = intval($valor) - $porcentaje;
-            
-            $porcentaje = intval($efectivo) * 10 / 100;
-            $efectivo = intval($efectivo) - $porcentaje;
+            $porcentaje = intval($combo) * 10 / 100;
+            $combo = intval($combo) - $porcentaje;
+        }else{
+            $combo = 0;
         }
 
-        return ['valor' => $valor,'efectivo' => $efectivo];
+        return ['valor' => $valor,'efectivo' => $efectivo,'combo' => $combo];
     }
 
     static public function precio_por_familia($alumnos){
         $valor = 0;
         $efectivo = 0;
-        
+        $combo = 0;
         foreach ($alumnos as $value) {
             $valores = valores::precio_por_alumno($value['actividad']);
 
             $valor = $valor + intval($valores['valor']);
             $efectivo = $efectivo + intval($valores['efectivo']);
+            $combo = $efectivo;
         }
         // 10% de descuento por ser familiares
-        $porcentaje = $valor * 10 / 100;
-        $valor = $valor - $porcentaje;
-        
-        $porcentaje = $efectivo * 10 / 100;
-        $efectivo = $efectivo - $porcentaje;
+        $porcentaje = $combo * 10 / 100;
+        $combo = $combo - $porcentaje;
 
-        return ['valor' => $valor,'efectivo' => $efectivo];
+        return ['valor' => $valor,'efectivo' => $efectivo,'combo' => $combo];
     }
 }
 

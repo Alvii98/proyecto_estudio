@@ -25,8 +25,11 @@ if(isset($datos->id_actividad)){
 
     if($nom_vinculo == '0') $nom_vinculo = $datos->alumnos->nom_vinculo_nuevo;
     
-    
-    $json->respVinculo = datos::insert_vinculo($id_alumno,$nom_vinculo);
+    if(isset($datos->alumnos->desvincular)){
+        $json->respVinculo = datos::delete_vinculo($id_alumno,$nom_vinculo);
+    }else{
+        $json->respVinculo = datos::insert_vinculo($id_alumno,$nom_vinculo);
+    }
 }
 
 print json_encode($json);

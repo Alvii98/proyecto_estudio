@@ -2,6 +2,7 @@ window.addEventListener("click", function(event){
     if(event.target.id == 'guardar_datos') guardar_datos(event)
     if(event.target.id == 'guardar_familiar') guardar_familiar(event)
     if(event.target.id == 'guardar_vinculo') guardar_vinculo(event)
+    if(event.target.id == 'desvincular') desvincular(event)
     if(event.target.id == 'guardar_actividad') guardar_actividad(event)
 })
 
@@ -72,7 +73,7 @@ function guardar_familiar(event){
     if(familiar.nom_ape.trim() == '' || familiar.vinculo.trim() == '' || familiar.tel_familiar.trim() == ''){
         return alertify.alert('Carga de familiares','Complete los datos obligatorios (*)')
     }
-    alertify.confirm('Carga de familiares', 'Seguro que quiere guardar los datos de este familiar/a ?', function(){
+    alertify.confirm('Carga de familiares', 'Seguro que quiere guardar los datos de este familiar ?', function(){
 
         fetch('ajax/ajax_guardar_familiar.php', {
             method: "POST",
@@ -116,7 +117,7 @@ function guardar_vinculo(event){
     }
     familiar = alumnos.nom_vinculo_nuevo == '' ? alumnos.nom_vinculo : alumnos.nom_vinculo_nuevo
 
-    alertify.confirm('Carga de vinculos', 'Seguro que quiere guardar a este alumno en la familia '+familiar+' ?', function(){
+    alertify.confirm('Carga de vinculos', 'Seguro que quiere guardar a este alumno/a en la familia '+familiar+' ?', function(){
 
         fetch('ajax/ajax_guardar_vinculo_actividades.php', {
             method: "POST",
@@ -126,8 +127,52 @@ function guardar_vinculo(event){
         .then(response => response.json())
         .then(function (json) {
             // console.log(json)
+            if(Array.isArray(json.respVinculo)){
+                alertify.error('El alumno/a ya esta vinculado a esa familia.')
+                return
+            } 
             if(json.respVinculo){
                 alertify.success('Guardado correctamente')
+                setTimeout(function(){location.reload()}, 2000)
+            }            
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Carga de vinculos','Ocurrio un error al guardar los datos.')
+        })
+    }, function(){ alertify.error('Cancelado')});
+
+}
+
+function desvincular(event){
+    let alumnos = {}
+
+    alumnos = {'nom_vinculo': document.querySelector('#nom_vinculo').value.trim(),
+    'id_alumno': document.querySelector('#id_alumno').value.trim(),
+    'desvincular': 'desvincular'}
+
+    if(alumnos.id_alumno == '0'){
+        return alertify.alert('Carga de vinculos','Seleccione un alumno por favor.')
+    }else if(alumnos.nom_vinculo == '0'){
+        return alertify.alert('Carga de vinculos','Seleccione un vinculo familiar.')
+    }
+
+    alertify.confirm('Carga de vinculos', 'Seguro que quiere desvincular a este alumno/a de la familia '+alumnos.nom_vinculo+' ?', function(){
+
+        fetch('ajax/ajax_guardar_vinculo_actividades.php', {
+            method: "POST",
+            // Set the post data
+            body: JSON.stringify({'alumnos':alumnos})
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            if(Array.isArray(json.respVinculo)){
+                alertify.error('El alumno/a no esta vinculado a esa familia.')
+                return
+            } 
+            if(json.respVinculo){
+                alertify.success('Desvinculado correctamente')
                 setTimeout(function(){location.reload()}, 2000)
             }            
         })
@@ -162,19 +207,19 @@ function datos_actividad(event){
             <input type="text" id="id_guardar_actividad" class="form-control" value="`+json.respActividad[0].actividad+`">
         </div>
         <div class="form-group col-md-2 float-left">
-            <label for="exampleFormControlInput1">Precio 1</label>
+            <label for="exampleFormControlInput1">Una vez</label>
             <input type="number" id="id_guardar_una" class="form-control" value="`+json.respActividad[0].una_vez+`">
         </div>
         <div class="form-group col-md-2 float-left">
-            <label for="exampleFormControlInput1">Precio 1 efectivo</label>
+            <label for="exampleFormControlInput1">Una vez efectivo</label>
             <input type="number" id="id_guardar_una_efectivo" class="form-control" value="`+json.respActividad[0].una_vez_efec+`">
         </div>
         <div class="form-group col-md-2 float-left">
-            <label for="exampleFormControlInput1">Precio 2</label>
+            <label for="exampleFormControlInput1">Dos veces</label>
             <input type="number" id="id_guardar_dos" class="form-control" value="`+json.respActividad[0].dos_veces+`">
         </div>
         <div class="form-group col-md-2 float-left">
-            <label for="exampleFormControlInput1">Precio 2 efectivo</label>
+            <label for="exampleFormControlInput1">Dos veces efectivo</label>
             <input type="number" id="id_guardar_dos_efectivo" class="form-control" value="`+json.respActividad[0].dos_veces_efec+`">
         </div>`
     })

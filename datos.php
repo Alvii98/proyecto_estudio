@@ -4,6 +4,8 @@ require_once __DIR__.'/clases/calcular_precio.php';
 
 if(!isset($_GET['id']) && !isset($_GET['vinculo'])) header('Location: index.php');
 
+$combo_actividades = datos::actividades();
+
 if(isset($_GET['id'])){
     $alumno = datos::alumno_id($_GET['id']);
     
@@ -19,7 +21,8 @@ if(isset($_GET['id'])){
 
     $valor = number_format($valores['valor'], 2, ',', ' ');
     $efectivo = number_format($valores['efectivo'], 2, ',', ' ');
-    
+    $combo = number_format($valores['combo'], 2, ',', ' ');
+
     $familiar = datos::familiar($_GET['id']);
 
     include_once __DIR__.('\templates\datos_temp.php');
@@ -44,6 +47,7 @@ if(isset($_GET['id'])){
     
     $valor = number_format($valores['valor'], 2, ',', ' ');
     $efectivo = number_format($valores['efectivo'], 2, ',', ' ');
+    $combo = number_format($valores['combo'], 2, ',', ' ');
 
     include_once __DIR__.('\templates\datos_vinculo_temp.php');
 

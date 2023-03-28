@@ -55,6 +55,10 @@
                             <label for="exampleFormControlInput1">En efectivo</label>
                             <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
                         </div>
+                        <div class="ml-3 float-left">
+                            <label for="exampleFormControlInput1">Combo</label>
+                            <input type="text" readonly="true" id="combo" class="form-control col-md-6 text-center" value="$<?php print$combo;?>">
+                        </div>
                     </div>
                 <?php }else{ ?>
                     <div class="form-group float-left ml-3">
@@ -97,7 +101,12 @@
                     <div class="form-group col-md-12 float-left">
                         <label>Actividad 1</label>
                         <i class="bi bi-plus-circle-dotted agregar_actividad" title="Agregar actividad" id="agregar_actividad"></i>
-                        <textarea class="form-control" readonly="true" id="actividad"></textarea>        
+                        <input list="actividades" class="form-control" readonly="true" id="actividad">        
+                        <datalist id="actividades">
+                            <?php foreach ($combo_actividades as $value) {?>
+                                <option value="<?php print$value['actividad'];?>">
+                            <?php } ?>
+                        </datalist>
                     </div>
                 </div>
             <?php } ?>
@@ -110,11 +119,22 @@
                         <?php }else{ ?>
                             <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar actividad" id="eliminar_actividad"></i>
                         <?php } ?>
-                        <textarea class="form-control" readonly="true" id="actividad"><?php print trim($value);?></textarea>        
+                        <input list="actividades" class="form-control" readonly="true" id="actividad" value="<?php print trim($value);?>" >        
+                        <datalist id="actividades">
+                            <?php foreach ($combo_actividades as $value) {?>
+                                <option value="<?php print$value['actividad'];?>">
+                            <?php } ?>
+                        </datalist>
                     </div>
                 </div> 
             <?php } ?>
             <div id="nueva_actividad" class="col-md-12"></div>
+            <div class="col-md-12">
+                <div class="form-group col-md-12 float-left">
+                    <label>Notas del estudio</label>
+                    <textarea class="form-control" readonly="true" id="notas"><?php print$alumno['notas'];?></textarea>        
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Observacion</label>

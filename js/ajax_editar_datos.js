@@ -44,6 +44,7 @@ function editar_datos(event){
     'domicilio': document.querySelector('#domicilio').value,
     'salud': document.querySelector('#salud').value,
     'actividad': actividad,
+    'notas': document.querySelector('#notas').value,
     'observacion_alumno': document.querySelector('#observacion_alumno').value}
 
     if(event.target.textContent == 'Guardar datos'){
@@ -70,7 +71,7 @@ function editar_datos(event){
     /************* LE SACO LOS READONLY ******************/
     for (let i = 0; i < inputs.length; i++) {
         
-        if(inputs[i].id == 'valor'||inputs[i].id == 'efectivo'||inputs[i].id == 'fotoPerfil') continue
+        if(inputs[i].id == 'valor'||inputs[i].id == 'efectivo'||inputs[i].id == 'combo'||inputs[i].id == 'fotoPerfil') continue
 
         if(inputs[i].readOnly == true){
             inputs[i].readOnly = false
@@ -146,13 +147,13 @@ function eliminar_familiar(event){
 }
 
 function agregar_actividad(){
-    let readOnly = document.getElementsByTagName('input')[5].readOnly
+    let readOnly = document.getElementsByTagName('input')[6].readOnly
     readOnly = readOnly == true ? 'readonly' : ''
 
     document.querySelector('#nueva_actividad').innerHTML += `<div class="form-group col-md-12 float-left">
                 <label>Nueva actividad</label>
                 <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar actividad" id="eliminar_actividad"></i>
-                <textarea class="form-control" id="actividad"`+readOnly+`></textarea>        
+                <input list="actividades" class="form-control" id="actividad" `+readOnly+`>        
             </div>`
 }
 function eliminar_actividad(event){

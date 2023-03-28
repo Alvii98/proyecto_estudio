@@ -18,6 +18,7 @@ $array_update = ['id_alumno' => $datos->alumno->id_alumno,
                 'correo' => $datos->alumno->correo,
                 'actividad' => $datos->alumno->actividad,
                 'salud' => $datos->alumno->salud,
+                'notas' => $datos->alumno->notas,
                 'observacion_alumno' => $datos->alumno->observacion_alumno];
 
 $json->respAlumno = datos::update_alumnos($array_update);

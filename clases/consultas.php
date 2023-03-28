@@ -16,7 +16,7 @@ class datos{
             WHERE a.apellido LIKE '%".$ape."%' AND a.nombre LIKE '%".$nom."%'
             AND a.actividad LIKE '%".$activ."%' ORDER BY a.apellido ASC;";
         }else{
-            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,v.vinculo FROM alumnos a
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad FROM alumnos a
             WHERE a.edad = ".$edad." ORDER BY a.apellido ASC";
         }
 
@@ -77,6 +77,12 @@ class datos{
         WHERE '".$actividad."' LIKE CONCAT('%',actividad,'%')";
         return datos::respuestaQuery($query);
     }
+    static public function vinculo_existe($id_alumno,$nom_vinculo){
+
+        $query = "SELECT * FROM vinculos WHERE id_alumno = ".$id_alumno." AND vinculo = '".$nom_vinculo."'";
+
+        return datos::respuestaQuery($query);
+    }
 
     static public function insert_datos($array){
         $instancia = SingletonConexion::getInstance();
@@ -111,6 +117,10 @@ class datos{
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();
 
+        $vinculo_existe = datos::vinculo_existe($id_alumno,$nom_vinculo);        
+        if(!empty($vinculo_existe)){
+            return $vinculo_existe;
+        }
         $query = "INSERT INTO vinculos(id_alumno, vinculo)
         VALUES (".$id_alumno.",'".$nom_vinculo."')";
         
@@ -128,7 +138,7 @@ class datos{
         fecha_nac = '".$array['fecha_nac']."', edad = '".$array['edad']."', nacionalidad = '".$array['nacionalidad']."',
         documento = '".$array['documento']."',domicilio = '".$array['domicilio']."',localidad = '".$array['localidad']."',
         tel_fijo = '".$array['tel_fijo']."', tel_movil = '".$array['tel_alumno']."', mail = '".$array['correo']."',
-        actividad = '".$array['actividad']."', salud = '".$array['salud']."',
+        actividad = '".$array['actividad']."', notas = '".$array['notas']."', salud = '".$array['salud']."',
         observaciones = '".$array['observacion_alumno']."' WHERE id = ".$array['id_alumno'];
         
         if (!mysqli_query($conn, $query)) {
@@ -214,7 +224,21 @@ class datos{
         }
         return true;
     }
+    static public function delete_vinculo($id_alumno,$nom_vinculo){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection(); 
 
+        $vinculo_existe = datos::vinculo_existe($id_alumno,$nom_vinculo);        
+        if(empty($vinculo_existe)){
+            return $vinculo_existe;
+        }
+        $query = "DELETE FROM vinculos WHERE id_alumno = ".$id_alumno." AND vinculo = '".$nom_vinculo."'";
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
     static public function obtener_edad($fecha_nac){
         
         // $arr = explode('/', $fecha_nac);

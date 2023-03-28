@@ -40,22 +40,26 @@
                 <div class="form-group float-left col-md-3">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
-                <div class="form-group float-left col-md-3">
+                <div class="form-group float-left col-md-2">
                     <label for="exampleFormControlInput1">A pagar</label>
-                    <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
+                    <input type="text" readonly="true" id="valor" class="form-control col-md-8 text-center" value="$<?php print$valor;?>">
                 </div>
-                <div class="form-group float-left col-md-3">
+                <div class="form-group float-left col-md-2">
                     <label for="exampleFormControlInput1">En efectivo</label>
-                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
+                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-8 text-center" value="$<?php print$efectivo;?>">
+                </div>
+                <div class="form-group float-left col-md-2">
+                    <label for="exampleFormControlInput1">Combo</label>
+                    <input type="text" readonly="true" id="combo" class="form-control col-md-8 text-center" value="$<?php print$combo;?>">
                 </div>
             </div>
             <?php foreach ($alumnos as $value) { ?>
                 <div class="col-md-12">
-                    <div class="form-group col-md-6 float-left mt-datos">
+                    <div class="form-group col-md-6 float-left">
                         <label for="exampleFormControlInput1">Apellido</label>
                         <input type="text" readonly="true" id="apellido" class="form-control" value="<?php print$value['apellido'];?>">
                     </div>
-                    <div class="form-group col-md-6 float-left mt-datos">
+                    <div class="form-group col-md-6 float-left">
                         <label for="exampleFormControlInput1">Nombre</label>
                         <input type="text" readonly="true" id="nombre" class="form-control" value="<?php print$value['nombre'];?>">
                     </div>
