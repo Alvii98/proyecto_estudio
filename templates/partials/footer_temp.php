@@ -1,9 +1,17 @@
 <header class="container-fluid border-top border-color pt-2 pb-2">
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-8 float-left mt-2">
+            <div class="col-md-4 float-left mt-2">
                 <div class="col-md-12">
-                    <img src="img/logo-Negro.png" width="300px" height="60px">
+                    <img src="img/logo-Negro.png" role="button" onclick="location.href='index.php'" width="300px" height="60px">
+                </div>
+            </div>
+            <div class="col-md-4 float-left mt-2 ml-4">
+                <div class="col-md-12">
+                    <label class="h6">Url externa <i class="bi bi-link"></i></label>
+                </div>
+                <div class="col-md-12">
+                    <a class="h6" id="url_externa" target="_blank"></a>
                 </div>
             </div>
             <div class="col-md-3 float-left ml-4">
@@ -19,3 +27,7 @@
         </div>
     </div>
 </header>
+<script>
+document.querySelector('#url_externa').textContent = 'http://'+document.domain+'/proyecto_estudio/'
+document.querySelector('#url_externa').href = 'http://'+document.domain+'/proyecto_estudio/'
+</script>

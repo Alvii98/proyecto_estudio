@@ -45,6 +45,12 @@
                 <div class="form-group float-left">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
+                <div class="form-group float-right">
+                    <div class="form-check">
+                        <input <?php print $alumno['baja'] == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="baja_alumno" id="baja_alumno">
+                        <label class="form-check-label">Baja del alumno/a</label>
+                    </div>
+                </div>
                 <?php if(empty($vinculo)){ ?>
                     <div class="form-group col-md-10 d-flex justify-content-center">
                         <div class="float-left">
@@ -74,7 +80,7 @@
                         <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
                         <div class="file">
                             Cambiar foto
-                            <input type="file" name="fotoPerfil" id="fotoPerfil" readonly/>
+                            <input type="file" capture="camera" name="fotoPerfil" id="fotoPerfil" readonly/>
                         </div>
                     </div>
                 </div>

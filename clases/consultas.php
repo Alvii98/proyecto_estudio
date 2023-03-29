@@ -12,11 +12,11 @@ class datos{
     static public function busqueda($ape,$nom,$edad,$activ){
 
         if(empty($edad)){
-            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad FROM alumnos a
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja FROM alumnos a
             WHERE a.apellido LIKE '%".$ape."%' AND a.nombre LIKE '%".$nom."%'
             AND a.actividad LIKE '%".$activ."%' ORDER BY a.apellido ASC;";
         }else{
-            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad FROM alumnos a
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja FROM alumnos a
             WHERE a.edad = ".$edad." ORDER BY a.apellido ASC";
         }
 
@@ -129,7 +129,29 @@ class datos{
         }
         return true;
     }
+    static public function insert_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();  
+          
+        $query = "INSERT INTO actividades_valores(actividad,una_vez,una_vez_efec,dos_veces,dos_veces_efec) 
+        VALUES ('".$actividad."',".$una.",".$una_efectivo.",".$dos.",".$dos_efectivo.")";
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
+    static public function baja_alumno($id_alumno,$baja){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
 
+        $query = "UPDATE alumnos SET baja = ".$baja." WHERE id = ".$id_alumno;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
     static public function update_alumnos($array){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    

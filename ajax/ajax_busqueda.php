@@ -13,6 +13,7 @@ foreach ($datos as $value) {
                 'apellido' => $value['apellido'],
                 'nombre' => $value['nombre'],
                 'vinculo' =>'Sin vinculo',
+                'baja' =>$value['baja'],
                 'edad' => datos::obtener_edad($value['fecha_nac']),
                 'actividad' => str_replace("|", "<br>", $value['actividad'])];
 }
@@ -28,6 +29,7 @@ if(!empty(trim($_POST['apellido']))){
         'apellido' => $value['vinculo'],
         'nombre' => '',
         'vinculo' => 'Familia',
+        'baja' => '',
         'edad' => '',
         'actividad' => ''];
         

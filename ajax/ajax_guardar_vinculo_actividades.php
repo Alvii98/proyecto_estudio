@@ -16,8 +16,12 @@ if(isset($datos->id_actividad)){
     $una_efectivo = $datos->guardar_actividad->id_guardar_una_efectivo;
     $dos = $datos->guardar_actividad->id_guardar_dos;
     $dos_efectivo = $datos->guardar_actividad->id_guardar_dos_efectivo;
-
-    $json->respGuardarActividad = datos::update_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo);
+    
+    if($id == 0){
+        $json->respGuardarActividad = datos::insert_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo);
+    }else{
+        $json->respGuardarActividad = datos::update_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo);
+    }
 
 }else{
     $id_alumno = $datos->alumnos->id_alumno;
