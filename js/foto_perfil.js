@@ -21,18 +21,23 @@ document.addEventListener('keyup', function (event) {
 })
 document.addEventListener('change', function (event) {
     if(event.target.id != 'fotoPerfil') return     
-
+    
     var file = document.querySelector('#fotoPerfil').files[0],
     reader = new FileReader()
 
-    reader.readAsDataURL(file);
+    if(file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/jpg'){
+        reader.readAsDataURL(file);
 
-    reader.onload = function () {
-        document.querySelector('#id_perfil').setAttribute('src', reader.result)
-        document.querySelector('#foto_base64').value = reader.result
-    }
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
+        reader.onload = function () {
+            document.querySelector('#id_perfil').setAttribute('src', reader.result)
+            document.querySelector('#foto_base64').value = reader.result
+        }
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        }
+    }else{
+        alertify.alert('Datos del alumno/a','Solo se admite formato image/png, image/jpeg o image/jpg.')
+        return
     }
 })
 
