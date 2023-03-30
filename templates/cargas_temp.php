@@ -52,19 +52,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-md-3 float-left">
+                <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Apellido (*)</label>
                     <input type="text" id="apellido" class="form-control">
                 </div>
-                <div class="form-group col-md-3 float-left">
+                <div class="form-group col-md-3 float-left mt-datos">
                     <label for="exampleFormControlInput1">Nombre (*)</label>
                     <input type="text" id="nombre" class="form-control">
                 </div>
-                <div class="form-group col-md-2 float-left">
+                <div class="form-group col-md-2 float-left mt-datos">
                     <label for="exampleFormControlInput1">Edad (*)</label>
                     <input type="text" id="edad" class="form-control">
                 </div>
-                <div class="form-group col-md-2 float-left">
+                <div class="form-group col-md-2 float-left mt-datos">
                     <label for="exampleFormControlInput1">Fecha de nac. (*)</label>
                     <input type="date" id="fecha_nac" class="form-control">
                 </div>
@@ -108,9 +108,17 @@
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Actividad</label>
-                    <textarea class="form-control" id="actividad"></textarea>        
+                    <i class="bi bi-plus-circle-dotted agregar_actividad" title="Agregar actividad" id="agregar_actividad"></i>
+
+                    <input list="actividades" class="form-control" id="actividad">        
+                    <datalist id="actividades">
+                        <?php foreach ($combo_actividades as $value) {?>
+                            <option value="<?php print$value['actividad'];?>">
+                        <?php } ?>
+                    </datalist>
                 </div>
             </div> 
+            <div id="nueva_actividad" class="col-md-12"></div>
             <div class="col-md-12">
                 <div class="form-group col-md-12 float-left">
                     <label>Observacion</label>

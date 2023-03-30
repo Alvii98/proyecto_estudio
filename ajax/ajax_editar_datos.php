@@ -1,30 +1,51 @@
 <?php
 require_once '../clases/consultas.php';
 $json = new StdClass();
-$datos = json_decode(file_get_contents('php://input'));
+if(isset($_POST['baja'])){
+    $json->respAlumno = datos::baja_alumno($_POST['id_alumno'],$_POST['baja']);
+}else{
 
-$array_update = ['id_alumno' => $datos->alumno->id_alumno,
-                'apellido' => $datos->alumno->apellido,
-                'nombre' => $datos->alumno->nombre,
-                'foto_perfil' => $datos->alumno->foto_perfil,
-                'fecha_nac' => $datos->alumno->fecha_nac,
-                'edad' => $datos->alumno->edad,
-                'nacionalidad' => $datos->alumno->nacionalidad,
-                'documento' => $datos->alumno->documento,
-                'domicilio' => $datos->alumno->domicilio,
-                'localidad' => $datos->alumno->localidad,
-                'tel_fijo' => $datos->alumno->tel_fijo,
-                'tel_alumno' => $datos->alumno->tel_alumno,
-                'correo' => $datos->alumno->correo,
-                'actividad' => $datos->alumno->actividad,
-                'salud' => $datos->alumno->salud,
-                'observacion_alumno' => $datos->alumno->observacion_alumno];
+    $datos = json_decode(file_get_contents('php://input'));
 
-$json->respAlumno = datos::update_alumnos($array_update);
+    if(!empty($datos->alumno->foto_perfil)){
+        $img = $datos->alumno->foto_perfil;
+        if(strpos($img, 'data:image/png;base64,') !== FALSE){
+            $img = str_replace('data:image/png;base64,', '', $img);
+        }elseif (strpos($img, 'data:image/jpg;base64,') !== FALSE) {
+            $img = str_replace('data:image/jpg;base64,', '', $img);
+        }elseif (strpos($img, 'data:image/jpeg;base64,') !== FALSE) {
+            $img = str_replace('data:image/jpeg;base64,', '', $img);
+        }
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = '../img/perfil/foto_'.$datos->alumno->id_alumno.'.png';
+        $success = file_put_contents($file, $data);
+    }
 
-foreach ($datos->familiares as $key) {
-    $json->respFamiliar = datos::update_familiares($key->id_familiar,$key->nom_ape,$key->vinculo,$key->tel_familiar,$key->observacion_familiar);
+    $array_update = ['id_alumno' => $datos->alumno->id_alumno,
+    'apellido' => $datos->alumno->apellido,
+    'nombre' => $datos->alumno->nombre,
+    'foto_perfil' => 'img/perfil/foto_'.$datos->alumno->id_alumno.'.png',
+    'fecha_nac' => $datos->alumno->fecha_nac,
+    'edad' => $datos->alumno->edad,
+    'nacionalidad' => $datos->alumno->nacionalidad,
+    'documento' => $datos->alumno->documento,
+    'domicilio' => $datos->alumno->domicilio,
+    'localidad' => $datos->alumno->localidad,
+    'tel_fijo' => $datos->alumno->tel_fijo,
+    'tel_alumno' => $datos->alumno->tel_alumno,
+    'correo' => $datos->alumno->correo,
+    'actividad' => $datos->alumno->actividad,
+    'salud' => $datos->alumno->salud,
+    'notas' => $datos->alumno->notas,
+    'observacion_alumno' => $datos->alumno->observacion_alumno];
+    
+    $json->respAlumno = datos::update_alumnos($array_update);
+    
+    foreach ($datos->familiares as $key) {
+        $json->respFamiliar = datos::update_familiares($key->id_familiar,$key->nom_ape,$key->vinculo,$key->tel_familiar,$key->observacion_familiar);
+    }
 }
-
+    
 print json_encode($json);
 ?>

@@ -49,13 +49,20 @@
                         <?php } ?>
                     </select>
                 </div>
+                <div class="form-group mt-2 ml-3">
+                    <div class="form-check">
+                        <input class="form-check-input" role="button" type="checkbox" name="agregar_nueva_actividad" id="agregar_nueva_actividad">
+                        <label class="form-check-label">Agragar actividad</label>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12 mb-3 mt-3" id="cargar_actividad">
 
             </div>
             <div class="col-md-12 d-flex justify-content-center mt-3">
                 <div class="form-group col-md-12">
-                    <button id="guardar_actividad" class="btn btn-dark btn-lg rounded-pill float-right col-md-2">Guardar datos</button>
+                    <button id="guardar_actividad" class="btn btn-dark btn-lg rounded-pill float-right col-md-2">Editar actividad</button>
+                    <button id="nueva_actividad" class="btn btn-dark btn-lg rounded-pill float-right col-md-3"disabled>Guardar nueva actividad</button>
                 </div>
             </div>
         </div>

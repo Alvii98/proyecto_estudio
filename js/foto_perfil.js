@@ -22,51 +22,63 @@ document.addEventListener('keyup', function (event) {
 })
 document.addEventListener('change', function (event) {
     if(event.target.id != 'fotoPerfil') return     
-
+    
     var file = document.querySelector('#fotoPerfil').files[0],
     reader = new FileReader()
 
-    reader.readAsDataURL(file);
+    if(file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/jpg'){
+        reader.readAsDataURL(file);
 
-    reader.onload = function () {
-        document.querySelector('#id_perfil').setAttribute('src', reader.result)
-        document.querySelector('#foto_base64').value = reader.result
-    }
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
+        reader.onload = function () {
+            document.querySelector('#id_perfil').setAttribute('src', reader.result)
+            document.querySelector('#foto_base64').value = reader.result
+        }
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        }
+    }else{
+        alertify.alert('Datos del alumno/a','Solo se admite formato image/png, image/jpeg o image/jpg.')
+        return
     }
 })
 
 function iniciar_camara(event){
     document.querySelector(".modalDialog").setAttribute('style','display:block;opacity:1;')
     let info = document.querySelector('#datos_camara')
+    try {
 
-    function tieneSoporteUserMedia(){
-        return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevsices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
-    }
-    function _getUserMedia(){
-        return (navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments)
-    }
+        function tieneSoporteUserMedia(){
+            return !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevsices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+        }
+        function _getUserMedia(){
+            return (navigator.getUserMedia || (navigator.mozGetUserMedia ||  navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments)
+        }
 
-    if (tieneSoporteUserMedia()) {
-        _getUserMedia(
-            {video: true},
-            function (stream) {
-                console.log("Permiso concedido");
-                info.innerText  = 'Permiso concedido.'
-                video.srcObject = stream;
-                video.play();
-                info.innerText  = ''
-            }, function (error) {
-                console.log("El permiso fue denegado o no se encontro la camara.");
-                info.style.color = 'red'
-                info.innerText = 'El permiso fue denegado o no se encontro la camara.'
-            });
-    camaras()
-    } else {
-        info.style.color = 'red'
-        info.innerText  = 'Lo siento. Tu navegador no soporta esta característica'
-        alert("Lo siento. Tu navegador no soporta esta característica");
+        if (tieneSoporteUserMedia()) {
+            _getUserMedia(
+                {video: true},
+                function (stream) {
+                    console.log("Permiso concedido");
+                    info.innerText  = 'Permiso concedido.'
+                    video.srcObject = stream;
+                    video.play();
+                    info.innerText  = ''
+                }, function (error) {
+                    console.log("El permiso fue denegado o no se encontro la camara.");
+                    info.style.color = 'red'
+                    info.innerText = 'El permiso fue denegado o no se encontro la camara.'
+                });
+            // camaras()
+        } else {
+            info.style.color = 'red'
+            info.innerText  = 'Lo siento. Tu navegador no soporta esta característica'
+            alert("Lo siento. Tu navegador no soporta esta característica");
+        }
+    } catch (error) {
+        if(document.domain != 'localhost'){
+            info.style.color = 'red'
+            info.innerText  = 'Cambie en su url '+document.domain+' por localhost para que tome la camara local.'
+        }
     }
 }
 function foto_base64(){

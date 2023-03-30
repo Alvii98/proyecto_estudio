@@ -31,10 +31,10 @@ function buscar(){
     })
     .then(response => response.json())
     .then(function (json) {
-        let tbody = ''
+        let tbody = '',
+        baja = ''
         // return
         if(json.datos.length > 0){
-            
             json.datos.forEach(element => {
                 
                 document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
@@ -43,7 +43,10 @@ function buscar(){
                     <td colspan="4">`+element.vinculo+' '+element.apellido+`</td>
                     </tr>`
                 }else{
-                    tbody += `<tr onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
+
+                    baja = element.baja == 1 ? 'style="background-color:#e2ecf5;"' : ''
+
+                    tbody += `<tr onclick="alumno_id(`+element.id+`,'`+element.apellido+`')" `+baja+`>
                     <td>`+element.apellido+`</td>
                     <td>`+element.nombre+`</td>
                     <td>`+element.edad+`</td>
