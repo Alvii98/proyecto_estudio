@@ -32,6 +32,16 @@ class datos{
 
         return datos::respuestaQuery($query);
     }
+    static public function busqueda_familiar_datos($vinculo,$id = ''){
+
+        $query = "SELECT DISTINCT id_alumno,vinculo FROM vinculos WHERE id_alumno = ".$id;  
+        
+        if(empty($id)){
+            $query = "SELECT DISTINCT id_alumno,vinculo FROM vinculos WHERE vinculo = '".$vinculo."'";  
+        }
+
+        return datos::respuestaQuery($query);
+    }
     static public function vinculos(){
 
         $query = "SELECT * FROM vinculos ORDER BY vinculo ASC";    

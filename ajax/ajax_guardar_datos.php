@@ -4,6 +4,8 @@ $json = new StdClass();
 $json->respAlumno = '';
 $json->error = '';
 $datos = json_decode(file_get_contents('php://input'));
+$id = max(datos::alumnos())['id']+1;
+$file = '';
 if(!empty($datos->alumno->foto_perfil)){
     $img = $datos->alumno->foto_perfil;
     if(strpos($img, 'data:image/png;base64,') !== FALSE){
@@ -15,7 +17,7 @@ if(!empty($datos->alumno->foto_perfil)){
     }
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
-    $file = 'img/perfil/foto_'.uniqid().'.png';
+    $file = 'img/perfil/foto_'.$id.'.png';
     $success = file_put_contents('../'.$file, $data);
 }
 $array_insert = ['apellido' => $datos->alumno->apellido,

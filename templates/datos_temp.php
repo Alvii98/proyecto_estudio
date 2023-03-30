@@ -29,7 +29,7 @@
     
     <?php if($valor == '0,00' || $efectivo == '0,00'){?>
         <script>
-             alertify.alert('Datos del alumno/a','No se pudo cargar el monto a pagar, revice el nombre de las actividades o los valores por favor.')
+             alertify.alert('Datos del alumno/a','No se pudo cargar el monto a pagar, revise el nombre de las actividades o los valores por favor.')
         </script>    
     <?php } ?>
     <div class="container mt-3">

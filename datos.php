@@ -30,7 +30,7 @@ if(isset($_GET['id'])){
 
 }elseif(isset($_GET['vinculo'])){
 
-    $vinculos = datos::busqueda_familiar($_GET['vinculo']);
+    $vinculos = datos::busqueda_familiar_datos($_GET['vinculo']);
     $alumnos = array();
     foreach ($vinculos as $value) {
         # code...
