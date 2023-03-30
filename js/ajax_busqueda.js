@@ -44,7 +44,7 @@ function buscar(){
                     </tr>`
                 }else{
 
-                    baja = element.baja == 1 ? 'style="background-color:#e2ecf5;"' : ''
+                    baja = element.baja == 1 ? 'style="text-decoration:line-through;"' : ''
 
                     tbody += `<tr onclick="alumno_id(`+element.id+`,'`+element.apellido+`')" `+baja+`>
                     <td>`+element.apellido+`</td>

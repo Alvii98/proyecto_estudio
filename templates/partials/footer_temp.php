@@ -28,6 +28,6 @@
     </div>
 </header>
 <script>
-document.querySelector('#url_externa').textContent = 'http://'+document.domain+'/proyecto_estudio/'
-document.querySelector('#url_externa').href = 'http://'+document.domain+'/proyecto_estudio/'
+document.querySelector('#url_externa').textContent = '<?php print gethostname();?>/proyecto_estudio/'
+document.querySelector('#url_externa').href = 'http://<?php print gethostname();?>/proyecto_estudio/'
 </script>

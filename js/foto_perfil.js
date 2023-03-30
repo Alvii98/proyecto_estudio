@@ -6,11 +6,6 @@ window.addEventListener("click", function(event){
     canvas = document.getElementById("canvas")
     if(event.target.id == 'tomar_foto') iniciar_camara(event)
     if(event.target.id == 'id_perfil') zoom_foto(event)
-
-    // if(event.target.id == 'close'){
-    //     document.querySelector(".modalDialog").setAttribute('style','display:none !important;opacity:0;')
-    // }
-    // if(event.target.id != 'boton') return
 })
 document.addEventListener('keyup', function (event) {
     if(document.getElementsByClassName('foto_zoom')[0] != undefined){
@@ -22,7 +17,7 @@ document.addEventListener('keyup', function (event) {
 document.addEventListener('change', function (event) {
     if(event.target.id != 'fotoPerfil') return     
     
-    var file = document.querySelector('#fotoPerfil').files[0],
+    var file = event.target.files[0],
     reader = new FileReader()
 
     if(file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/jpg'){
@@ -42,6 +37,10 @@ document.addEventListener('change', function (event) {
 })
 
 function iniciar_camara(event){
+    if(document.domain.toUpperCase() != 'LOCALHOST'){
+        alertify.alert('Informacion camara','Solo puede sacar fotos con la PC local con el dominio localhost(url:localhost/proyecto_estudio/)')
+        return
+    }
     document.querySelector(".modalDialog").setAttribute('style','display:block;opacity:1;')
     let info = document.querySelector('#datos_camara')
     try {

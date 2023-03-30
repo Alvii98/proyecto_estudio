@@ -64,7 +64,33 @@
     bottom: 0;
     cursor: pointer;
 }
-.perfil-img .tomar_foto {
+.perfil-img .file_1 {
+    background: #212529b8;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 85px;
+    left: 0px;
+    font-size: 10px;
+    text-align: center;
+    padding: 20px 0 9px;
+    cursor: pointer;
+    border: transparent;
+	opacity:1;
+    display: none;
+}
+.perfil-img .file_1 input {
+    padding: 30px 0 25px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.perfil-img .tomar_foto{
     background: #212529b8;
     color: #fff;
     position: absolute;
@@ -174,8 +200,11 @@ th{
     .perfil-img .file {
         opacity: 1 !important;
     }
-    .perfil-img .tomar_foto {
-        display: none !important;
+    a[class="tomar_foto"]{
+        display: none ;
+    }
+    .perfil-img .file_1 {
+        display: block !important;
     }
 }
 .desarrollador{
