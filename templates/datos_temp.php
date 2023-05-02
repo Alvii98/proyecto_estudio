@@ -80,7 +80,7 @@
                             <input type="file" capture="camera" name="fotoPerfil" id="fotoPerfil" readonly/>
                         </div>
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
-                        <img role="button" src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
+                        <img role="button" src="<?php print !file_exists($alumno['foto_perfil']) ? 'img/icono.jpg' : $alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
                         <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
                         <div class="file">
                             Cambiar foto

@@ -4,7 +4,7 @@ $json = new StdClass();
 $json->respAlumno = '';
 $json->error = '';
 $datos = json_decode(file_get_contents('php://input'));
-$id = max(datos::alumnos())['id']+1;
+$id = !empty(datos::alumnos()) ? max(datos::alumnos())['id']+1 : 1;
 $file = '';
 if(!empty($datos->alumno->foto_perfil)){
     $img = $datos->alumno->foto_perfil;
