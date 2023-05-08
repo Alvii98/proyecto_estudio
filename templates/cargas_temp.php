@@ -43,6 +43,10 @@
             <div class="col-md-12">
                 <div class="form-group col-md-2 float-right">
                     <div class="perfil-img d-flex justify-content-center">
+                        <div class="file_1">
+                            Tomar foto
+                            <input type="file" capture="camera" name="fotoPerfil" id="fotoPerfil" readonly/>
+                        </div>
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
                         <img role="button" src="img/icono.jpg" id="id_perfil" class="rounded-circle" height="125" width="130"/>
                         <input type="hidden" id="foto_base64" value="">

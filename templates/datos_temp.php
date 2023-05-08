@@ -29,7 +29,7 @@
     
     <?php if($valor == '0,00' || $efectivo == '0,00'){?>
         <script>
-             alertify.alert('Datos del alumno/a','No se pudo cargar el monto a pagar, revice el nombre de las actividades o los valores por favor.')
+             alertify.alert('Datos del alumno/a','No se pudo cargar el monto a pagar, revise el nombre de las actividades o los valores por favor.')
         </script>    
     <?php } ?>
     <div class="container mt-3">
@@ -75,12 +75,16 @@
             <div class="col-md-12">
                 <div class="form-group col-md-2 float-right">
                     <div class="perfil-img d-flex justify-content-center">
+                        <div class="file_1">
+                            Tomar foto
+                            <input type="file" capture="camera" name="fotoPerfil" id="fotoPerfil" readonly/>
+                        </div>
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
-                        <img role="button" src="<?php print !file_exists($alumno['foto_perfil']) ? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
-                        <input type="hidden" id="foto_base64" value="">
+                        <img role="button" src="<?php print$alumno['foto_perfil'] == 'data:,' || $alumno['foto_perfil'] == ''? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
+                        <input type="hidden" id="foto_base64" value="<?php print$alumno['foto_perfil'];?>">
                         <div class="file">
                             Cambiar foto
-                            <input type="file" capture="camera" name="fotoPerfil" id="fotoPerfil" readonly/>
+                            <input type="file" name="fotoPerfil" id="fotoPerfil" readonly/>
                         </div>
                     </div>
                 </div>
