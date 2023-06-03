@@ -12,11 +12,11 @@ class datos{
     static public function busqueda($ape,$nom,$edad,$activ){
 
         if(empty($edad)){
-            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja FROM alumnos a
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja,a.foto_perfil FROM alumnos a
             WHERE a.apellido LIKE '%".$ape."%' AND a.nombre LIKE '%".$nom."%'
             AND a.actividad LIKE '%".$activ."%' ORDER BY a.apellido ASC;";
         }else{
-            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja FROM alumnos a
+            $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja,a.foto_perfil FROM alumnos a
             WHERE a.edad = ".$edad." ORDER BY a.apellido ASC";
         }
 

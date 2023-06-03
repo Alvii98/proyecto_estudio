@@ -33,8 +33,21 @@ function buscar(){
     .then(function (json) {
         let tbody = '',
         baja = ''
-        // return
-        if(json.datos.length > 0){
+        //console.log(json)
+        if(json.foto_rota.length > 0){
+            json.foto_rota.forEach(element => {
+                baja = element.baja == 1 ? 'style="text-decoration:line-through;"' : ''
+
+                tbody += `<tr style="background-color:#fd5757;" onclick="alumno_id(`+element.id+`,'`+element.apellido+`')" `+baja+`>
+                <td>`+element.apellido+`</td>
+                <td>`+element.nombre+`</td>
+                <td>`+element.edad+`</td>
+                <td>`+element.actividad+`</td>
+                </tr>`
+            })
+        }
+        
+        if(json.datos.length > 0 || json.foto_rota.length > 0){
             json.datos.forEach(element => {
                 
                 document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
@@ -54,7 +67,7 @@ function buscar(){
                     </tr>`
                 }
 
-            });
+            })
         }else{
             document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
             tbody = '<th colspan="6" class="text-center">No se encontraron resultados</th>'

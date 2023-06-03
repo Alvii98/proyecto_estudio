@@ -16,7 +16,7 @@ if(isset($_POST['baja'])){
         }elseif (strpos($img, 'data:image/jpeg;base64,') !== FALSE) {
             $img = str_replace('data:image/jpeg;base64,', '', $img);
         }else{
-            exit;
+            //exit;
         }
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
