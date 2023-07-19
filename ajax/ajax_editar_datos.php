@@ -3,6 +3,8 @@ require_once '../clases/consultas.php';
 $json = new StdClass();
 if(isset($_POST['baja'])){
     $json->respAlumno = datos::baja_alumno($_POST['id_alumno'],$_POST['baja']);
+}elseif(isset($_POST['debe_mes'])){
+    $json->respAlumno = datos::debe_mes($_POST['id_alumno'],$_POST['debe_mes']);
 }else{
 
     $datos = json_decode(file_get_contents('php://input'));
