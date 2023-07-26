@@ -63,7 +63,7 @@
                             <label class="form-check-label">Debe el mes pasado</label>
                         </div>
                     </div>
-                    <div class="form-group col-md-10 d-flex justify-content-center">
+                    <div class="form-group col-md-12 d-flex justify-content-center">
                         <div class="float-left">
                             <label for="exampleFormControlInput1">A pagar</label>
                             <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
