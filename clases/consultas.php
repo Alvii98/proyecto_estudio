@@ -162,6 +162,17 @@ class datos{
         }
         return true;
     }
+    static public function debe_mes($id_alumno,$debe){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "UPDATE alumnos SET debemes = ".$debe." WHERE id = ".$id_alumno;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
     static public function update_alumnos($array){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    

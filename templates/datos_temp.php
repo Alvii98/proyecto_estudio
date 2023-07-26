@@ -46,11 +46,21 @@
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
                 <div class="form-group float-right">
+                    <a class="btn btn-dark btn-lg rounded-pill" id="copiar_texto">Copiar texto informativo</a>
+                </div>
+                <div class="form-group float-right mr-3">
                     <div class="form-check">
                         <input <?php print $alumno['baja'] == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="baja_alumno" id="baja_alumno">
                         <label class="form-check-label">Baja del alumno/a</label>
                     </div>
                 </div>
+                <div class="form-group float-right mr-3">
+                    <div class="form-check">
+                        <input <?php print $alumno['debemes'] == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="debe_mes" id="debe_mes">
+                        <label class="form-check-label">Debe el mes pasado</label>
+                    </div>
+                </div>
+
                 <?php if(empty($vinculo)){ ?>
                     <div class="form-group col-md-10 d-flex justify-content-center">
                         <div class="float-left">

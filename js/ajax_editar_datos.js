@@ -5,7 +5,76 @@ window.addEventListener("click", function(event){
     if(event.target.id == 'eliminar_alumno') eliminar_alumno(event)
     if(event.target.id == 'eliminar_familiar') eliminar_familiar(event)
     if(event.target.id == 'baja_alumno') baja_alumno(event)
+    if(event.target.id == 'debe_mes') debe_mes(event)
+    if(event.target.id == 'copiar_texto') copiar_texto()
 })
+function copiar_texto() {
+    let texto = '',actividades = '',
+    valor = document.querySelector('#valor').value,
+    efectivo = document.querySelector('#efectivo').value,
+    combo = document.querySelector('#combo').value
+
+
+    for (let i = 0; i < document.querySelectorAll('#actividad').length; i++) {
+        if(document.querySelectorAll('#actividad')[i].value == '') continue
+        actividades += '*'+document.querySelectorAll('#actividad')[i].value+'\n'
+    }
+    texto += 'Actividades:\n'+actividades+'\n'
+
+    if (valor != '$0,00') {
+        texto += 'Valor: '+valor+'\n'
+    }
+    if (efectivo != '$0,00') {
+        texto += 'Precio promocional abonando en efectivo en el Estudio: '+efectivo+'\n'
+    }
+    if (combo != '$0,00') {
+        texto += 'Combo: '+combo+'\n'
+    }
+    texto += '\nLos valores corresponden al pago realizado del 1 al 15 del mes, fuera de esa fecha tienen un 10% de recargo.'
+    texto += '\nEstudio 6 - Espacio Artístico\n\n'
+    texto += 'Instagram: @estudio6.espacioartistico \nWhatsapp: 11-3646-6763'
+    console.log(texto)
+    // return
+    const textarea = document.createElement('textarea')    
+    textarea.value = texto
+    textarea.style.position = 'absolute'
+    textarea.style.left = '-9999px'
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textarea)
+}
+function debe_mes(event) {
+    let texto = ''
+    const datosPost = new FormData()
+    datosPost.append('id_alumno', document.querySelector('#id_alumno').value)
+    datosPost.append('debe_mes', event.target.checked == true ? 1 : 0)
+    texto = event.target.checked == true ? 'Seguro que quiere poner que el/la alumno/a debe?' : 'Seguro que quiere quitar que el/la alumno/a debe?'
+    
+    alertify.confirm('Datos del alumno/a', texto, function(){
+        /************** CARGA LOS DATOS ****************/
+        fetch('ajax/ajax_editar_datos.php', {
+            method: "POST",
+            // Set the post data
+            body: datosPost
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            console.log(json)
+            alertify.success('Guardado correctamente.')
+            return
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Datos del alumno/a','Ocurrio un error al guardar los datos.')
+        })
+    }, function(){ 
+        alertify.error('Cancelado')
+        event.target.checked == true ? event.target.checked = false : event.target.checked = true
+        return
+    });
+}
 
 function baja_alumno(event) {
     let texto = ''
