@@ -45,23 +45,24 @@
                 <div class="form-group float-left">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
+                <?php if(empty($vinculo)){ ?>
                 <div class="form-group float-right">
-                    <a class="btn btn-dark btn-lg rounded-pill" id="copiar_texto">Copiar texto informativo</a>
+                    <a class="btn btn-dark btn-lg rounded-pill" id="copiar_texto">Texto informativo</a>
                 </div>
+                <?php } ?>
                 <div class="form-group float-right mr-3">
                     <div class="form-check">
                         <input <?php print $alumno['baja'] == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="baja_alumno" id="baja_alumno">
                         <label class="form-check-label">Baja del alumno/a</label>
                     </div>
                 </div>
-                <div class="form-group float-right mr-3">
-                    <div class="form-check">
-                        <input <?php print $alumno['debemes'] == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="debe_mes" id="debe_mes">
-                        <label class="form-check-label">Debe el mes pasado</label>
-                    </div>
-                </div>
-
                 <?php if(empty($vinculo)){ ?>
+                    <div class="form-group float-right mr-3">
+                        <div class="form-check">
+                            <input <?php print $alumno['debemes'] == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="debe_mes" id="debe_mes">
+                            <label class="form-check-label">Debe el mes pasado</label>
+                        </div>
+                    </div>
                     <div class="form-group col-md-10 d-flex justify-content-center">
                         <div class="float-left">
                             <label for="exampleFormControlInput1">A pagar</label>
@@ -86,7 +87,7 @@
                 <div class="form-group col-md-2 float-right">
                     <div class="perfil-img d-flex justify-content-center">
                         <a id="tomar_foto" class="tomar_foto">Tomar foto</a>
-                        <img role="button" src="<?php print !file_exists($alumno['foto_perfil']) ? 'img/icono.jpg' :$alumno['foto_perfil'];?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
+                        <img role="button" src="<?php print !file_exists($alumno['foto_perfil']) ? 'img/icono.jpg' :$alumno['foto_perfil'];?>?<?php print time();?>" id="id_perfil" class="rounded-circle" height="130" width="130"/>
                         <input type="hidden" id="foto_base64" value="">
                         <div class="file">
                             Cambiar foto

@@ -6,50 +6,63 @@ window.addEventListener("click", function(event){
     if(event.target.id == 'eliminar_familiar') eliminar_familiar(event)
     if(event.target.id == 'baja_alumno') baja_alumno(event)
     if(event.target.id == 'debe_mes') debe_mes(event)
+    if(event.target.id == 'debe_mes_vinculo') debe_mes(event)
     if(event.target.id == 'copiar_texto') copiar_texto()
 })
 function copiar_texto() {
-    let texto = '',actividades = '',
-    valor = document.querySelector('#valor').value,
-    efectivo = document.querySelector('#efectivo').value,
-    combo = document.querySelector('#combo').value
+    try {
+        let texto = '',actividades = '',
+        valor = document.querySelector('#valor').value,
+        efectivo = document.querySelector('#efectivo').value,
+        combo = document.querySelector('#combo').value
+        const textarea = document.createElement('textarea')                
 
+        for (let i = 0; i < document.querySelectorAll('#actividad').length; i++) {
+            if(document.querySelectorAll('#actividad')[i].value == '') continue
+            actividades += '• '+document.querySelectorAll('#actividad')[i].value+'\n'
+        }
+        texto += 'Actividades:\n'+actividades+'\n'
+        
+        if (valor != '$0,00') {
+            texto += 'Valor: '+valor+'\n'
+        }
+        if (efectivo != '$0,00') {
+            texto += 'Precio promocional abonando en efectivo en el Estudio: '+efectivo+'\n'
+        }
+        if (combo != '$0,00') {
+            texto += 'Combo familiar: '+combo+'\n'
+        }
+        texto += '\nLos valores corresponden al pago realizado del 1 al 15 del mes, fuera de esa fecha tienen un 10% de recargo.'
+        texto += '\nEstudio 6 - Espacio Artístico\n\n'
+        texto += 'Instagram: @estudio6.espacioartistico \nWhatsapp: 11-3646-6763'
+        // console.log(texto)
+        // return
+        textarea.value = texto
+        textarea.style.position = 'absolute'
+        textarea.style.left = '-9999px'
+        document.body.appendChild(textarea)
+        textarea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textarea)
 
-    for (let i = 0; i < document.querySelectorAll('#actividad').length; i++) {
-        if(document.querySelectorAll('#actividad')[i].value == '') continue
-        actividades += '*'+document.querySelectorAll('#actividad')[i].value+'\n'
+        alertify.success('Copiado correctamente.')
+    } catch (error) {
+        alertify.error('Ocurrio un error al copiar el texto.')
     }
-    texto += 'Actividades:\n'+actividades+'\n'
-
-    if (valor != '$0,00') {
-        texto += 'Valor: '+valor+'\n'
-    }
-    if (efectivo != '$0,00') {
-        texto += 'Precio promocional abonando en efectivo en el Estudio: '+efectivo+'\n'
-    }
-    if (combo != '$0,00') {
-        texto += 'Combo: '+combo+'\n'
-    }
-    texto += '\nLos valores corresponden al pago realizado del 1 al 15 del mes, fuera de esa fecha tienen un 10% de recargo.'
-    texto += '\nEstudio 6 - Espacio Artístico\n\n'
-    texto += 'Instagram: @estudio6.espacioartistico \nWhatsapp: 11-3646-6763'
-    console.log(texto)
-    // return
-    const textarea = document.createElement('textarea')    
-    textarea.value = texto
-    textarea.style.position = 'absolute'
-    textarea.style.left = '-9999px'
-    document.body.appendChild(textarea)
-    textarea.select()
-    document.execCommand('copy')
-    document.body.removeChild(textarea)
 }
 function debe_mes(event) {
+    console.log(event.target.id)
     let texto = ''
     const datosPost = new FormData()
-    datosPost.append('id_alumno', document.querySelector('#id_alumno').value)
-    datosPost.append('debe_mes', event.target.checked == true ? 1 : 0)
-    texto = event.target.checked == true ? 'Seguro que quiere poner que el/la alumno/a debe?' : 'Seguro que quiere quitar que el/la alumno/a debe?'
+    if(event.target.id == 'debe_mes_vinculo'){
+        datosPost.append('nombre_vinculo', document.querySelector('#nombre_vinculo').value)
+        datosPost.append('debe_mes_vinculo', event.target.checked == true ? 1 : 0)
+        texto = event.target.checked == true ? 'Seguro que quiere poner que el vinculo familiar debe?' : 'Seguro que quiere quitar que el vinculo familiar debe?'
+    }else{
+        datosPost.append('id_alumno', document.querySelector('#id_alumno').value)
+        datosPost.append('debe_mes', event.target.checked == true ? 1 : 0)
+        texto = event.target.checked == true ? 'Seguro que quiere poner que el/la alumno/a debe?' : 'Seguro que quiere quitar que el/la alumno/a debe?'
+    }
     
     alertify.confirm('Datos del alumno/a', texto, function(){
         /************** CARGA LOS DATOS ****************/

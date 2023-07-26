@@ -251,8 +251,13 @@ function guardar_actividad(event){
     if(id_actividad == 0 && event.target.id != 'nueva_actividad'){
         return alertify.alert('Guardar actividad','Tiene que seleccionar una actividad.')
     }
-    document.querySelector('#nueva_actividad').disabled = false
-    document.querySelector('#guardar_actividad').disabled = true
+    if(event.target.id == 'nueva_actividad'){
+        document.querySelector('#nueva_actividad').disabled = false
+        document.querySelector('#guardar_actividad').disabled = true
+    }else if(event.target.id == 'guardar_actividad'){
+        document.querySelector('#nueva_actividad').disabled = true
+        document.querySelector('#guardar_actividad').disabled = false
+    }
     console.log(id_actividad)
     guardar_actividad = {'id_guardar_id': id_actividad,
     'id_guardar_actividad': document.querySelector('#id_guardar_actividad').value,

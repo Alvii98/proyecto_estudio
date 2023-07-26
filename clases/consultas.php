@@ -34,10 +34,10 @@ class datos{
     }
     static public function busqueda_familiar_datos($vinculo,$id = ''){
 
-        $query = "SELECT DISTINCT id_alumno,vinculo FROM vinculos WHERE id_alumno = ".$id;  
+        $query = "SELECT DISTINCT id_alumno,vinculo,debemes FROM vinculos WHERE id_alumno = ".$id;  
         
         if(empty($id)){
-            $query = "SELECT DISTINCT id_alumno,vinculo FROM vinculos WHERE vinculo = '".$vinculo."'";  
+            $query = "SELECT DISTINCT id_alumno,vinculo,debemes FROM vinculos WHERE vinculo = '".$vinculo."'";  
         }
 
         return datos::respuestaQuery($query);
@@ -167,6 +167,17 @@ class datos{
         $conn = $instancia->getConnection();    
 
         $query = "UPDATE alumnos SET debemes = ".$debe." WHERE id = ".$id_alumno;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
+    static public function debe_mes_vinculo($nombre_vinculo,$debe_mes_vinculo){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+        
+        $query = "UPDATE vinculos SET debemes = ".$debe_mes_vinculo." WHERE vinculo = '".$nombre_vinculo."'";
         
         if (!mysqli_query($conn, $query)) {
             return mysqli_error($conn);

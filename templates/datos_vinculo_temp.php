@@ -40,17 +40,29 @@
                 <div class="form-group float-left col-md-3">
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
-                <div class="form-group float-left col-md-2">
-                    <label for="exampleFormControlInput1">A pagar</label>
-                    <input type="text" readonly="true" id="valor" class="form-control col-md-8 text-center" value="$<?php print$valor;?>">
+                <div class="form-group float-right">
+                    <a class="btn btn-dark btn-lg rounded-pill" id="copiar_texto">Texto informativo</a>
                 </div>
-                <div class="form-group float-left col-md-2">
-                    <label for="exampleFormControlInput1">En efectivo</label>
-                    <input type="text" readonly="true" id="efectivo" class="form-control col-md-8 text-center" value="$<?php print$efectivo;?>">
+                <div class="form-group float-right mr-3">
+                    <div class="form-check">
+                        <input <?php print $nombre_vinculo == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="debe_mes_vinculo" id="debe_mes_vinculo">
+                        <label class="form-check-label">Debe el mes pasado</label>
+                    </div>
                 </div>
-                <div class="form-group float-left col-md-2">
-                    <label for="exampleFormControlInput1">Combo</label>
-                    <input type="text" readonly="true" id="combo" class="form-control col-md-8 text-center" value="$<?php print$combo;?>">
+                <input type="hidden" id="nombre_vinculo" value="<?php print$_GET['vinculo'];?>">
+                <div class="form-group col-md-12 d-flex justify-content-center">
+                    <div class="float-left">
+                        <label for="exampleFormControlInput1">A pagar</label>
+                        <input type="text" readonly="true" id="valor" class="form-control col-md-6 text-center" value="$<?php print$valor;?>">
+                    </div>
+                    <div class="ml-3 float-left">
+                        <label for="exampleFormControlInput1">En efectivo</label>
+                        <input type="text" readonly="true" id="efectivo" class="form-control col-md-6 text-center" value="$<?php print$efectivo;?>">
+                    </div>
+                    <div class="ml-3 float-left">
+                        <label for="exampleFormControlInput1">Combo</label>
+                        <input type="text" readonly="true" id="combo" class="form-control col-md-6 text-center" value="$<?php print$combo;?>">
+                    </div>
                 </div>
             </div>
             <?php foreach ($alumnos as $value) { ?>
