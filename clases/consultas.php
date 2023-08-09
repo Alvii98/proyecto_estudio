@@ -14,10 +14,10 @@ class datos{
         if(empty($edad)){
             $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja,a.foto_perfil FROM alumnos a
             WHERE a.apellido LIKE '%".$ape."%' AND a.nombre LIKE '%".$nom."%'
-            AND a.actividad LIKE '%".$activ."%' ORDER BY a.apellido ASC;";
+            AND a.actividad LIKE '%".$activ."%' ORDER BY CASE WHEN a.baja = 1 THEN 1 ELSE 0 END,a.apellido ASC;";
         }else{
             $query = "SELECT a.id,a.apellido,a.nombre,a.edad,a.fecha_nac,a.actividad,a.baja,a.foto_perfil FROM alumnos a
-            WHERE a.edad = ".$edad." ORDER BY a.apellido ASC";
+            WHERE a.edad = ".$edad." ORDER BY CASE WHEN a.baja = 1 THEN 1 ELSE 0 END,a.apellido ASC";
         }
 
         return datos::respuestaQuery($query);
@@ -34,10 +34,10 @@ class datos{
     }
     static public function busqueda_familiar_datos($vinculo,$id = ''){
 
-        $query = "SELECT DISTINCT id_alumno,vinculo,debemes FROM vinculos WHERE id_alumno = ".$id;  
+        $query = "SELECT DISTINCT id_alumno,vinculo,debemes,info_deuda FROM vinculos WHERE id_alumno = ".$id;  
         
         if(empty($id)){
-            $query = "SELECT DISTINCT id_alumno,vinculo,debemes FROM vinculos WHERE vinculo = '".$vinculo."'";  
+            $query = "SELECT DISTINCT id_alumno,vinculo,debemes,info_deuda FROM vinculos WHERE vinculo = '".$vinculo."'";  
         }
 
         return datos::respuestaQuery($query);
@@ -178,6 +178,28 @@ class datos{
         $conn = $instancia->getConnection();    
         
         $query = "UPDATE vinculos SET debemes = ".$debe_mes_vinculo." WHERE vinculo = '".$nombre_vinculo."'";
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
+    static public function info_deuda_alumno($id_alumno,$info){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "UPDATE alumnos SET info_deuda = '".$info."' WHERE id = ".$id_alumno;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
+    static public function info_deuda_vinculo($nombre_vinculo,$info){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "UPDATE vinculos SET info_deuda = '".$info."' WHERE vinculo = '".$nombre_vinculo."'";
         
         if (!mysqli_query($conn, $query)) {
             return mysqli_error($conn);

@@ -35,6 +35,7 @@ if(isset($_GET['id'])){
     foreach ($vinculos as $value) {
         # code...
         $nombre_vinculo = $value['debemes'];
+        $debe_info = $value['info_deuda'];
         $alumno = datos::alumno_id($value['id_alumno']);
 
         $alumnos[] = array('id' => $alumno[0]['id'],

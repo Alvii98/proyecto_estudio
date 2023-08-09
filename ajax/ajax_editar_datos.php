@@ -7,6 +7,14 @@ if(isset($_POST['baja'])){
     $json->respAlumno = datos::debe_mes($_POST['id_alumno'],$_POST['debe_mes']);
 }elseif(isset($_POST['debe_mes_vinculo'])){
     $json->respAlumno = datos::debe_mes_vinculo($_POST['nombre_vinculo'],$_POST['debe_mes_vinculo']);
+}elseif(isset($_POST['info_deuda'])){
+    if(isset($_POST['id_alumno'])){
+        $json->respAlumno = datos::info_deuda_alumno($_POST['id_alumno'],$_POST['info_deuda']);
+    }elseif (isset($_POST['nombre_vinculo'])) {
+        $json->respAlumno = datos::info_deuda_vinculo($_POST['nombre_vinculo'],$_POST['info_deuda']);
+    }else{
+        $json->respAlumno = false;
+    }
 }else{
 
     $datos = json_decode(file_get_contents('php://input'));

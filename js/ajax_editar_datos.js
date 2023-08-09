@@ -9,12 +9,50 @@ window.addEventListener("click", function(event){
     if(event.target.id == 'debe_mes_vinculo') debe_mes(event)
     if(event.target.id == 'copiar_texto') copiar_texto()
 })
+document.addEventListener("DOMContentLoaded", function() { 
+    const adeuda = document.getElementById("adeuda")
+    if (adeuda != null) adeuda.addEventListener("keydown", function(event) { adeuda_info(event)})
+})
+
+function adeuda_info(event) {
+    if (event.key === "Enter") {        
+        if(event.target.value.trim() == ''){
+            alertify.alert('Datos del alumno/a','No puede guardar este campo vacio.')
+            return false
+        }
+        const datosPost = new FormData(),
+        alumno = document.querySelector('#id_alumno'),
+        vinculo = document.querySelector('#nombre_vinculo')
+
+        datosPost.append('info_deuda', event.target.value)
+        if (alumno != null) datosPost.append('id_alumno', alumno.value)
+        if (vinculo != null) datosPost.append('nombre_vinculo', vinculo.value)
+
+        /************** CARGA DATOS DEUDA ****************/
+        fetch('ajax/ajax_editar_datos.php', {
+            method: "POST",
+            // Set the post data
+            body: datosPost
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            console.log(json)
+            alertify.success('Guardado correctamente.')
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Datos del alumno/a','Ocurrio un error al guardar los datos.')
+        })
+    }
+}
+
 function copiar_texto() {
     try {
         let texto = '',actividades = '',
-        valor = document.querySelector('#valor').value,
-        efectivo = document.querySelector('#efectivo').value,
-        combo = document.querySelector('#combo').value
+        valor = document.querySelector('#valor').value.trim().replace(/\s+/g, '.'),
+        efectivo = document.querySelector('#efectivo').value.trim().replace(/\s+/g, '.'),
+        combo = document.querySelector('#combo').value.trim().replace(/\s+/g, '.')
         const textarea = document.createElement('textarea')                
 
         for (let i = 0; i < document.querySelectorAll('#actividad').length; i++) {
@@ -24,17 +62,16 @@ function copiar_texto() {
         texto += 'Actividades:\n'+actividades+'\n'
         
         if (valor != '$0,00') {
-            texto += 'Valor: '+valor+'\n'
-        }
-        if (efectivo != '$0,00') {
-            texto += 'Precio promocional abonando en efectivo en el Estudio: '+efectivo+'\n'
+            texto += 'Valor: '+valor.split(',')[0]+'\n'
         }
         if (combo != '$0,00') {
-            texto += 'Combo familiar: '+combo+'\n'
+            texto += 'Precio promocional abonando en efectivo en el Estudio: '+combo.split(',')[0]
+            texto += ' (Descuentos por combo de actividades y/o grupos familiares aplicados)\n'
+        }else if (efectivo != '$0,00') {
+            texto += 'Precio promocional abonando en efectivo en el Estudio: '+efectivo.split(',')[0]
+            texto += ' (Descuentos por combo de actividades y/o grupos familiares aplicados)\n'
         }
         texto += '\nLos valores corresponden al pago realizado del 1 al 15 del mes, fuera de esa fecha tienen un 10% de recargo.'
-        texto += '\nEstudio 6 - Espacio Artístico\n\n'
-        texto += 'Instagram: @estudio6.espacioartistico \nWhatsapp: 11-3646-6763'
         // console.log(texto)
         // return
         textarea.value = texto
@@ -51,17 +88,16 @@ function copiar_texto() {
     }
 }
 function debe_mes(event) {
-    console.log(event.target.id)
     let texto = ''
     const datosPost = new FormData()
     if(event.target.id == 'debe_mes_vinculo'){
         datosPost.append('nombre_vinculo', document.querySelector('#nombre_vinculo').value)
         datosPost.append('debe_mes_vinculo', event.target.checked == true ? 1 : 0)
-        texto = event.target.checked == true ? 'Seguro que quiere poner que el vinculo familiar debe?' : 'Seguro que quiere quitar que el vinculo familiar debe?'
+        texto = event.target.checked == true ? 'Seguro que quiere poner que el vinculo familiar adeuda?' : 'Seguro que quiere quitar que el vinculo familiar adeuda?'
     }else{
         datosPost.append('id_alumno', document.querySelector('#id_alumno').value)
         datosPost.append('debe_mes', event.target.checked == true ? 1 : 0)
-        texto = event.target.checked == true ? 'Seguro que quiere poner que el/la alumno/a debe?' : 'Seguro que quiere quitar que el/la alumno/a debe?'
+        texto = event.target.checked == true ? 'Seguro que quiere poner que el/la alumno/a adeuda?' : 'Seguro que quiere quitar que el/la alumno/a adeuda?'
     }
     
     alertify.confirm('Datos del alumno/a', texto, function(){
@@ -74,6 +110,11 @@ function debe_mes(event) {
         .then(response => response.json())
         .then(function (json) {
             console.log(json)
+            if (event.target.checked == true) {
+                document.querySelector("#adeuda").style.display = ""
+            }else{
+                document.querySelector("#adeuda").style.display = "none"
+            }
             alertify.success('Guardado correctamente.')
             return
         })
@@ -183,30 +224,26 @@ function editar_datos(event){
 
     }
     /************* LE SACO LOS READONLY ******************/
-    for (let i = 0; i < inputs.length; i++) {
+    /*  for (let i = 0; i < inputs.length; i++) {
         
         if(inputs[i].id == 'valor'||inputs[i].id == 'efectivo'||inputs[i].id == 'combo'||inputs[i].id == 'fotoPerfil') continue
 
         if(inputs[i].readOnly == true){
             inputs[i].readOnly = false
-            // inputs[i].setAttribute('style','background: rgba(102, 88, 106, 0.9) !important;')
         }else{
             inputs[i].readOnly = true
-            // inputs[i].setAttribute('style','background: rgba(31, 4, 24, 0.9) !important;')
         }
     }
     for (let t = 0; t < textareas.length; t++) {
         if(textareas[t].readOnly == true){
             textareas[t].readOnly = false
-            // textareas[t].setAttribute('style','background: rgba(102, 88, 106, 0.9) !important;')
         }else{
             textareas[t].readOnly = true
-            // textareas[t].setAttribute('style','background: rgba(31, 4, 24, 0.9) !important;')
         }
-    }
+    }*/
     /*********** LE CAMBIO EL NOMBRE AL BOTON ********************/
-    if(event.target.textContent == 'Editar datos') event.target.textContent = 'Guardar datos'
-    else event.target.textContent = 'Editar datos'
+    /*if(event.target.textContent == 'Editar datos') event.target.textContent = 'Guardar datos'
+    else event.target.textContent = 'Editar datos'*/
 }
 
 
@@ -261,13 +298,10 @@ function eliminar_familiar(event){
 }
 
 function agregar_actividad(){
-    let readOnly = document.getElementsByTagName('input')[6].readOnly
-    readOnly = readOnly == true ? 'readonly' : ''
-
     document.querySelector('#nueva_actividad').insertAdjacentHTML('beforeend',`<div class="form-group col-md-12 float-left">
                 <label>Nueva actividad</label>
                 <i class="bi bi-dash-circle-dotted eliminar_actividad" title="Eliminar actividad" id="eliminar_actividad"></i>
-                <input list="actividades" class="form-control" id="actividad" `+readOnly+`>        
+                <input list="actividades" class="form-control" id="actividad">        
             </div>`)
 }
 function eliminar_actividad(event){

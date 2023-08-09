@@ -41,12 +41,13 @@
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
                 <div class="form-group float-right">
-                    <a class="btn btn-dark btn-lg rounded-pill" id="copiar_texto">Texto informativo</a>
+                    <a class="btn btn-dark btn-lg rounded-pill" id="copiar_texto">Detalle de cuota</a>
                 </div>
                 <div class="form-group float-right mr-3">
                     <div class="form-check">
                         <input <?php print $nombre_vinculo == 0 ? '' : 'checked'?> class="form-check-input" role="button" type="checkbox" name="debe_mes_vinculo" id="debe_mes_vinculo">
-                        <label class="form-check-label">Debe el mes pasado</label>
+                        <label class="form-check-label">Adeuda</label>
+                        <input type="text" class="form-control col-8" value="<?php print$debe_info;?>" id="adeuda" style="<?php print $nombre_vinculo == 0 ? 'display:none;' : ''?>">
                     </div>
                 </div>
                 <input type="hidden" id="nombre_vinculo" value="<?php print$_GET['vinculo'];?>">
