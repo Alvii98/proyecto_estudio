@@ -11,7 +11,9 @@
                     <label class="h6">Url externa <i class="bi bi-link"></i></label>
                 </div>
                 <div class="col-md-12">
-                    <a class="h6" id="url_externa" target="_blank"></a>
+                    <a class="h6" target="_blank" href="http://<?php print gethostbyname(gethostname());?>/proyecto_estudio/">
+                        <?php print gethostbyname(gethostname());?>/proyecto_estudio/
+                    </a>
                 </div>
             </div>
             <div class="col-md-3 float-left ml-4">
@@ -27,7 +29,3 @@
         </div>
     </div>
 </header>
-<script>
-document.querySelector('#url_externa').textContent = '<?php print gethostname();?>/proyecto_estudio/'
-document.querySelector('#url_externa').href = 'http://<?php print gethostname();?>/proyecto_estudio/'
-</script>
