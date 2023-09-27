@@ -18,6 +18,8 @@
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS -->
    <script src="js/ajax_busqueda.js?<?php print time();?>"></script> 
+   <script src="js/excel.js?<?php print time();?>"></script> 
+   <script src="js/exportar_excel.js?<?php print time();?>"></script> 
     <!-- ESTILOS -->
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
@@ -48,10 +50,10 @@
                     <?php } ?>
                 </datalist>
             </div>
-            <!-- <div class="col-md-10 d-flex justify-content-center mt-3">
-                <button class="btn btn-dark btn-lg rounded-pill col-md-3" id="buscar">Buscar</button>
-            </div> -->
-            <div class="col-md-12 mt-4 text-center">
+            <div class="col-md-12 mt-2">
+                <button class="btn btn-dark btn-lg rounded-pill float-right" onclick="exportarExcel('alumnos')" id="exportar_excel">Exportar a excel</button>
+            </div>
+            <div class="col-md-12 text-center">
                 <label id="cant_res"></label>
                 <?php include('partials\tabla_temp.php');?>
             </div>

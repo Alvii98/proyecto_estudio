@@ -1,5 +1,5 @@
 <div class="scroll mb-3">
-    <table class="table table-bordered text-body">
+    <table class="table table-bordered text-body" id="tabla_alumnos">
         <thead align="center">
             <tr>
                 <th>Apellido</th>
