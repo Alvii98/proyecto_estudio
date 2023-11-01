@@ -8,7 +8,7 @@ function exportarExcel(name = ''){
         .then(function (json) {
             let data = [],titles = [], row = [], rows = []
 
-            titles = ['Apellido','Nombre','Documento','Fecha de nacimiento','Edad','Nacionalidad','Domicilio','Localidad','Celular','Telefono','Correo','Actividades','Salud']
+            titles = ['Apellido','Nombre','Documento','Fecha de nacimiento','Edad','Nacionalidad','Domicilio','Localidad','Celular','Telefono','Correo','Salud','Actividades']
             // console.log(titles)
             data.push(titles)
             
@@ -17,7 +17,7 @@ function exportarExcel(name = ''){
                 row.push(element.apellido)
                 row.push(element.nombre)
                 row.push(element.documento)
-                row.push(element.fecha_nac)
+                row.push(formato_fecha(element.fecha_nac))
                 row.push(element.edad)
                 row.push(element.nacionalidad)
                 row.push(element.domicilio)
@@ -25,8 +25,8 @@ function exportarExcel(name = ''){
                 row.push(element.tel_movil)
                 row.push(element.tel_fijo)
                 row.push(element.mail)
-                row.push(element.actividad)
                 row.push(element.salud)
+                row.push(element.actividad)
                 data.push(row)
             })
             // (C2) CREATE NEW EXCEL "FILE"
@@ -34,8 +34,8 @@ function exportarExcel(name = ''){
             worksheet = XLSX.utils.aoa_to_sheet(data);
             // ANCHO DE COLUMNAS
             var wscols = [
-                { wch: 15 },
-                { wch: 15 },
+                { wch: 20 },
+                { wch: 20 },
                 { wch: 10 },
                 { wch: 12 }, 
                 { wch: 5 }, 
@@ -87,7 +87,11 @@ function exportarExcel(name = ''){
     }
 }
 
-
+function formato_fecha(fecha) {
+    fecha = fecha.split('-')
+    // console.log(fecha[2]+'/'+fecha[1]+'/'+fecha[0])
+    return fecha[2]+'/'+fecha[1]+'/'+fecha[0]
+}
 
 // CREO EL LOADER PARA CUANDO ESTA CARGARNDO
 function crearLoader(){
