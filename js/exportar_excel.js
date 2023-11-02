@@ -8,7 +8,7 @@ function exportarExcel(name = ''){
         .then(function (json) {
             let data = [],titles = [], row = [], rows = []
 
-            titles = ['Apellido','Nombre','Documento','Fecha de nacimiento','Edad','Nacionalidad','Domicilio','Localidad','Celular','Telefono','Correo','Salud','Actividades']
+            titles = ['APELLIDO','NOMBRE','DOCUMENTO','FECHA DE NACIMIENTO','EDAD','NACIONALIDAD','DOMICILIO','LOCALIDAD','CELULAR','TELEFONO','CORREO','SALUD','ACTIVIDADES']
             // console.log(titles)
             data.push(titles)
             
@@ -26,7 +26,7 @@ function exportarExcel(name = ''){
                 row.push(element.tel_fijo)
                 row.push(element.mail)
                 row.push(element.salud)
-                row.push(element.actividad)
+                row.push(acomodar_actividades(element.actividad))
                 data.push(row)
             })
             // (C2) CREATE NEW EXCEL "FILE"
@@ -44,9 +44,9 @@ function exportarExcel(name = ''){
                 { wch: 20 }, 
                 { wch: 15 }, 
                 { wch: 15 }, 
-                { wch: 15 },
-                { wch: 100 }, 
-                { wch: 10 }
+                { wch: 20 },
+                { wch: 10 }, 
+                { wch: 100 }
             ];
             worksheet['!cols'] = wscols;
             workbook.SheetNames.push("First");
@@ -92,6 +92,22 @@ function formato_fecha(fecha) {
     // console.log(fecha[2]+'/'+fecha[1]+'/'+fecha[0])
     return fecha[2]+'/'+fecha[1]+'/'+fecha[0]
 }
+// console.log(acomodar_actividades('ndsjndsa|dnsjkabda|dsmaj|kndajksnd|'))
+function acomodar_actividades(actividades) {
+    let partes = actividades.split('|'),
+    actividades_new = ''
+
+    if (partes.length - 1 > 1) {
+        for (let i = 0; i < partes.length -1; i++) {
+            actividades_new += actividades_new == '' ? '' : ', '
+            actividades_new += partes[i]
+        }
+        return actividades_new
+    } else {
+        return actividades.replace(/\|/g, "")
+    }
+}
+
 
 // CREO EL LOADER PARA CUANDO ESTA CARGARNDO
 function crearLoader(){
