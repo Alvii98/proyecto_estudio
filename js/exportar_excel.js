@@ -6,9 +6,10 @@ function exportarExcel(name = ''){
         })
         .then(response => response.json())
         .then(function (json) {
-            let data = [],titles = [], row = [], rows = []
+            let data = [],titles = [], row = []
 
-            titles = ['APELLIDO','NOMBRE','DOCUMENTO','FECHA DE NACIMIENTO','EDAD','NACIONALIDAD','DOMICILIO','LOCALIDAD','CELULAR','TELEFONO','CORREO','SALUD','ACTIVIDADES']
+            titles = ['APELLIDO','NOMBRE','DOCUMENTO','FECHA DE NACIMIENTO','EDAD','NACIONALIDAD','DOMICILIO',
+            'LOCALIDAD','CELULAR','TELEFONO','CORREO','SALUD','ACTIVIDADES','NOTAS','BAJAS','OBSERVACIONES']
             // console.log(titles)
             data.push(titles)
             
@@ -27,6 +28,9 @@ function exportarExcel(name = ''){
                 row.push(element.mail)
                 row.push(element.salud)
                 row.push(acomodar_actividades(element.actividad))
+                row.push(element.notas)
+                row.push(element.baja)
+                row.push(element.observaciones)
                 data.push(row)
             })
             // (C2) CREATE NEW EXCEL "FILE"
@@ -46,6 +50,9 @@ function exportarExcel(name = ''){
                 { wch: 15 }, 
                 { wch: 20 },
                 { wch: 10 }, 
+                { wch: 100 },
+                { wch: 100 }, 
+                { wch: 5 }, 
                 { wch: 100 }
             ];
             worksheet['!cols'] = wscols;
@@ -106,23 +113,4 @@ function acomodar_actividades(actividades) {
     } else {
         return actividades.replace(/\|/g, "")
     }
-}
-
-
-// CREO EL LOADER PARA CUANDO ESTA CARGARNDO
-function crearLoader(){
-    document.getElementById('loader').innerHTML = `<div class="loader m-t-2 p-t-2">
-    <div class="spinner"></div>
-    <div class="spinner"></div>
-    <div class="spinner"></div>
-    <div class="spinner"></div>
-    <div class="spinner"></div>
-    <div class="spinner"></div>
-
-    </div>`
-}
-// ELIMINO EL LOADER
-function eliminarLoader(){
-    var loader = document.getElementById("loader")
-    loader.removeChild(loader.childNodes[0])
 }
