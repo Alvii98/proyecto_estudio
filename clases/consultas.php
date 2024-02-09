@@ -70,6 +70,13 @@ class datos{
         return datos::respuestaQuery($query);
     }
 
+    static public function familiares(){
+
+        $query = "SELECT * FROM familiar ORDER BY nombre_apellido ASC";    
+
+        return datos::respuestaQuery($query);
+    }
+
     static public function actividades($id_actividad = ''){
 
         $query = "SELECT * FROM actividades_valores WHERE id =".$id_actividad;

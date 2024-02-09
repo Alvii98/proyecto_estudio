@@ -38,6 +38,8 @@
                 <div class="col-md-3 boton-cargar" onclick="location.href='cargas.php'">Cargar alumno</div>
                 <div class="col-md-3 boton-cargar" onclick="location.href='vinculo.php'">Vinculos familiares</div>
                 <div class="col-md-3 boton-cargar" onclick="location.href='actividades.php'">Actividades</div>
+                <i class="bi bi-file-earmark-spreadsheet-fill float-right h2" onclick="exportarExcel('alumnos')" id="exportar_excel"
+                style="position:absolute;top:4%;right:5%;"></i>
             </div>
             <div class="col-md-10 d-flex justify-content-center mt-4">
                 <input type="text" id="apellido" placeholder="Apellido" class="form-control col-md-3">
@@ -49,9 +51,6 @@
                         <option value="<?php print$value['actividad'];?>">
                     <?php } ?>
                 </datalist>
-            </div>
-            <div class="col-md-12 mt-2">
-                <button class="btn btn-dark btn-lg rounded-pill float-right" onclick="exportarExcel('alumnos')" id="exportar_excel">Exportar a excel</button>
             </div>
             <div class="col-md-12 text-center">
                 <label id="cant_res"></label>

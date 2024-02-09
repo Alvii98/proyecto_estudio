@@ -14,7 +14,12 @@ document.addEventListener('click', function (event) {
     if(event.target.id == 'buscar') buscar()
 })
 document.addEventListener('DOMContentLoaded', function (event) {
-    buscar()
+    buscar()    
+    if (window.screen.width < 600) {
+        if (document.querySelector('#exportar_excel') != null) {   
+            document.querySelector('#exportar_excel').setAttribute("style", "position:absolute;bottom:100%;right:5%;");
+        }
+    }
 })
 
 function buscar(){

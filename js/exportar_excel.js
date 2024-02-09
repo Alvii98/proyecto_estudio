@@ -6,13 +6,12 @@ function exportarExcel(name = ''){
         })
         .then(response => response.json())
         .then(function (json) {
-            let data = [],titles = [], row = []
+            let data = [],predata = [],titles = [], row = [],
+            cantFamiliar = 0, cantFamAlum = 0, contfam = 0
 
             titles = ['APELLIDO','NOMBRE','DOCUMENTO','FECHA DE NACIMIENTO','EDAD','NACIONALIDAD','DOMICILIO',
             'LOCALIDAD','CELULAR','TELEFONO','CORREO','SALUD','ACTIVIDADES','NOTAS','BAJAS','OBSERVACIONES']
-            // console.log(titles)
-            data.push(titles)
-            
+            // console.log(titles)            
             json.resp.forEach(element => {
                 row = []
                 row.push(element.apellido)
@@ -31,8 +30,33 @@ function exportarExcel(name = ''){
                 row.push(element.notas)
                 row.push(element.baja)
                 row.push(element.observaciones)
-                data.push(row)
+                cantFamAlum = 0
+                json.resp2.forEach(element2 => {
+                    if (element.id == element2.id_alumno) {
+                        cantFamAlum++
+                        row.push(element2.nombre_apellido)
+                        row.push(element2.telefono)                        
+                        row.push(element2.vinculo)                        
+                        row.push(element2.observacion)                        
+                    }
+                })
+                if (cantFamAlum > cantFamiliar) {
+                    if (cantFamiliar > 0) contfam = cantFamAlum - cantFamiliar
+                    else contfam = cantFamAlum
+
+                    for (let i = 0; i < contfam; i++) {
+                        titles.push(['NOMBRE Y APELLIDO'],['TELEFONO'],['VINCULO'],['OBSERVACION'])
+                    }   
+                    cantFamiliar = cantFamAlum
+                }
+                predata.push(row)
             })
+
+            data.push(titles)
+
+            predata.forEach(element => {
+                data.push(element)
+            });
             // (C2) CREATE NEW EXCEL "FILE"
             let workbook = XLSX.utils.book_new(),
             worksheet = XLSX.utils.aoa_to_sheet(data);
@@ -53,6 +77,22 @@ function exportarExcel(name = ''){
                 { wch: 100 },
                 { wch: 100 }, 
                 { wch: 5 }, 
+                { wch: 100 },
+                { wch: 30 },
+                { wch: 15 },
+                { wch: 10 },
+                { wch: 100 },
+                { wch: 30 },
+                { wch: 15 },
+                { wch: 10 },
+                { wch: 100 },
+                { wch: 30 },
+                { wch: 15 },
+                { wch: 10 },
+                { wch: 100 },
+                { wch: 30 },
+                { wch: 15 },
+                { wch: 10 },
                 { wch: 100 }
             ];
             worksheet['!cols'] = wscols;
