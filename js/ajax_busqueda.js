@@ -39,6 +39,7 @@ function buscar(){
         let tbody = '',
         baja = ''
         //console.log(json)
+        document.querySelector('#cant_res').textContent = (json.datos.length+json.foto_rota.length)+' resultados.'
         if(json.foto_rota.length > 0){
             json.foto_rota.forEach(element => {
                 baja = element.baja == 1 ? 'style="text-decoration:line-through;"' : ''
@@ -53,9 +54,7 @@ function buscar(){
         }
         
         if(json.datos.length > 0 || json.foto_rota.length > 0){
-            json.datos.forEach(element => {
-                
-                document.querySelector('#cant_res').textContent = json.datos.length+' resultados.'
+            json.datos.forEach(element => {                
                 if(element.vinculo == 'Familia'){
                     tbody += `<tr style="background-color:#96b796;"onclick="alumno_id(`+element.id+`,'`+element.apellido+`')">
                     <td colspan="4">`+element.vinculo+' '+element.apellido+`</td>
