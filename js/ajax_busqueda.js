@@ -39,7 +39,7 @@ function buscar(){
         let tbody = '',
         baja = ''
         //console.log(json)
-        document.querySelector('#cant_res').textContent = (json.datos.length+json.foto_rota.length)+' resultados.'
+        document.querySelector('#cant_res').textContent = (json.datos.length+json.foto_rota.length)+' alumnos.'
         if(json.foto_rota.length > 0){
             json.foto_rota.forEach(element => {
                 baja = element.baja == 1 ? 'style="text-decoration:line-through;"' : ''
