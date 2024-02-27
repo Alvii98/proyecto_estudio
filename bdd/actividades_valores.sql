@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2024 a las 19:02:32
+-- Tiempo de generación: 27-02-2024 a las 19:38:10
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `estudio2`
+-- Base de datos: `estudio`
 --
 
 -- --------------------------------------------------------
@@ -48,7 +48,7 @@ INSERT INTO `actividades_valores` (`id`, `actividad`, `una_vez`, `una_vez_efec`,
 (5, 'Urbano Infantil I', 0, 0, 0, 0),
 (6, 'Urbano Infantil II', 0, 0, 0, 0),
 (7, 'Street Jazz', 0, 0, 0, 0),
-(8, 'Coreo Teens Pricipiante', 0, 0, 0, 0),
+(8, 'Coreo Teens Principiante', 0, 0, 0, 0),
 (9, 'Coreo Teens Prin/Inter', 0, 0, 0, 0),
 (10, 'Coreo Teens Intermedio', 0, 0, 0, 0),
 (11, 'Coreo Adulto I', 0, 0, 0, 0),
