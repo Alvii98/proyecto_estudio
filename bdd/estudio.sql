@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2023 a las 13:51:26
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.12
+-- Tiempo de generación: 26-02-2024 a las 23:02:01
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,6 +61,8 @@ CREATE TABLE `alumnos` (
   `notas` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `salud` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `baja` int(11) NOT NULL DEFAULT 0,
+  `debemes` int(11) NOT NULL DEFAULT 0,
+  `info_deuda` varchar(255) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
   `observaciones` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -88,7 +90,9 @@ CREATE TABLE `familiar` (
 CREATE TABLE `vinculos` (
   `id` int(11) NOT NULL,
   `id_alumno` int(11) NOT NULL,
-  `vinculo` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+  `vinculo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `debemes` int(11) NOT NULL DEFAULT 0,
+  `info_deuda` varchar(255) COLLATE utf8_spanish_ci NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -127,25 +131,25 @@ ALTER TABLE `vinculos`
 -- AUTO_INCREMENT de la tabla `actividades_valores`
 --
 ALTER TABLE `actividades_valores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `familiar`
 --
 ALTER TABLE `familiar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `vinculos`
 --
 ALTER TABLE `vinculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

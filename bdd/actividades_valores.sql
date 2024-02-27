@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-07-2023 a las 20:21:11
+-- Tiempo de generación: 27-02-2024 a las 19:02:32
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `estudio`
+-- Base de datos: `estudio2`
 --
 
 -- --------------------------------------------------------
@@ -41,8 +41,36 @@ CREATE TABLE `actividades_valores` (
 --
 
 INSERT INTO `actividades_valores` (`id`, `actividad`, `una_vez`, `una_vez_efec`, `dos_veces`, `dos_veces_efec`) VALUES
-(1, 'Urbano Infantil (9 a 11 años) - Miércoles', 10000, 8000, 15000, 12000),
-(2, 'Canto Adolescente 2 (12 a 17 años) - Miércoles', 5000, 3000, 7000, 6000);
+(1, 'Kids Dance I', 0, 0, 0, 0),
+(2, 'Kids Dance II', 0, 0, 0, 0),
+(3, 'Urbano Kids I', 0, 0, 0, 0),
+(4, 'Urbano Kids II', 0, 0, 0, 0),
+(5, 'Urbano Infantil I', 0, 0, 0, 0),
+(6, 'Urbano Infantil II', 0, 0, 0, 0),
+(7, 'Street Jazz', 0, 0, 0, 0),
+(8, 'Coreo Teens Pricipiante', 0, 0, 0, 0),
+(9, 'Coreo Teens Prin/Inter', 0, 0, 0, 0),
+(10, 'Coreo Teens Intermedio', 0, 0, 0, 0),
+(11, 'Coreo Adulto I', 0, 0, 0, 0),
+(12, 'Coreo Adulto II', 0, 0, 0, 0),
+(13, 'Coreo Adulto III', 0, 0, 0, 0),
+(14, 'Teatro Infantil I', 0, 0, 0, 0),
+(15, 'Teatro Infantil II', 0, 0, 0, 0),
+(16, 'Teatro Adolescente I', 0, 0, 0, 0),
+(17, 'Teatro Adolescente II', 0, 0, 0, 0),
+(18, 'Teatro Adulto', 0, 0, 0, 0),
+(19, 'Canto Infantil I', 0, 0, 0, 0),
+(20, 'Canto Infantil II', 0, 0, 0, 0),
+(21, 'Canto Adolescente I', 0, 0, 0, 0),
+(22, 'Canto Adolescente II', 0, 0, 0, 0),
+(23, 'Canto Adulto I', 0, 0, 0, 0),
+(24, 'Canto Adulto II', 0, 0, 0, 0),
+(25, 'Comedia Kids I', 0, 0, 0, 0),
+(26, 'Comedia Kids II', 0, 0, 0, 0),
+(27, 'Comedia Inf. Principiante', 0, 0, 0, 0),
+(28, 'Comedia Inf. Avanzado', 0, 0, 0, 0),
+(29, 'Comedia Adolescente', 0, 0, 0, 0),
+(30, 'Comedia Adulto', 0, 0, 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -62,7 +90,7 @@ ALTER TABLE `actividades_valores`
 -- AUTO_INCREMENT de la tabla `actividades_valores`
 --
 ALTER TABLE `actividades_valores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

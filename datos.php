@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once __DIR__.'/clases/consultas.php';
 require_once __DIR__.'/clases/calcular_precio.php';
 

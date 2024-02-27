@@ -87,7 +87,7 @@
                     <input type="text" id="tel_alumno" class="form-control">
                 </div>
                 <div class="form-group col-md-3 float-left">
-                    <label for="exampleFormControlInput1">Tel. fijo</label>
+                    <label for="exampleFormControlInput1">Autorizado</label>
                     <input type="text" id="tel_fijo" class="form-control">
                 </div>
             </div>
