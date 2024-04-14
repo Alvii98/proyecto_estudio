@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.'/consultas.php';
 
 class valores{
     static public function precio_por_alumno($actividades){
@@ -32,9 +33,11 @@ class valores{
                 $combo = $efectivo;
             } 
         }
-        // 10% de descuento por hacer mas de 1 actividad
+        // 10% de descuento por hacer mas de 1 actividad / Se cambio al 7% 14/04/2024
         if(count(array_count_values($actividad)) >= 2){
-            $porcentaje = intval($combo) * 10 / 100;
+            datos::agregar_campo_tablabdd();
+            $descuento = datos::actividades()[0]['descuento_actividad'];
+            $porcentaje = intval($combo) * $descuento / 100;
             $combo = intval($combo) - $porcentaje;
         }else{
             $combo = 0;
@@ -54,8 +57,10 @@ class valores{
             $efectivo = $efectivo + intval($valores['efectivo']);
             $combo = $efectivo;
         }
-        // 10% de descuento por ser familiares
-        $porcentaje = $combo * 10 / 100;
+        // 10% de descuento por ser familiares / Se cambio al 7% 14/04/2024
+        datos::agregar_campo_tablabdd();
+        $descuento = datos::actividades()[0]['descuento_familiar'];
+        $porcentaje = $combo * $descuento  / 100;
         $combo = $combo - $porcentaje;
 
         return ['valor' => $valor,'efectivo' => $efectivo,'combo' => $combo];

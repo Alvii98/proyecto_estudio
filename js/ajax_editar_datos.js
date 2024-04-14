@@ -10,8 +10,13 @@ window.addEventListener("click", function(event){
     if(event.target.id == 'copiar_texto') copiar_texto()
 })
 document.addEventListener("DOMContentLoaded", function() { 
-    const adeuda = document.getElementById("adeuda")
+    const adeuda = document.getElementById("adeuda"),
+    descuento_actividad = document.getElementById("descuento_actividad"),
+    descuento_familiar = document.getElementById("descuento_familiar")
     if (adeuda != null) adeuda.addEventListener("keydown", function(event) { adeuda_info(event)})
+    if (descuento_actividad != null) descuento_actividad.addEventListener("keydown", function(event) { editar_descuentos(event)})
+    if (descuento_familiar != null) descuento_familiar.addEventListener("keydown", function(event) { editar_descuentos(event)})
+
 })
 
 function adeuda_info(event) {
@@ -47,6 +52,38 @@ function adeuda_info(event) {
     }
 }
 
+function editar_descuentos(event) {
+    if (event.key === "Enter") {    
+        const descuento_actividad = document.getElementById("descuento_actividad"),
+        descuento_familiar = document.getElementById("descuento_familiar")
+
+        if(descuento_actividad.value.trim() == '' || descuento_familiar.value.trim() == ''){
+            alertify.alert('Datos del alumno/a','Uno de los campos de descuento esta vacio.')
+            return false
+        }
+        let datosDescuentos = {}
+
+        datosDescuentos = {'descuento_actividad': descuento_actividad.value,
+        'descuento_familiar': descuento_familiar.value}
+        
+        /************** CARGA DATOS DEUDA ****************/
+        fetch('ajax/ajax_guardar_vinculo_actividades.php', {
+            method: "POST",
+            // Set the post data
+            body: JSON.stringify({'datosDescuentos':datosDescuentos})
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            console.log(json)
+            alertify.success('Guardado correctamente.')
+        })
+        .catch(function (error){
+            console.log(error)
+            // Catch errors
+            alertify.alert('Datos del alumno/a','Ocurrio un error al guardar los datos.')
+        })
+    }
+}
 function copiar_texto() {
     try {
         let texto = '',actividades = '',

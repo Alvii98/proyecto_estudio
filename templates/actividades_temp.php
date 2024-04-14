@@ -18,6 +18,7 @@
 	<script src="libs/alertifyjs/settings.js"></script>
     <!-- JS PARA guardar_datos -->
     <script src="js/ajax_guardar_datos.js?<?php print time();?>"></script>
+    <script src="js/ajax_editar_datos.js?<?php print time();?>"></script>
     <!-- ESTILOS PARA LOGIN -->
     <link rel="stylesheet" href="css/estilo.css?<?php print time();?>">
 </head>
@@ -38,6 +39,16 @@
                     <a class="btn btn-dark btn-lg rounded-pill" href="index.php">Volver</a>
                 </div>
             </div>
+            <!-- <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-group">
+                    <label>Descuento por actividades</label>
+                    <input type="number" class="form-control col-10" id="descuento_actividad" value="<?php print$descuento_actividad;?>">
+                </div>
+                <div class="form-group">
+                    <label>Descuento por familiar</label>
+                    <input type="number" class="form-control col-10" id="descuento_familiar" value="<?php print$descuento_familiar;?>">
+                </div>
+            </div> -->
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group col-md-6">
                     <select class="form-control ml-2" id="id_actividad">

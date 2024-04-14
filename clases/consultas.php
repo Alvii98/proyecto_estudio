@@ -180,6 +180,17 @@ class datos{
         }
         return true;
     }
+    static public function descuentos($descuento_actividad,$descuento_familiar){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection();    
+
+        $query = "UPDATE actividades_valores SET descuento_actividad = ".$descuento_actividad.",descuento_familiar = ".$descuento_familiar;
+        
+        if (!mysqli_query($conn, $query)) {
+            return mysqli_error($conn);
+        }
+        return true;
+    }
     static public function debe_mes_vinculo($nombre_vinculo,$debe_mes_vinculo){
         $instancia = SingletonConexion::getInstance();
         $conn = $instancia->getConnection();    
@@ -322,6 +333,33 @@ class datos{
         }
         return true;
     }
+
+    static public function agregar_campo_tablabdd(){
+        $instancia = SingletonConexion::getInstance();
+        $conn = $instancia->getConnection(); 
+        
+        $query = "SHOW COLUMNS FROM actividades_valores LIKE 'descuento_actividad'";
+        
+        if (empty(datos::respuestaQuery($query))) {
+            $query = "ALTER TABLE actividades_valores ADD descuento_actividad INT(11) NOT NULL DEFAULT '7' AFTER dos_veces_efec";
+            
+            if (!mysqli_query($conn, $query)) {
+                return mysqli_error($conn);
+            }
+        }
+        $query = "SHOW COLUMNS FROM actividades_valores LIKE 'descuento_familiar'";
+
+        if (empty(datos::respuestaQuery($query))) {
+            $query = "ALTER TABLE actividades_valores ADD descuento_familiar INT(11) NOT NULL DEFAULT '7' AFTER dos_veces_efec";
+            
+            if (!mysqli_query($conn, $query)) {
+                return mysqli_error($conn);
+            }
+        }
+
+        return true;
+    }
+
     static public function obtener_edad($fecha_nac){
         
         // $arr = explode('/', $fecha_nac);

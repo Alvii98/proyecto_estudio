@@ -22,7 +22,11 @@ if(isset($datos->id_actividad)){
     }else{
         $json->respGuardarActividad = datos::update_actividades($id,$actividad,$una,$una_efectivo,$dos,$dos_efectivo);
     }
-
+}else if(isset($datos->datosDescuentos)){
+    $descuento_actividad = $datos->datosDescuentos->descuento_actividad;
+    $descuento_familiar = $datos->datosDescuentos->descuento_familiar;
+    
+    $json->respGuardarDescuentos = datos::descuentos($descuento_actividad,$descuento_familiar);
 }else{
     $id_alumno = $datos->alumnos->id_alumno;
     $nom_vinculo = $datos->alumnos->nom_vinculo;
